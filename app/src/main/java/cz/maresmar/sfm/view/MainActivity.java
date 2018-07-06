@@ -448,8 +448,8 @@ public class MainActivity extends AppCompatActivity
                 SettingsContract.SYNC_FREQUENCY_DEFAULT)));
 
         if(mPrefs.getBoolean(SettingsContract.SYNC_WHEN_APP_OPENS, SettingsContract.SYNC_WHEN_APP_OPENS_DEFAULT) &&
-                ((lastUpdate + TimeUnit.DAYS.toMillis(1)) < System.currentTimeMillis())) {
-            SyncHandler.startRemainingSync(this, mSelectedUserId);
+                ((lastUpdate + TimeUnit.HOURS.toMillis(12)) < System.currentTimeMillis())) {
+            SyncHandler.startFullSync(this);
         }
     }
 

@@ -50,7 +50,9 @@ public class UpdateService extends TasksPluginService {
     private static final String EXTRA_TEST_RESULT_INVALID_DATA = "TEST_RESULT_INVALID_DATA";
 
     @BroadcastContract.TestResult
-    private int mPortalTestResult = -1;
+    private int mPortalTestResult = 0;
+
+    private int mExampleNumber = 0;
 
     @Override
     public void onCreate() {
@@ -124,14 +126,16 @@ public class UpdateService extends TasksPluginService {
                     throw new RuntimeException("Unknown test result " + extraData.getString(EXTRA_TEST_RESULT));
             }
 
-            // ...
+            mExampleNumber = extraData.getInt("exampleNumber");
 
-            if (TextUtils.isEmpty(data.credentialName)) {
-                data.credentialName = "1";
-                updateProvidedLogData();
-            }
+            // ...
         } catch (JSONException e) {
             Log.e("TestPlugin", "Bad portal extra data", e);
+        }
+
+        if (TextUtils.isEmpty(data.credentialName)) {
+            data.credentialName = "1";
+            updateProvidedLogData();
         }
     }
 
@@ -153,6 +157,8 @@ public class UpdateService extends TasksPluginService {
                     throw new RuntimeException("Unknown test result " + mPortalTestResult);
             }
             extraData.put(EXTRA_TEST_RESULT, portalTestResultText);
+
+            extraData.put("exampleNumber", mExampleNumber);
 
             data.portalExtra = extraData.toString();
 

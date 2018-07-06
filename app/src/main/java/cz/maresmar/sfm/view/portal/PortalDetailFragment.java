@@ -96,6 +96,18 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
     private LatLng mLocation = null;
     private PluginAdapter mPluginAdapter;
 
+    private AdapterView.OnItemSelectedListener mPluginChangeListen = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            requestExtraFormat(mPluginAdapter.getItem(position).id);
+            setExtraData(null);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
+    };
+
     CountDownLatch blockingLoaders = new CountDownLatch(1);
 
     // UI elements
@@ -168,16 +180,6 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
 
         // Plugin options
         mPluginSpinner = (Spinner) view.findViewById(R.id.pluginSpinner);
-        mPluginSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                requestExtraFormat(mPluginAdapter.getItem(position).id);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
         // Loads plugins
         getLoaderManager().initLoader(PLUGIN_LOADER_ID, null, new LoaderManager.LoaderCallbacks<List<PluginInfo>>() {
             @NonNull
@@ -266,6 +268,8 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
         // Loads portal data from DB
         if (mPortalUri != null && mLoadDataFromDb) {
             getLoaderManager().initLoader(PORTAL_LOADER_ID, null, this);
+        } else {
+            mPluginSpinner.setOnItemSelectedListener(mPluginChangeListen);
         }
     }
 
@@ -386,7 +390,11 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
                     } catch (InterruptedException e) {
                         Timber.e(e);
                     }
-                    getActivity().runOnUiThread(() -> setPlugin(plugin));
+                    getActivity().runOnUiThread(() -> {
+                        setPlugin(plugin);
+
+                        mPluginSpinner.setOnItemSelectedListener(mPluginChangeListen);
+                    });
                 });
 
                 // New menu notification

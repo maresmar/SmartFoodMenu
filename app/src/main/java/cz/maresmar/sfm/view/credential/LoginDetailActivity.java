@@ -269,6 +269,7 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
             mPortalUri = portalDetailFragment.getDataUri();
             credentialDetailFragment.reset(mUserUri, mPortalUri);
             mViewPager.setCurrentItem(CREDENTIAL_TAB);
+            mSwipeRefreshLayout.setRefreshing(false);
         }
     }
 

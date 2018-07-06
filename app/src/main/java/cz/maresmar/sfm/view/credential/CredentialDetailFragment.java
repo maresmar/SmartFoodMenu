@@ -69,6 +69,7 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
     private static final String ARG_CREDENTIAL_TEMP_URI = "credentialTempUri";
     private static final String ARG_USER_PREFIX_URI = "userPrefixUri";
     private static final String ARG_PORTAL_GROUP_ID = "portalGroupId";
+    private static final String ARG_LAST_PLUGIN = "lastPlugin";
 
     // Local variables
     private Uri mCredentialUri;
@@ -77,6 +78,7 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
     private Uri mPortalUri;
     private String mPortalSelection;
     private long mPortalGroupId = UNKNOWN_CREDENTIAL_GROUP_ID;
+    private String mLastPlugin = null;
     private boolean mLoadDataFromDb = true;
 
     // UI elements
@@ -159,6 +161,7 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
             mPortalUri = savedInstanceState.getParcelable(ARG_PORTAL_URI);
             mUserPrefixUri = savedInstanceState.getParcelable(ARG_USER_PREFIX_URI);
             mPortalGroupId = savedInstanceState.getLong(ARG_PORTAL_GROUP_ID);
+            mLastPlugin = savedInstanceState.getString(ARG_LAST_PLUGIN);
             mLoadDataFromDb = false;
         }
     }
@@ -197,6 +200,7 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
         outState.putParcelable(ARG_PORTAL_URI, mPortalUri);
         outState.putParcelable(ARG_USER_PREFIX_URI, mUserPrefixUri);
         outState.putLong(ARG_PORTAL_GROUP_ID, mPortalGroupId);
+        outState.putString(ARG_LAST_PLUGIN, mLastPlugin);
     }
 
     // -------------------------------------------------------------------------------------------
@@ -352,6 +356,10 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
 
                 String pluginId = cursor.getString(0);
                 requestExtraFormat(pluginId);
+                if(mLastPlugin != null && !mLastPlugin.equals(pluginId)) {
+                    setExtraData(null);
+                }
+                mLastPlugin = pluginId;
 
                 mPortalGroupId = cursor.getLong(1);
                 break;

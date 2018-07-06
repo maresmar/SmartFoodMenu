@@ -362,7 +362,7 @@ public class SyncHandler {
             // Updates portals for next start
             if (mPrefs.getBoolean(SettingsContract.UPDATE_PORTALS_AUTOMATICALLY,
                     SettingsContract.UPDATE_PORTALS_AUTOMATICALLY_DEFAULT)) {
-                PortalsUpdateService.startUpdate(mContext);
+                PortalsUpdateService.handleActionUpdate(mContext);
             }
         } finally {
             // Check actions only if I had an connection

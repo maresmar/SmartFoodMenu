@@ -130,7 +130,7 @@ public class PortalsUpdateService extends IntentService {
             final String action = intent.getAction();
             if (ACTION_UPDATE_PORTALS.equals(action)) {
                 Timber.i("Portals update started");
-                handleActionUpdatePortals();
+                handleActionUpdate(this);
             } else {
                 Timber.e("Unknown action fired %s", action);
             }
@@ -138,27 +138,32 @@ public class PortalsUpdateService extends IntentService {
     }
 
     /**
-     * Handle portals update in the provided background thread
+     * Does portals and portal groups update in the provided background thread
+     * <p>
+     * Can be called from another class because of background limit restrictions of services introduced
+     * in Oreo</p>
+     *
+     * @param context Some valid context
      */
     @WorkerThread
-    private void handleActionUpdatePortals() {
+    public static void handleActionUpdate(@NonNull Context context) {
         try {
 
-            updatePortalGroups();
-            updatePortals();
+            updatePortalGroups(context);
+            updatePortals(context);
 
             Timber.i("Update completed");
-            sendResult(getApplicationContext(), UPDATE_RESULT_OK, null);
+            sendResult(context, UPDATE_RESULT_OK, null);
         } catch (IOException e) {
             Timber.w(e, "Network error during portal's update ");
-            sendResult(getApplicationContext(), UPDATE_RESULT_IO_ERROR, null);
+            sendResult(context, UPDATE_RESULT_IO_ERROR, null);
         } catch (UnsupportedApiException e) {
             Timber.e(e, "Newer api received");
-            sendResult(getApplicationContext(), UPDATE_RESULT_OUTDATED_API, e.getServerMessage());
+            sendResult(context, UPDATE_RESULT_OUTDATED_API, e.getServerMessage());
         }
     }
 
-    private void updatePortals() throws IOException, UnsupportedApiException {
+    private static void updatePortals(@NonNull Context context) throws IOException, UnsupportedApiException {
         Timber.i("Portal data sync started");
 
         URL url = new URL(ServerContract.PORTALS_SERVER_ADDRESS);
@@ -193,7 +198,7 @@ public class PortalsUpdateService extends IntentService {
 
             // Apply them once for performance boost
             try {
-                getContentResolver().applyBatch(ProviderContract.AUTHORITY, operations);
+                context.getContentResolver().applyBatch(ProviderContract.AUTHORITY, operations);
             } catch (OperationApplicationException e) {
                 Timber.e(e, "Cannot save elements to db");
                 throw new UnsupportedOperationException("Cannot save elements to db ", e);
@@ -204,7 +209,7 @@ public class PortalsUpdateService extends IntentService {
         }
     }
 
-    private void updatePortalGroups() throws IOException, UnsupportedApiException {
+    private static void updatePortalGroups(@NonNull Context context) throws IOException, UnsupportedApiException {
         Timber.i("Portal group update started");
 
         URL url = new URL(ServerContract.PORTAL_GROUPS_SERVER_ADDRESS);
@@ -232,7 +237,7 @@ public class PortalsUpdateService extends IntentService {
 
             // Apply them once for performance boost
             try {
-                getContentResolver().applyBatch(ProviderContract.AUTHORITY, operations);
+                context.getContentResolver().applyBatch(ProviderContract.AUTHORITY, operations);
             } catch (OperationApplicationException e) {
                 Timber.e(e, "Cannot save elements to db");
                 throw new UnsupportedOperationException("Cannot save elements to db ", e);

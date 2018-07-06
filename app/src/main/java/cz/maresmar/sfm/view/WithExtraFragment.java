@@ -218,7 +218,6 @@ public abstract class WithExtraFragment extends Fragment implements ExtraFormatH
             // Clear UI
             if (mExtrasFormat.size() > 0) {
                 mExtrasFormat = new ArrayList<>();
-                mExtraData = null;
                 inflateExtraFormat();
             }
             return;
@@ -227,9 +226,6 @@ public abstract class WithExtraFragment extends Fragment implements ExtraFormatH
         // If the plugin is changed
         if (mLastPlugin == null || !pluginName.equals(mLastPlugin)) {
             mLastPlugin = pluginName;
-
-            // Clear saved values
-            mExtraData = null;
 
             // Clear UI
             mExtrasFormat = new ArrayList<>();
