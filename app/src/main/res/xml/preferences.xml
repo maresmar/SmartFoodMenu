@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ SmartFoodMenu - Android application for canteens extendable with plugins
+  ~
+  ~ Copyright © 2016-2018  Martin Mareš <mmrmartin[at]gmail[dot]com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_auto_sync_category">
+
+        <ListPreference
+            android:key="syncFrequency"
+            android:title="@string/pref_auto_sync_frequency"
+            android:entries="@array/pref_sync_frequency"
+            android:entryValues="@array/pref_sync_frequency_values"
+            android:defaultValue="7"/>
+
+        <CheckBoxPreference
+            android:key="syncOnlyWhenUnmetered"
+            android:title="@string/pref_auto_sync_unmetered_title"
+            android:summary="@string/pref_auto_sync_unmetered_summary"
+            android:defaultValue="true"/>
+
+        <CheckBoxPreference
+            android:key="syncOnlyWhenCharging"
+            android:title="@string/pref_auto_sync_charging_title"
+            android:summary="@string/pref_auto_sync_charging_summary"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_notification_category">
+
+        <PreferenceScreen
+            android:persistent="false"
+            android:key="notification"
+            android:title="@string/pref_notification_title"
+            android:summary="@string/pref_notification_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_advanced_settings_category">
+
+        <CheckBoxPreference
+            android:key="syncWhenAppOpens"
+            android:title="@string/pref_auto_sync_when_opened_title"
+            android:summary="@string/pref_auto_sync_when_opened_summary"
+            android:defaultValue="true"/>
+
+        <CheckBoxPreference
+            android:key="portalsAutoUpdate"
+            android:title="@string/pref_auto_update_portals_title"
+            android:summary="@string/pref_auto_update_portals_summary"
+            android:defaultValue="true"/>
+
+        <PreferenceScreen
+            android:persistent="false"
+            android:key="updatePortalsNow"
+            android:title="@string/pref_update_portals_now_title"
+            android:summary="@string/pref_update_portals_now_summary" />
+
+        <ListPreference
+            android:key="pluginsTimeout"
+            android:title="@string/pref_plugins_timeout_title"
+            android:entries="@array/pref_plugins_timeout"
+            android:entryValues="@array/pref_plugins_timeout_values"
+            android:defaultValue="60"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_about_category">
+
+        <PreferenceScreen
+            android:title="Martin Mareš"
+            android:summary="mmrmartin [at] gmail [dot] com">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/mmrmartin/SmartFoodMenu" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:summary="@string/app_version"
+            android:title="@string/app_name">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://play.google.com/store/apps/details?id=cz.maresmar.sfm" />
+
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

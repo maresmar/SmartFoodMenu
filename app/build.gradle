@@ -1,0 +1,101 @@
+/*
+ * SmartFoodMenu - Android application for canteens extendable with plugins
+ *
+ * Copyright © 2016-2018  Martin Mareš <mmrmartin[at]gmail[dot]com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "cz.maresmar.sfm"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 3
+        versionName "3.0.2"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "app_version", "${defaultConfig.versionName}"
+            resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+        }
+        debug {
+            versionNameSuffix ".debug"
+            resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
+            resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+repositories {
+    google()
+    maven {
+        url 'http://dl.bintray.com/amulyakhare/maven'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // Support library
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:support-annotations:${rootProject.ext.annotationLibVersion}"
+    implementation "com.android.support:support-vector-drawable:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:support-v4:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support.constraint:constraint-layout:1.1.2"
+    // GSON (JSON parser)
+    implementation 'com.google.code.gson:gson:2.8.4'
+    // Google play services
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
+    implementation 'com.google.android.gms:play-services-places:15.0.1'
+    // Firebase JobDispatcher = JobScheduler for API < 21
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+    // Letter to drawable
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    // Circle ImageView
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    // Logging
+    implementation 'com.jakewharton.timber:timber:4.7.0'
+    // Drawer
+    implementation('com.mikepenz:materialdrawer:6.0.8@aar') {
+        transitive = true
+    }
+    // About libraries (it look really nice)
+    implementation('com.mikepenz:aboutlibraries:6.0.9@aar') {
+        transitive = true
+    }
+    // In browser SQL debugging (aka http://XXX.XXX.X.XXX:8080)
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.3'
+    // My libs
+    implementation project(':dbContract')
+    implementation project(':apiContract')
+    implementation project(':builtinPlugins')
+}

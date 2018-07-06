@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SmartFoodMenu - Android application for canteens extendable with plugins
+  ~
+  ~ Copyright © 2016-2018  Martin Mareš <mmrmartin[at]gmail[dot]com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string-array name="connection_security_values">
+        <item id="100">Bezpeční, věřit důvěryhodným certifikátům</item>
+        <item id="101">Nebezpčené, věřit všem certifikátům</item>
+        <item id="102">Vůbec nešifrovat</item>
+    </string-array>
+
+    <string-array name="pref_sync_frequency">
+        <item>1 den</item>
+        <item>2 dny</item>
+        <item>7 dní</item>
+        <item>1 měsíc</item>
+        <item>nikdy</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values" >
+        <item>1</item>
+        <item>2</item>
+        <item>7</item>
+        <item>30</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="pref_plugins_timeout">
+        <item>30 sekund</item>
+        <item>60 sekund</item>
+        <item>120 sekund</item>
+        <item>240 sekund</item>
+        <item>neomezeno (nebezpečné)</item>
+    </string-array>
+    <string-array name="pref_plugins_timeout_values">
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>240</item>
+        <item>2147483647</item> <!-- Integer.MAX_VALUE = nearly unlimited ;-) ) -->
+    </string-array>
+</resources>

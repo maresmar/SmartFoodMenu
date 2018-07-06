@@ -1,0 +1,33 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cz.maresmar.sfm.testplugin">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application android:label="@string/app_name">
+
+        <service
+            android:name=".UpdateService"
+            android:exported="true"
+            android:label="@string/plugin_name"
+            android:permission="@string/plugin_permission">
+            <intent-filter>
+                <action android:name="android.intent.action.SYNC" />
+                <category android:name="cz.maresmar.sfm.plugin" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="cz.maresmar.sfm.plugin.RunPlanReceiver"
+            android:enabled="true"
+            android:permission="cz.maresmar.sfm.PLUGIN_START"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cz.maresmar.sfm.broadcast.plan-run" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

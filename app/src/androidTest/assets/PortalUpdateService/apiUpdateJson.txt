@@ -1,0 +1,3 @@
+{"apiVersion":2,"replyType":"portals","updateMsg":null,"data":[{"ID":0,"Name":"Example","Ref":"http:\/\/example.com","Extra":null,"Plugin":"simplePlugin","LocN":90,"LocE":100}]}
+
+Web hosting add

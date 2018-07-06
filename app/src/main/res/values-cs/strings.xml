@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SmartFoodMenu - Android application for canteens extendable with plugins
+  ~
+  ~ Copyright © 2016-2018  Martin Mareš <mmrmartin[at]gmail[dot]com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">SmartFoodMenu</string>
+    <string name="app_changelog">
+        <![CDATA[
+        <i>Verze 3.0.2</i><br />
+        - Volitelná synchronizace po spuštění<br />
+        <i>Verze 3.0.1</i><br />
+        - UI opravy<br />
+        - Opravy textů<br />
+        <i>Verze 3.0.0</i><br />
+        - Nové jídelny<br />
+        - Material design<br />
+        - Podpora více uživatelů<br />
+        - Podpora více jídelen najednou<br />
+        - Více možností jak objednávat jídlo<br />
+        - a mnoho dalšího<br />
+        <br />
+        <i>Nahrazuje starou aplikaci "Jidelnicek"</i>]]>
+    </string>
+    <string name="aboutLibraries_description_special1_name">Licence</string>
+    <string name="aboutLibraries_description_special2_name">Seznam změn</string>
+    <string name="aboutLibraries_description_text">Open source knihovny použité v aplikaci</string>
+    <string name="main_today_fragment_title">Dnes</string>
+    <string name="main_orders_fragment_title">Objednávky</string>
+    <string name="main_edit_saved_text">Změny uloženy, budou synchronizovaný při připojení k síti…</string>
+    <string name="drawer_today">Dnes</string>
+    <string name="drawer_day">Den</string>
+    <string name="drawer_portal">Jídelna</string>
+    <string name="drawer_orders">Objednávky</string>
+    <string name="drawer_help_and_settings_group">Nápověda a nastavení</string>
+    <string name="drawer_feedback">Poslat zpětnou vazbu</string>
+    <string name="drawer_settings">Nastavení</string>
+    <string name="drawer_about">O aplikaci</string>
+    <string name="drawer_help">Nápověda</string>
+    <string name="drawer_add_portal">Přidat jídelnu</string>
+    <string name="drawer_manage_portals">Spravovat jídelny</string>
+    <string name="welcome_activity_title">Rychlí průvodce</string>
+    <string name="welcome_about_action">O aplikaci</string>
+    <string name="welcome_hi_text">Ahoj!!!</string>
+    <string name="welcome_intro_text">
+        Díky za stažení této aplikace. Musíme nejprve nastavit pár věcí, aby aplikace mohla fungovat.
+        Nejprve pokud chcete aplikaci používat, tak musíte souhlasit s licenčním ujednáním…
+    </string>
+    <string name="welcome_terms_text">
+        Tento program je rozšiřován v naději, že bude užitečný, avšak BEZ JAKÉKOLIV ZÁRUKY.
+        Jde o svobodný software a jeho šíření je za určitých podmínek vítáno, nahlédněte do
+        licence v sekci o aplikaci v toolbaru.
+        \n
+        \nTato aplikace může využívat Google Analytics pro anonymní sledování používání aplikace.
+        Uživatel také může zaslat zprávu vývojáři obsahující ladící informace. Všechna takto získaná
+        data jsou považována za soukromá a nikdy nebudou předána žádné třetí straně.
+    </string>
+    <string name="welcome_accept_terms_checkbox">Souhlasím s licenčními podmínkami</string>
+    <string name="welcome_accept_terms_error">Musíte souhlasit s licenčními podmínkami</string>
+    <string name="new_user_screen_title">Nový uživatel</string>
+    <string name="user_activity_title">Detail uživatele</string>
+    <string name="user_pick_picture_button">Vybrat profilovou fotku</string>
+    <string name="user_crop_picture_dialog">Oříznout profilovou fotku</string>
+    <string name="user_name_hint">Jméno uživatele</string>
+    <string name="user_empty_name_error">Musíte vložit nějaké jméno</string>
+    <string name="user_random_name_value">Náhodná žába</string>
+    <string name="user_pick_random_name_action">NÁHODNÉ</string>
+    <string name="user_list_title">Uživatelé</string>
+    <string name="user_list_add_action">Přidat uživatele</string>
+    <string name="user_list_edit_action">Upravit uživatele</string>
+    <string name="user_list_delete_action">Smazat uživatele</string>
+    <string name="portal_list_screen_title">Vybrat jídelnu</string>
+    <string name="portal_list_refresh_action">Aktualizovat</string>
+    <string name="portal_list_add_action">Přidat jídelnu</string>
+    <string name="portal_list_delete_action">Smazat jídelnu</string>
+    <string name="portal_screen_title">Nastavení jídelny</string>
+    <string name="portal_name_hint">Jméno jídelny</string>
+    <string name="portal_name_empty_error">Jméno nemůže být prázdné</string>
+    <string name="portal_name_used_error">Jméno už bylo použito</string>
+    <string name="portal_reference_hint">Webová adresa (nebo kód)</string>
+    <string name="portal_plugin_label">Plugin:</string>
+    <string name="portal_plugin_not_found_error">Plugin %s nenalezen :-/</string>
+    <string name="portal_security_label">Zabezpečení spojení:</string>
+    <string name="portal_location_label">Poloha jídelny:</string>
+    <string name="portal_pick_location_button">Vybrat</string>
+    <string name="portal_remove_location_button">Odebrat</string>
+    <string name="portal_notify_about_new_food_checkbox">Upozornit na nové jídlo</string>
+    <string name="portal_checking_portal_data">Kontroluji nastavení jídelny… Prosím čekejte…</string>
+    <string name="credential_list_title">Uživatelovi portály</string>
+    <string name="credential_list_edit">Upravit přihlašovací údaje</string>
+    <string name="credential_list_edit_portal">Upravit nastavení portálu</string>
+    <string name="credential_list_delete">Smazat přihlašovací údaje</string>
+    <string name="credential_list_without_credential">Bez přihlašovacích údajů</string>
+    <string name="login_detail_title">Přihlašovací údaje</string>
+    <string name="login_detail_checking_data">Kontrolování přihlašovacích… Prosím čekejte…</string>
+    <string name="credential_screen_title">Přihlašovací údaje</string>
+    <string name="credential_password_hint">Heslo:</string>
+    <string name="credential_username_hint">Uživatelské jméno:</string>
+    <string name="credential_credential_groups">Skupina uživatelů</string>
+    <string name="credential_group_description">Důležité pouze pokud používáte více uživatelů…</string>
+    <string name="credential_detail_checking_credential_data">Kontrolování přihlašovacích údajů… Prosím čekejte…</string>
+    <string name="credential_notify_credit_bellow_checkbox">Upozornit na kredit pod</string>
+    <string name="credential_notify_credit_below_text">100</string>
+    <string name="credential_notify_credit_increase_checkbox">Upozornit na zvýšení kreditu</string>
+    <string name="credential_group_child">Dítě</string>
+    <string name="credential_group_student">Student</string>
+    <string name="credential_group_adult">Dospělý</string>
+    <string name="credential_group_external_adult">Externí dospělý</string>
+    <string name="menu_change_disabled">Nelze změnit jídlo</string>
+    <string name="menu_change_order_from_stock">Objednat z burzy</string>
+    <string name="menu_change_offer_in_stock">Nabídnout do burzy</string>
+    <string name="menu_change_remove_from_stock">Odebrat z burzy</string>
+    <string name="menu_empty_menu_text">Žádné menu k zobrazení</string>
+    <string name="menu_detail_reserved">Objednáno</string>
+    <string name="menu_detail_offered">Nabídnuto</string>
+    <string name="menu_detail_change">Změna:</string>
+    <string name="menu_detail_to_sync">K odeslání:</string>
+    <string name="menu_detail_synced">Synchronizováno:</string>
+    <string name="menu_detail_taken_amount">Odebrané množství:</string>
+    <string name="menu_detail_last_change">Poslední změna:</string>
+    <string name="menu_detail_to_order">Dostupné k objednání:</string>
+    <string name="menu_detail_to_take">Volně dostupné:</string>
+    <string name="menu_detail_empty">-</string>
+    <string name="menu_detail_not_available">není dostupné</string>
+    <string name="menu_detail_unlimited">neomezeno</string>
+    <string name="menu_detail_pick_new_value">Vyberte novou hodnotu pro změnu</string>
+    <string name="credit_no_info">Bez kreditu</string>
+    <string name="credit_text">%.2f Kč</string>
+    <string name="order_standard_action_description">Objednáno %d, nabídnuto %d, odebráno %d</string>
+    <string name="order_standard_info_text">%s - %s</string>
+    <string name="order_delete_change">Smazat změnu</string>
+    <string name="order_show_menu">Zobrazit jídlo</string>
+    <string name="notification_channel_failed_actions_name">Selhané objednávky</string>
+    <string name="notification_channel_failed_action_des">Zobrazuje chyby, když selže některá objednávka</string>
+    <string name="notification_channel_new_menu_name">Nové jídlo</string>
+    <string name="notification_channel_new_menu_des">Zobrazuje upozornění, když je dostupné nové jídlo</string>
+    <string name="notification_chanel_credit_change_name">Změny kreditu</string>
+    <string name="notification_channel_credit_change_des">Zobrazuje upozornění při zvýšení nebo snížení kreditu</string>
+    <string name="notification_order_failed_title">Některé objednávky selhaly</string>
+    <string name="notification_order_failed_text">%d změn selhalo</string>
+    <string name="notification_new_menu_title">Nové jídlo nalezeno</string>
+    <string name="notification_new_menu_text">%s má nové jídlo</string>
+    <string name="notification_low_credit_title">Nízký kredit</string>
+    <string name="help_icons_section_text">Ikony použité v aplikaci:</string>
+    <string name="help_one_menu_selected">Jedno jídlo zvoleno</string>
+    <string name="help_no_menu_selected">Žádné jídlo zvoleno</string>
+    <string name="help_cancel_selected">Zrušit zvolené</string>
+    <string name="help_food_stock">Nabídnout v burze</string>
+    <string name="help_edit">Změna</string>
+    <string name="help_local">K odeslání</string>
+    <string name="help_synced">Hotovo</string>
+    <string name="help_confirm_note">Nezapomeňte také potvrdit změny ;-)</string>
+    <string name="empty_nothing_to_show">Nic k zobrazení :-/</string>
+    <string name="notification_low_credit_text">%s pro %s</string>
+    <string name="notification_credit_icrease_title">Zvýšení kreditu</string>
+    <string name="notification_credit_icrease_text">%s pro %s</string>
+    <string name="feedback_mail_text">Napište, cokoliv Vás napadne…</string>
+    <string name="feedback_choose_email_app_dialog">Vyberte e-mailovou aplikaci…</string>
+    <string name="pref_activity_title">Nastavení</string>
+    <string name="pref_auto_sync_category">Automatická synchronizace</string>
+    <string name="pref_auto_sync_frequency">Frekvence synchronizace</string>
+    <string name="pref_auto_sync_when_opened_title">Synchronizovat při spuštění</string>
+    <string name="pref_auto_sync_when_opened_summary">Vždy získává aktuální data pro dnešek</string>
+    <string name="pref_auto_sync_unmetered_title">Synchronizovat pouze na WiFi</string>
+    <string name="pref_auto_sync_unmetered_summary">Použít neomezené připojení</string>
+    <string name="pref_auto_sync_charging_title">Synchronizovat pouze při nabíjení</string>
+    <string name="pref_auto_sync_charging_summary">Šetří využití baterie</string>
+    <string name="pref_notification_category">Notifikace</string>
+    <string name="pref_notification_title">Upozornění na menu a kredit</string>
+    <string name="pref_notification_summary">Přizpůsobte své nastavení</string>
+    <string name="pref_advanced_settings_category">Pokročilé nastavení</string>
+    <string name="pref_auto_update_portals_title">Aktualizovat nastavení jídelen automaticky</string>
+    <string name="pref_auto_update_portals_summary">Udržuje aktuální data (přepisuje ale změny)</string>
+    <string name="pref_update_portals_now_title">Aktualizovat jídelny teď</string>
+    <string name="pref_update_portals_now_summary">Stáhne nejnovější data ze serveru</string>
+    <string name="pref_portal_updating_action">Aktualizace jídelen…</string>
+    <string name="pref_plugins_timeout_title">Timeout pro pluginy</string>
+    <string name="pref_about_category">O aplikaci</string>
+    <string name="help_screen_title">Nápověda, tipy a triky…</string>
+    <string name="help_title">Pár triků při používání této aplikace…</string>
+    <string name="help_sub_title">Můžou být zobrazeny později z menu…</string>
+    <string name="help_long_press_text">Každá položka seznamu má více možností po dlouhém doteku…</string>
+    <string name="empty_try_to_refresh">Zkuste aktualizovat nebo přidat novou jídelnu…</string>
+    <string name="empty_try_to_add_credential">Zkuste přidat nový přihlašovací údaje…</string>
+    <string name="extra_invalid_input_error">Nalezen neplatný vstup</string>
+    <string name="extra_value_not_follow_pattern_error">Hodnota nesplňuje vzor %s</string>
+    <string name="sync_result_wrong_credentials">Špatné přihlašovací údaje, zkontrolujte je…</string>
+    <string name="sync_result_unknown_portal_format">Neznámý formát jídelny, pošlete mi zpětnou vazbu…</string>
+    <string name="sync_result_temporally_inaccessible">Jídelna je dočasně nedostupná, zkuste to později…</string>
+    <string name="sync_result_io_exception">Síťová chyba, zkuste to později…</string>
+    <string name="sync_result_plugin_timeout">Plugin neodpověděl včas, zkuste restartovat telefon…</string>
+    <string name="sync_result_not_supported">Nic k provedení, zkuste přidat jídelnu…</string>
+    <string name="actions_sync_failed">Některé objednávky nemohly být provedeny :-/</string>
+    <string name="actions_food_stock_on_restricted_to_one">Nejde říct, co se stane, pokud si objednáte jídlo z burzy v tomto případě…</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_maresmar_sfm_api" />
+    <string name="library_maresmar_sfm_api_author">Martin Mareš</string>
+    <string name="library_maresmar_sfm_api_authorWebsite">http://www.mares.mzf.cz/</string>
+    <string name="library_maresmar_sfm_api_libraryName">SFM Plugin framework</string>
+    <string name="library_maresmar_sfm_api_libraryDescription">Basic API and functions to make SmartFoodMenu plugin</string>
+    <string name="library_maresmar_sfm_api_libraryWebsite">https://github.com/mmrmartin/SmartFoodMenu</string>
+    <string name="library_maresmar_sfm_api_licenseId" >MIT</string>
+    <string name="library_maresmar_sfm_api_isOpenSource">true</string>
+    <string name="library_maresmar_sfm_api_repositoryLink">https://github.com/mmrmartin/SmartFoodMenu</string>
+</resources>

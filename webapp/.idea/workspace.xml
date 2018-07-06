@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="927278da-6f29-4efc-ba0d-0e8d62afefc5" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="sfm@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="sfm@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="sfm: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="sfm@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="sfm: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="FoodOrder: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="webapp" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>xdebug.idekey</find>
+      <find>shouldn</find>
+      <find>Error when updating food order</find>
+      <find>fooden</find>
+      <find>$restrictToOneOrderPerGroup</find>
+      <find>$multipleOrders</find>
+      <find>&quot;order&quot;</find>
+      <find>Now</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/www/testPortal/index.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/remaining.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/history.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/credit.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/res/style.css" />
+        <option value="$PROJECT_DIR$/www/testPortal/actions/historyInsert.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/actions/history.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/libs/foodOrderDbConnector.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/libs/foodGenerator.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4ae158f4-d802-4f00-9bdf-1b0768eac4cb/console.sql" />
+        <option value="$PROJECT_DIR$/www/testPortal/libs/foodOrderTools.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/order.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/orders.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/menu.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/actions/foodOrder.php" />
+        <option value="$PROJECT_DIR$/www/testPortal/login.php" />
+        <option value="$PROJECT_DIR$/www/portals.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/actions/history.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/libs/foodOrderDbConnector.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/libs/navBar.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/login.php" />
+        <option value="$PROJECT_DIR$/sfm/portalGroups.php" />
+        <option value="$PROJECT_DIR$/sfm/sfmAjaxReply.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/actions/foodOrder.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/actions/historyInsert.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/index.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/actions/payment.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/actions/change.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/libs/foodGenerator.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/credit.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/menu.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/remaining.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/history.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/order.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/libs/foodOrderTools.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/actions/addPayment.php" />
+        <option value="$PROJECT_DIR$/sfm/testPortal/orders.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://127.0.0.1/" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.1">
+    <include_path>
+      <path value="." />
+      <path value="/usr/share/php7" />
+      <path value="/usr/share/php7/PEAR" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1024" />
+    <option name="y" value="437" />
+    <option name="width" value="1366" />
+    <option name="height" value="779" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="sqlBackups" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="927278da-6f29-4efc-ba0d-0e8d62afefc5" name="Default" comment="" />
+      <created>1499825485426</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1499825485426</updated>
+      <workItem from="1499825492888" duration="21905000" />
+      <workItem from="1499947395214" duration="16608000" />
+      <workItem from="1500054791812" duration="588000" />
+      <workItem from="1529688630719" duration="338000" />
+      <workItem from="1529858933454" duration="18094000" />
+      <workItem from="1529891937090" duration="343000" />
+      <workItem from="1529894005310" duration="1311000" />
+      <workItem from="1529923872632" duration="1260000" />
+      <workItem from="1529936304324" duration="41000" />
+      <workItem from="1529936563813" duration="113000" />
+      <workItem from="1529937571611" duration="693000" />
+      <workItem from="1529939598775" duration="633000" />
+      <workItem from="1530472845855" duration="705000" />
+      <workItem from="1530476274663" duration="3044000" />
+      <workItem from="1530840493065" duration="158000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="65834000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1024" y="437" width="1366" height="779" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18228404" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50292826" side_tool="true" weight="0.3993994" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32910156" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49707174" weight="0.035928145" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="PHP-CGI Server" order="7" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Database Console" order="7" visible="true" weight="0.32934132" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32882884" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4ae158f4-d802-4f00-9bdf-1b0768eac4cb/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/testPortal/order.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/menu.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/actions/foodOrder.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/actions/history.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/actions/historyInsert.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/libs/foodGenerator.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/remaining.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/res/style.css" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/history.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/libs/navBar.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/credit.php" />
+    <entry file="file:///etc/php5/cli/php.ini" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/index.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/actions/history.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/actions/historyInsert.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/libs/foodOrderDbConnector.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/order.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/actions/foodOrder.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/libs/foodOrderTools.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/menu.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/orders.php" />
+    <entry file="file://$PROJECT_DIR$/www/testPortal/login.php" />
+    <entry file="file://$PROJECT_DIR$/portals.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/testPortal/libs/foodGenerator.php" />
+    <entry file="file://$PROJECT_DIR$/www/portals.php" />
+    <entry file="file://$PROJECT_DIR$/testPortal.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4ae158f4-d802-4f00-9bdf-1b0768eac4cb/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="90" selection-start-line="2" selection-start-column="90" selection-end-line="2" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/libs/foodOrderDbConnector.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/libs/navBar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/res/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/sfmDbConnection.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/actions/change.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/sfmAjaxReply.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/portalGroups.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="95" column="1" lean-forward="true" selection-start-line="95" selection-start-column="1" selection-end-line="95" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/login.php" />
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/credit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/portals.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="100" column="31" lean-forward="true" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/remaining.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="92" column="27" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/actions/payment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/actions/addPayment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/history.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1513">
+          <caret line="93" column="61" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/libs/foodOrderTools.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="49" column="22" lean-forward="true" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/libs/foodGenerator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sfm/testPortal/orders.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqlBackups/PortalGroup.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqlBackups/Portal.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-958" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqlBackups/FoodOrder.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1196" />
+      </provider>
+    </entry>
+  </component>
+</project>

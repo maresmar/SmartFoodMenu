@@ -1,0 +1,3 @@
+[{"ID":0,"CoolNewInfo":"foo","Ref":"http:\/\/example.com","Extra":null,"Plugin":"simplePlugin","LocN":90,"LocE":100}]
+
+Example add

@@ -1,0 +1,262 @@
+<!--
+  ~ SmartFoodMenu - Android application for canteens extendable with plugins
+  ~
+  ~ Copyright © 2016-2018  Martin Mareš <mmrmartin[at]gmail[dot]com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- App strings -->
+    <string name="app_name">SmartFoodMenu</string>
+    <string name="app_changelog">
+        <![CDATA[
+         <i>Version 3.0.2</i><br />
+        - Optimal auto sync after startup<br />
+         <i>Version 3.0.1</i><br />
+        - UI fixes<br />
+        - Translations fixes<br />
+        <i>Version 3.0.0</i><br />
+        - New portals<br />
+        - Material design<br />
+        - Multi user support<br />
+        - Multi portal support<br />
+        - More menu order options<br />
+        - and many more<br />
+        <br />
+        <i>Replaces old app "Jídelníček"</i>]]>
+    </string>
+
+
+    <!-- Main activity -->
+    <string name="main_today_fragment_title">Today</string>
+    <string name="main_orders_fragment_title">Orders</string>
+    <string name="main_edit_saved_text">Edits saved, changes will be synced on any network…</string>
+
+
+    <string name="drawer_today">Today</string>
+    <string name="drawer_day">Day</string>
+    <string name="drawer_portal">Portal</string>
+    <string name="drawer_orders">Orders</string>
+    <string name="drawer_help_and_settings_group">Help and settings</string>
+    <string name="drawer_feedback">Send feedback</string>
+    <string name="drawer_settings">Settings</string>
+    <string name="drawer_about">About</string>
+    <string name="drawer_help">Help</string>
+    <string name="drawer_add_portal">Add portal</string>
+    <string name="drawer_manage_portals">Manage portals</string>
+
+
+    <!-- Welcome activity -->
+    <string name="welcome_activity_title">Quick start guide</string>
+    <string name="welcome_about_action">About</string>
+    <string name="welcome_hi_text">Hi!!!</string>
+    <string name="welcome_intro_text">Thank you for downloading this app. We have to ask you for a few things to get app working. First         if you want to use this application, you have to accept the license agreement…</string>
+    <string name="welcome_terms_text">
+        This program comes with ABSOLUTELY NO WARRANTY; for details see About screen from the popup menu.
+        This is free software, and you are welcome to redistribute it under certain conditions; check
+        License in About screen for details.
+        \n
+        \nThis application could use Google Analytics to anonymously track usage data within the
+        application. A user could also send debug report to the developer. All debug data are considered
+        as private and wouldn\'t be provided to any thirty parties.
+    </string>
+    <string name="welcome_accept_terms_checkbox">Accept license agreement</string>
+    <string name="welcome_accept_terms_error">You have to accept license agreement</string>
+
+
+    <!-- User's screen -->
+    <string name="new_user_screen_title">New user</string>
+    <string name="user_activity_title">User\'s detail</string>
+    <string name="user_pick_picture_button">Pick profile photo</string>
+    <string name="user_crop_picture_dialog">Crop profile picture</string>
+    <string name="user_name_hint">Name of the user</string>
+    <string name="user_empty_name_error">You have to specify profile name</string>
+    <string name="user_random_name_value">Random frog</string>
+    <string name="user_pick_random_name_action">RANDOM</string>
+
+
+    <string name="user_list_title">Users</string>
+    <string name="user_list_add_action">Add user</string>
+    <string name="user_list_edit_action">Edit user</string>
+    <string name="user_list_delete_action">Delete user</string>
+
+
+    <!-- Portal's screen -->
+    <string name="portal_list_screen_title">Select portal</string>
+    <string name="portal_list_refresh_action">Refresh</string>
+    <string name="portal_list_add_action">Add portal</string>
+    <string name="portal_list_delete_action">Delete portal</string>
+
+
+    <string name="portal_screen_title">Portal settings</string>
+    <string name="portal_name_hint">Portal name</string>
+    <string name="portal_name_empty_error">Portal name cannot be empty</string>
+    <string name="portal_name_used_error">Portal name is already used</string>
+    <string name="portal_reference_hint">Portal web address (or code if applicable):</string>
+    <string name="portal_plugin_label">Plugin:</string>
+    <string name="portal_plugin_not_found_error">Plugin %s not found :-/</string>
+    <string name="portal_security_label">Connection security:</string>
+    <string name="portal_location_label">Portal location:</string>
+    <string name="portal_pick_location_button">Pick</string>
+    <string name="portal_remove_location_button">Remove</string>
+    <string name="portal_notify_about_new_food_checkbox">Notify about new food</string>
+    <string name="portal_checking_portal_data">Checking portal data… Please wait…</string>
+
+
+    <!-- Credential's screen -->
+    <string name="credential_list_title">User\'s portals</string>
+    <string name="credential_list_edit">Edit credentials</string>
+    <string name="credential_list_edit_portal">Edit portal settings</string>
+    <string name="credential_list_delete">Delete credential</string>
+    <string name="credential_list_without_credential">Without credential</string>
+
+
+    <string name="login_detail_title">Login data</string>
+    <string name="login_detail_checking_data">Checking provided data… Please wait…</string>
+
+
+    <string name="credential_screen_title">Credentials settings</string>
+    <string name="credential_password_hint">Password:</string>
+    <string name="credential_username_hint">Username:</string>
+    <string name="credential_credential_groups">Credential group:</string>
+    <string name="credential_group_description">Important only if you use more users…</string>
+    <string name="credential_detail_checking_credential_data">Checking credential data… Please wait…</string>
+    <string name="credential_notify_credit_bellow_checkbox">Notify about credit bellow</string>
+    <string name="credential_notify_credit_below_text">100</string>
+    <string name="credential_notify_credit_increase_checkbox">Notify about credit increase</string>
+
+
+    <string name="credential_group_child">Child</string>
+    <string name="credential_group_student">Student</string>
+    <string name="credential_group_adult">Adult</string>
+    <string name="credential_group_external_adult">External adult</string>
+
+
+    <!-- Menu's screen -->
+    <string name="menu_change_disabled">Cannot change food</string>
+    <string name="menu_change_order_from_stock">Order from food stock</string>
+    <string name="menu_change_offer_in_stock">Offer in food stock</string>
+    <string name="menu_change_remove_from_stock">Remove from stock</string>
+    <string name="menu_empty_menu_text">No menu can be shown</string>
+
+
+    <string name="menu_detail_reserved">Reserved</string>
+    <string name="menu_detail_offered">Offered</string>
+    <string name="menu_detail_change">Change:</string>
+    <string name="menu_detail_to_sync">To sync:</string>
+    <string name="menu_detail_synced">Synced:</string>
+    <string name="menu_detail_taken_amount">Taken amount:</string>
+    <string name="menu_detail_last_change">Last change:</string>
+    <string name="menu_detail_to_order">Available to order:</string>
+    <string name="menu_detail_to_take">Available to take:</string>
+    <string name="menu_detail_empty">-</string>
+    <string name="menu_detail_not_available">not available</string>
+    <string name="menu_detail_unlimited">unlimited</string>
+    <string name="menu_detail_pick_new_value">Pick new value for change</string>
+
+
+    <string name="credit_no_info">Without credit</string>
+    <string name="credit_text">%.2f Kč</string>
+
+
+    <string name="order_standard_action_description">Reserved %d, offered %d, taken %d</string>
+    <string name="order_standard_info_text">%s - %s</string>
+    <string name="order_delete_change">Delete change</string>
+    <string name="order_show_menu">Show menu</string>
+
+
+    <!-- Notifications -->
+    <string name="notification_channel_failed_actions_name">Failed orders</string>
+    <string name="notification_channel_failed_action_des">Shows errors when some change failed for some reason</string>
+    <string name="notification_channel_new_menu_name">New menu</string>
+    <string name="notification_channel_new_menu_des">Shows reminders that new menu is avaible</string>
+    <string name="notification_chanel_credit_change_name">Credit changes</string>
+    <string name="notification_channel_credit_change_des">Shows increase or decrease of credit</string>
+    <string name="notification_order_failed_title">Some orders failed</string>
+    <string name="notification_order_failed_text">%d changes failed</string>
+    <string name="notification_new_menu_title">New menu found</string>
+    <string name="notification_new_menu_text">%s has new menu</string>
+    <string name="notification_low_credit_title">Low credit warning</string>
+    <string name="notification_low_credit_text">%s for %s</string>
+    <string name="notification_credit_icrease_title">Credit increased</string>
+    <string name="notification_credit_icrease_text">%s for %s</string>
+
+
+    <!-- Feedback -->
+    <string name="feedback_mail_text">Write what is on your mind…</string>
+    <string name="feedback_choose_email_app_dialog">Choose e-mail app…</string>
+
+
+    <!-- Settings -->
+    <string name="pref_activity_title">Settings</string>
+    <string name="pref_auto_sync_category">Automatic synchronization</string>
+    <string name="pref_auto_sync_frequency">Sync frequency</string>
+    <string name="pref_auto_sync_unmetered_title">Sync only on WiFi</string>
+    <string name="pref_auto_sync_unmetered_summary">Use unmetered connection only</string>
+    <string name="pref_auto_sync_when_opened_title">Sync when app is opened</string>
+    <string name="pref_auto_sync_when_opened_summary">Always gains actual data for current day</string>
+    <string name="pref_auto_sync_charging_title">Sync only when charging</string>
+    <string name="pref_auto_sync_charging_summary">Save battery life</string>
+    <string name="pref_notification_category">Notification</string>
+    <string name="pref_notification_title">Credit and menu notification</string>
+    <string name="pref_notification_summary">Notifies about credit changes</string>
+    <string name="pref_advanced_settings_category">Advanced settings</string>
+    <string name="pref_auto_update_portals_title">Updates portals settings automatically</string>
+    <string name="pref_auto_update_portals_summary">Keep portals always updated (replaces edits)</string>
+    <string name="pref_update_portals_now_title">Update portals now</string>
+    <string name="pref_update_portals_now_summary">Download newest data from web server</string>
+    <string name="pref_portal_updating_action">Updating portals…</string>
+    <string name="pref_plugins_timeout_title">Plugins timeout</string>
+    <string name="pref_about_category">About</string>
+
+
+    <!-- Help -->
+    <string name="help_screen_title">Help, tips and tricks…</string>
+    <string name="help_title">Here are a few tips about this app…</string>
+    <string name="help_sub_title">Can be shown later from menu…</string>
+    <string name="help_long_press_text">Every list item has more options on long press</string>
+    <string name="help_icons_section_text">Icons in the app:</string>
+    <string name="help_one_menu_selected">One menu selected:</string>
+    <string name="help_no_menu_selected">No menu selected:</string>
+    <string name="help_cancel_selected">Cancel selected:</string>
+    <string name="help_food_stock">Offer in food stock:</string>
+    <string name="help_edit">Change</string>
+    <string name="help_local">To sync</string>
+    <string name="help_synced">Synced</string>
+    <string name="help_confirm_note">Don\'t also forget to confirm changes ;-)</string>
+
+
+    <!-- Other strings -->
+    <string name="empty_nothing_to_show">Nothing to show :-/</string>
+    <string name="empty_try_to_refresh">Try to refresh or add new portal…</string>
+    <string name="empty_try_to_add_credential">Try to add credential…</string>
+
+
+    <string name="extra_invalid_input_error">Invalid input found</string>
+    <string name="extra_value_not_follow_pattern_error">Value doesn\'t follow pattern %s</string>
+
+
+    <string name="sync_result_wrong_credentials">Wrong credentials found, check them…</string>
+    <string name="sync_result_unknown_portal_format">Unknown portal format, send me a message…</string>
+    <string name="sync_result_temporally_inaccessible">Portal temporally inaccessible, try it again later…</string>
+    <string name="sync_result_io_exception">Network error, try it again…</string>
+    <string name="sync_result_plugin_timeout">Plugin didn\'t response in time, try to restart phone…</string>
+    <string name="sync_result_not_supported">Nothing to do, try to add portal…</string>
+
+
+    <string name="actions_sync_failed">Same changes cannot be done :-/</string>
+    <string name="actions_food_stock_on_restricted_to_one">It\'s hard to say what happens if you take food from food stock in this case…</string>
+
+</resources>

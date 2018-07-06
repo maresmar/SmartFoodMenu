@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+        <title>iCanteen</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="480">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link href="0004_faces_secured_month_files/css.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="http://strav.nasejidelna.cz/0004/img/favicon.ico">
+        <link type="text/css" href="0004_faces_secured_month_files/style-2.css" rel="Stylesheet">
+        <link rel="stylesheet" href="0004_faces_secured_month_files/font-awesome.css">
+        
+            <link type="text/css" href="0004_faces_secured_month_files/jquery-ui-1.css" rel="Stylesheet">
+            <link type="text/css" href="0004_faces_secured_month_files/ui.css" rel="Stylesheet">
+            <link type="text/css" href="0004_faces_secured_month_files/jquery.css" rel="stylesheet">
+            <link type="text/css" href="0004_faces_secured_month_files/jRating.css" rel="stylesheet">
+        
+        
+        <script type="text/javascript" src="0004_faces_secured_month_files/jquery-1.js"></script>
+        
+            <script type="text/javascript" src="0004_faces_secured_month_files/jquery-ui-1.js"></script>
+            <script type="text/javascript" src="0004_faces_secured_month_files/jquery_003.js"></script>
+            <script type="text/javascript" src="0004_faces_secured_month_files/jquery_005.js"></script>
+            <script type="text/javascript" src="0004_faces_secured_month_files/jquery.js"></script>
+            <script type="text/javascript" src="0004_faces_secured_month_files/jquery_004.js"></script>
+            <script type="text/javascript" src="0004_faces_secured_month_files/jRating.js"></script>
+        
+        <script type="text/javascript" src="0004_faces_secured_month_files/jquery_002.js"></script>
+        <script type="text/JavaScript" src="0004_faces_secured_month_files/functions-2.js"></script>     
+    </head>
+    
+        
+    
+    
+        
+    
+    
+        
+                  
+    <body>
+        
+            
+        
+            <script type="text/javascript">
+                <!--
+                var time = null;
+                var timer;
+                function move() {
+                    window.location.href = document.getElementById("urlLogout").value;
+                }
+
+                $.ajaxSetup({cache: false});
+                $(document).ready(function () {
+                    if (typeof $.ui !== 'undefined') {
+                        $.datepicker.setDefaults($.datepicker.regional['cs']);
+                        calculateRatings();
+                    }
+
+                    $(function () {
+                        $('#topContext').on('click', '.menuExpander', function () {
+                            $('.mobileMenu').slideToggle(350, function () {
+                                calculateHeight();
+                            });
+                        });
+                    });
+
+                    calculateHeight();
+                    calculateButtonsWidth();
+
+            
+                    $(document).ajaxComplete(function () {
+                        calculateHeight();
+                        calculateButtonsWidth();
+                        if (typeof $.ui !== 'undefined') {
+                            calculateRatings();
+                        }
+                        clearTimeout(timer);
+            
+                    });
+                    $("#code").focus();
+                    tick();
+                    if (typeof $.ui !== 'undefined') {
+                        $("#container").notify({
+                            speed: 500
+                        });
+                    }
+
+                    $(document).bind('ajaxError', function (event, request, settings) {
+                        if (request.status === '403') {
+                            move();
+                        } else {
+                            if (typeof $.ui !== 'undefined') {
+                                $("#container").notify("create", {
+                                    title: 'Stav objednávky',
+                                    text: 'Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.'
+                                });
+                            }
+                            //alert('Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.');
+                        }
+                        ;
+                    });
+                    if ($(document).width() < 400) {
+                        $('.icons').hide();
+                    }
+                });
+                document.oncontextmenu = new Function("return false");
+                if ($.ui !== undefined) {
+                    $(function () {
+                        $(document).tooltip();
+                    });
+                }
+                //-->
+        </script>
+        <form name="reader" id="reader" style="margin:0px; display:inline;" method="POST" action="/0004/j_spring_security_logout?terminal=true&amp;keyboard=false&amp;printer=false">
+            <input name="code" id="code" type="hidden">
+        </form>
+        <div id="bodyContext">
+        
+            <div id="topContext" class="noPrint topContext">
+            
+    
+    <div class="topMenu topMenuMinWidth" style="padding-top: 0px; padding-bottom: 0px">
+        <table style="width: 100%;"><tbody><tr>
+                <td class="statusBar" style="text-align: left;">
+                    
+                    
+                        <span class="topMenuItem">čas: <span id="Clock" style="font-weight: bold;">22:47:50 </span></span>
+                        
+                    <span id="kreditInclude">
+
+
+
+
+    <span class="topMenuItem"> <span title="Průběžně aktualizovaný kredit, který zahrnuje všechny objednávky i na období budoucí. Aktuální stav kreditu je Kč  432.0">kredit</span>:
+        
+            
+            <span id="Kredit" style="font-weight: bold; color: #99cc00;">432,00 Kč</span>
+        
+    </span>
+
+<span class="topMenuItem"><span title="Průběžně aktualizovaná spotřeba strávníka, ukazuje součet utracených peněz v aktuálním měsíci.">spotřeba</span>: <strong>0,00 Kč</strong></span></span>
+                    
+                        
+                            
+                        <span class="topMenuItem">výdejna: <span id="Vydejna" style="font-weight: bold; color: #FBE983"><span id="top:status:vydejnaName">Hlavní</span></span></span>
+                        
+                </td>
+                <td class="statusBar ">
+            
+            </td>                
+            <td class="statusBar statusBarRight">
+                
+                <!--<a href="help.jspx?terminal=false&amp;keyboard=false&amp;printer=false" title="Nápověda k používání systému"><i class="topMenuItem fa fa-question-circle fa-lg"></i></a>-->
+                
+                    <a href="javascript:window.print()" title="Vytisknout stránku"><i class="topMenuItem fa fa-print fa-lg"></i></a>
+                    <a href="http://strav.nasejidelna.cz/0004/faces/secured/info.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Informace o jídelně"><i class="topMenuItem fa fa-info-circle fa-lg"></i></a>
+                    <a href="http://strav.nasejidelna.cz/0004/faces/secured/audit.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Audit log operací v systému"><i class="topMenuItem fa fa-file-text fa-lg"></i></a>
+                    
+                    <a href="http://strav.nasejidelna.cz/0004/faces/secured/setting.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Možnosti nastavení systému"><i class="topMenuItem fa fa-cog fa-lg"></i></a>
+                    
+                <span class="topMenuItem"><span id="top:status:lastName">Novák</span>&nbsp;<span id="top:status:firstName">Matej</span></span>
+                <span><a href="http://strav.nasejidelna.cz/0004/j_spring_security_logout?terminal=false&amp;keyboard=false&amp;printer=false" title="Odhlášení uživatele ze systému"><i class="topMenuItem fa fa-power-off fa-lg warning"></i></a></span>
+            </td></tr></tbody></table>                                        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+        
+        <div class="topMenu topMenuMinWidth noPrint">
+            <table style="table-layout: fixed;" cellspacing="2" cellpadding="0" width="100%" border="0">
+                <tbody><tr>
+                
+                <td class="mainMenu" title="Jídelníček na jeden den s měsíčním kalendářem"><a href="http://strav.nasejidelna.cz/0004/faces/secured/main.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">1</strong></span><span class="mainMenuText">denní</span></span></a></td>
+                <td class="mainMenu" title="Jídelníček na jeden den s týdenním kalendářem"><a href="http://strav.nasejidelna.cz/0004/faces/secured/week.jsp?week=0&amp;terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">7</strong></span><span class="mainMenuText">týdenní</span></span></a></td>
+                <td class="mainMenu" title="Jídelníček se všemi schválenými dny"><a href="http://strav.nasejidelna.cz/0004/faces/secured/month.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">31</strong></span><span class="mainMenuText">měsíční</span></span></a></td>
+                
+                <td class="mainMenu" title="Historie plateb"><a href="http://strav.nasejidelna.cz/0004/faces/secured/platby.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-bank fa-3x"></i><span class="mainMenuText">platby</span></span></a></td>
+                <td class="mainMenu" title="Detaily objednávek včetně popisu jídla"><a href="http://strav.nasejidelna.cz/0004/faces/secured/objednavky.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-shopping-cart fa-3x"></i><span class="mainMenuText">objednávky</span></span></a></td>
+                
+                <td class="mainMenu" title="Nápověda k používání systému"><a href="http://strav.nasejidelna.cz/0004/faces/secured/help.jspx?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-question fa-3x"></i><span class="mainMenuText">nápověda</span></span></a></td>
+                
+                </tr>
+            </tbody></table>
+        </div>
+        <div class="topMenu topMenuMinWidth noPrint" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+            
+
+
+
+
+
+
+        </div>
+        <div class="bkg"></div>
+    
+         
+
+
+
+
+
+
+  
+
+
+
+
+        </div>
+        <div id="mainContext" class="mainContext mainContextMinWidth" style="height: 520px;">
+            
+            <table width="100%">
+                
+                
+                
+                    
+                        <tbody><tr><td style="padding-top: 15px;" valign="top">
+                                <form name="objednatJidlo-" action="db/objednat.jsp">
+                                    <div id="day-2017-06-30" align="left">
+                <strong>Jídelníček na <span class="important">
+                        30.06.2017</span> - 
+                    <span>
+                        Pátek</span>
+                </strong>
+            </div>
+            <div id="orderContent2017-06-30" class="orderContent" align="left">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main disabled" onclick="
+                                                                            ajaxOrder(this, 'db/dbProcessOrder.jsp?time=1498855629802&amp;ID=1&amp;day=2017-06-30&amp;type=none&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false', '2017-06-30', 'disabled');" style="width: 247px;">
+                                                                        <span class="button-link-align">nelze objednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">24.0&nbsp;Kč</span>
+                                                                            </a>
+                                                                    <span id="icons5740" class="icons">
+                                                                        <i class="fa fa-ban fa-3x text-danger" style="vertical-align: middle;" title="&lt;span class='important warning'&gt;Objednávky jsou již uzavřeny.&lt;/span&gt;"></i>
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej&nbsp;od:&nbsp;&lt;b&gt;14:00:00&lt;/b&gt;&nbsp;do:&nbsp;&lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat&nbsp;do:&nbsp;&lt;b&gt;22.06.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit&nbsp;do:&nbsp;&lt;b&gt;30.06.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Z kysaného zelí <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, ;těstovinová musaka (těst. s masem a zeleninou) <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Sójové boby (sója) - Sójové boby (sója) a výrobky z nich" class="textGrey">6</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, červená řepa ,  voda s citronem <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Sójové boby (sója) a výrobky z nich" class="textGrey">Sójové boby (sója)</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Hořčice a  výrobky z ní" class="textGrey">Hořčice</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    <div class="jidelnicekItem ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main disabled" onclick="
+                                                                            ajaxOrder(this, 'db/dbProcessOrder.jsp?time=1498855629802&amp;ID=2&amp;day=2017-06-30&amp;type=none&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false', '2017-06-30', 'disabled');" style="width: 247px;">
+                                                                        <span class="button-link-align">nelze objednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">24.0&nbsp;Kč</span>
+                                                                            </a>
+                                                                    <span id="icons5741" class="icons">
+                                                                        <i class="fa fa-ban fa-3x text-danger" style="vertical-align: middle;" title="&lt;span class='important warning'&gt;Objednávky jsou již uzavřeny.&lt;/span&gt;"></i>
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej&nbsp;od:&nbsp;&lt;b&gt;14:00:00&lt;/b&gt;&nbsp;do:&nbsp;&lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat&nbsp;do:&nbsp;&lt;b&gt;22.06.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit&nbsp;do:&nbsp;&lt;b&gt;30.06.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    <br>
+                                                                    </span>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                        
+                                </form>
+                            </td></tr>
+                        
+                    
+            </tbody></table>
+            
+    
+    <div class="topMenu topMenuMinWidth textGrey noPrint" style="position: relative; clear: both; z-index:1; text-align: center; margin-top: 10px" align="center"> Změna jídelníčku vyhrazena. | iCanteen verze 2.13.26
+        
+        | © Z-WARE 2003-2017
+    </div>
+</div>
+
+
+
+  
+
+
+
+
+
+            </div>
+            
+        
+
+
+
+
+
+    <div id="container" class="ui-notify"></div>
+
+
+
+    
+      
+</body></html>

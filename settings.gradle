@@ -1,0 +1,1 @@
+include ':app', ':builtinPlugins', ':foodPlugin', ':apiContract', ':testPlugin', ':dbContract'

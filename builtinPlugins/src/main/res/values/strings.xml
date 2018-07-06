@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name" translatable="false">SFM - Builtin Plugins</string>
+    <string name="icanteen_plugin_name" translatable="false">iCanteen plugin</string>
+    <string name="ui_portal_version_name">Portal version:</string>
+    <string name="ui_portal_auto_update_name">Automatically update portal version:</string>
+    <string name="ui_portal_auto_update_des">Automatically update portal version if app detects it</string>
+    <string name="ui_allergens_pattern_name">Allergens removal pattern:</string>
+    <string name="ui_allergens_pattern_des">Use standard Java regular expression</string>
+</resources>

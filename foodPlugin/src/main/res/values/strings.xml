@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SFM - Food plugin</string>
+    <string name="plugin_permission">cz.maresmar.sfm.PLUGIN_START</string>
+</resources>

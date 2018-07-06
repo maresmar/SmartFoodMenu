@@ -1,0 +1,715 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0057)https://strav.nasejidelna.cz/0134/faces/secured/month.jsp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>iCanteen</title>
+        
+        <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="480">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link href="./iCanteen214_files/css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="https://strav.nasejidelna.cz/0134/img/favicon.ico">
+        <link type="text/css" href="./iCanteen214_files/style-2.14.14.css" rel="Stylesheet">
+        <link rel="stylesheet" href="./iCanteen214_files/font-awesome.min.css">
+        
+            <link type="text/css" href="./iCanteen214_files/jquery-ui-1.10.3.custom.min.css" rel="Stylesheet">
+            <link type="text/css" href="./iCanteen214_files/ui.notify.css" rel="Stylesheet">
+            <link type="text/css" href="./iCanteen214_files/jquery.lighter.css" rel="stylesheet">
+            <link type="text/css" href="./iCanteen214_files/jRating.jquery.css" rel="stylesheet">
+        
+        
+        <script type="text/javascript" src="./iCanteen214_files/jquery-1.10.2.min.js"></script>
+        
+            <script type="text/javascript" src="./iCanteen214_files/jquery-ui-1.10.3.custom.min.js"></script>
+            <script type="text/javascript" src="./iCanteen214_files/jquery.ui.datepicker-cs.js"></script>
+            <script type="text/javascript" src="./iCanteen214_files/jquery.ui.datepicker-en.js"></script>
+            <script type="text/javascript" src="./iCanteen214_files/jquery.notify.js"></script>
+            <script type="text/javascript" src="./iCanteen214_files/jquery.lighter.js"></script>
+            <script type="text/javascript" src="./iCanteen214_files/jRating.jquery.min.js"></script>
+        
+        <script type="text/javascript" src="./iCanteen214_files/jquery.blockUI.js"></script>
+        <script type="text/JavaScript" src="./iCanteen214_files/functions-2.14.14.js"></script>
+    </head>
+    
+    
+                  
+    <body style="">
+            
+        <script type="text/javascript">
+            <!--
+            var time = null;
+            var timer;
+            function move() {
+                document.reader.submit();
+            }
+
+            $.ajaxSetup({cache: false});
+            $(document).ready(function () {
+                if (typeof $.ui !== 'undefined') {
+                    $.datepicker.setDefaults($.datepicker.regional['cs']);
+                    calculateRatings();
+                }
+
+                $(function () {
+                    $('#topContext').on('click', '.menuExpander', function () {
+                        $('.mobileMenu').slideToggle(350, function () {
+                            calculateHeight();
+                        });
+                    });
+                });
+
+                calculateHeight();
+                calculateButtonsWidth();
+
+        
+                $(document).ajaxComplete(function () {
+                    calculateHeight();
+                    calculateButtonsWidth();
+                    if (typeof $.ui !== 'undefined') {
+                        calculateRatings();
+                    }
+                    clearTimeout(timer);
+        
+                });
+                $("#code").focus();
+                tick();
+                if (typeof $.ui !== 'undefined') {
+                    $("#container").notify({
+                        speed: 500
+                    });
+                }
+
+                $(document).bind('ajaxError', function (event, request, settings) {
+                    if (request.status === '403') {
+                        move();
+                    } else {
+                        if (typeof $.ui !== 'undefined') {
+                            $("#container").notify("create", {
+                                title: 'Stav objednávky',
+                                text: 'Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.'
+                            });
+                        }
+                        //alert('Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.');
+                    }
+                    ;
+                });
+                if ($(document).width() < 400) {
+                    $('.icons').hide();
+                }
+            });
+            document.oncontextmenu = new Function("return false");
+            if ($.ui !== undefined) {
+                $(function () {
+                    $(document).tooltip();
+                });
+            }
+            //-->
+    </script>
+    <form name="reader" id="reader" style="margin:0px; display:inline;" method="POST" action="https://strav.nasejidelna.cz/0134/j_spring_security_logout?terminal=true&amp;keyboard=false&amp;printer=false">
+        <input type="hidden" name="code" id="code">
+        <input type="hidden" name="_csrf" value="fb09e1df-9da5-4a62-9b71-10ca68d449f7"> 
+    </form>
+    <div id="bodyContext">
+        
+            <div id="topContext" class="noPrint topContext">
+            
+    
+    <div class="topMenu topMenuMinWidth" style="padding-top: 0px; padding-bottom: 0px">
+        <table style="width: 100%;"><tbody><tr>
+                <td class="statusBar" style="text-align: left;">
+                    
+                        
+                        <span class="topMenuItem">čas: <span id="Clock" style="font-weight: bold;">23:50:26 </span></span>
+                        
+                    <span id="kreditInclude">
+
+
+
+
+</span>
+                    
+                        
+                            
+                        <span class="topMenuItem">výdejna: <span id="Vydejna" style="font-weight: bold; color: #FBE983"><span id="top:status:vydejnaName">Hlavní</span></span></span>
+                        
+                </td>
+                <td class="statusBar ">
+                    
+                </td>                
+                <td class="statusBar statusBarRight">
+                    
+                        
+                    
+                    <!--<a href="help.jspx?terminal=false&amp;keyboard=false&amp;printer=false" title="Nápověda k používání systému"><i class="topMenuItem fa fa-question-circle fa-lg"></i></a>-->
+                    
+                        <a href="javascript:window.print()" title="Vytisknout stránku"><i class="topMenuItem fa fa-print fa-lg"></i></a>
+                        <a href="https://strav.nasejidelna.cz/0134/faces/secured/info.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Informace o jídelně"><i class="topMenuItem fa fa-info-circle fa-lg"></i></a>
+                        <a href="https://strav.nasejidelna.cz/0134/faces/secured/audit.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Audit log operací v systému"><i class="topMenuItem fa fa-file-text fa-lg"></i></a>
+                        <a href="https://strav.nasejidelna.cz/0134/faces/secured/setting.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Možnosti nastavení systému"><i class="topMenuItem fa fa-cog fa-lg"></i></a>
+                    
+                    <a href="https://strav.nasejidelna.cz/0134/faces/secured/messages.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Zprávy od jídelny"><span class="topMenuItem"><i class=" fa fa-envelope fa-lg"></i></span></a>
+                    <span class="topMenuItem" title="Přihlašovací jméno: novak"><span id="top:status:firstName">Josef</span>&nbsp;<span id="top:status:lastName">Novák</span></span>
+                    <span><a href="https://strav.nasejidelna.cz/0134/faces/secured/month.jsp#" onclick="document.getElementById(&#39;logout&#39;).submit();" title="Odhlášení uživatele ze systému"><i class="topMenuItem fa fa-power-off fa-lg warning"></i></a></span>
+                        <form name="logout" id="logout" method="POST" action="https://strav.nasejidelna.cz/0134/j_spring_security_logout?terminal=false&amp;keyboard=false&amp;printer=false">
+                            <input type="hidden" name="_csrf" value="fb09e1df-9da5-4a62-9b71-10ca68d449f7"> 
+                        </form>                
+                    
+                </td></tr></tbody></table>                                        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+        
+        <div class="topMenu topMenuMinWidth noPrint">
+            <table width="100%" border="0" cellspacing="2" cellpadding="0" style="table-layout: fixed;">
+                <tbody><tr>
+                    
+                    <td class="mainMenu" title="Jídelníček na jeden den s měsíčním kalendářem"><a href="https://strav.nasejidelna.cz/0134/faces/secured/main.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">1</strong></span><span class="mainMenuText">denní</span></span></a></td>
+                    
+                    <td class="mainMenu" title="Jídelníček se všemi schválenými dny"><a href="https://strav.nasejidelna.cz/0134/faces/secured/month.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">31</strong></span><span class="mainMenuText">měsíční</span></span></a></td>
+                    
+                    
+                    <td class="mainMenu" title="Detaily objednávek včetně popisu jídla"><a href="https://strav.nasejidelna.cz/0134/faces/secured/objednavky.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-shopping-cart fa-3x"></i><span class="mainMenuText">objednávky</span></span></a></td>
+                    
+                    <td class="mainMenu" title="Nápověda k používání systému"><a href="https://strav.nasejidelna.cz/0134/faces/secured/help.jspx?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-question fa-3x"></i><span class="mainMenuText">nápověda</span></span></a></td>
+                    
+                </tr>
+            </tbody></table>
+        </div>
+        <div class="topMenu topMenuMinWidth noPrint" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+            
+
+
+
+
+
+
+        </div>
+        <div class="bkg"></div>
+    
+         
+
+
+
+
+
+
+  
+
+
+
+
+        </div>
+        <div id="mainContext" class="mainContext mainContextMinWidth" style="height: 517px;">
+            
+            <table width="100%">
+                
+                
+                
+                    
+                        <tbody><tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-18" align="left">
+                <strong>Jídelníček na <span class="important">
+                        18.06.2018</span> - 
+                    <span>
+                        Pondělí</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-18" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main disabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=c2%2FB8iREz3WORkwJbLRUWukqONgzk5WeX%2BAEhcf2e0g%3D&amp;ID=1&amp;day=2018-06-18&amp;type=none&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-18&#39;, &#39;disabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">nelze objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2271" class="icons">
+                                                                    <i class="fa fa-ban fa-3x text-danger" style="vertical-align: middle;" title="&lt;span class=&#39;important warning&#39;&gt;Objednávky jsou již uzavřeny.&lt;/span&gt;"></i>
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;15.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;15.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka cibulová ,  vep. maso v mrkvi ,  brambory <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                <div class="jidelnicekItem ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main disabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=HWZZFJJzoUi52E7JdBn%2B62qlUsxjo7f4667PYR90718%3D&amp;ID=2&amp;day=2018-06-18&amp;type=none&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-18&#39;, &#39;disabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">nelze objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2272" class="icons">
+                                                                    <i class="fa fa-ban fa-3x text-danger" style="vertical-align: middle;" title="&lt;span class=&#39;important warning&#39;&gt;Objednávky jsou již uzavřeny.&lt;/span&gt;"></i>
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;15.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;15.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka cibulová ,  filé zapečené s brokolicí a sýrem ,  brambory <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-19" align="left">
+                <strong>Jídelníček na <span class="important">
+                        19.06.2018</span> - 
+                    <span>
+                        Úterý</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-19" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=EF4F2jQQnhaYs0GcB30QXUjQo1ROGIiQrvUnE8p7WY4%3D&amp;ID=1&amp;day=2018-06-19&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-19&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2273" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;18.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;18.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka rychlá s vejcem ,  hrachová kaše ,  kuřecí roláda ,  salát z kys. zelí <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                <div class="jidelnicekItem ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=OtQEKS6KrUxz60dkkr4RVpSKN%2BQJbnfzchWNinEGetU%3D&amp;ID=2&amp;day=2018-06-19&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-19&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2274" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;18.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;18.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka rychlá s vejcem ,  těst. salát s kuřecím masem <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-20" align="left">
+                <strong>Jídelníček na <span class="important">
+                        20.06.2018</span> - 
+                    <span>
+                        Středa</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-20" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=yRfKybVnDg4fMEX%2FvvjRAajxhhiaj4tSqxJ9hI2C0%2Bw%3D&amp;ID=1&amp;day=2018-06-20&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-20&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2275" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;19.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;19.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka s oves. vločkami ,  rajská omáčka ,  vař. hovězí maso ,  housk. knedlík ,  ovoce <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-21" align="left">
+                <strong>Jídelníček na <span class="important">
+                        21.06.2018</span> - 
+                    <span>
+                        Čtvrtek</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-21" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=P3yC56FITkt%2FAUjeFnvdJqyDCpBDFR1f9DCLEJUi5yg%3D&amp;ID=1&amp;day=2018-06-21&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-21&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2277" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;20.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;20.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka z rybího filé ,  přírodní kotletna žampiónech ,  rýže <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-22" align="left">
+                <strong>Jídelníček na <span class="important">
+                        22.06.2018</span> - 
+                    <span>
+                        Pátek</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-22" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=bgwRWlV2maNWQ3FpJ5K2v4rSEm9HLXqTLeCUR1KBCAY%3D&amp;ID=1&amp;day=2018-06-22&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-22&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2279" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;21.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;21.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka vývar s tarhoňou ,  kuřecí řízek ,  bram. kaše ,  zelenina <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                <div class="jidelnicekItem ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=LXUd5Oe9FA63THVBGLVrbrCYkjxyxpm%2B425O5XH2j10%3D&amp;ID=2&amp;day=2018-06-22&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-22&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2280" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;21.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;21.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka s tarhoňou ,  vep. panenka na bylinkách ,  bram. kaše ,  zelenina <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-25" align="left">
+                <strong>Jídelníček na <span class="important">
+                        25.06.2018</span> - 
+                    <span>
+                        Pondělí</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-25" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=jp1357idE3ZhXqm6xHsNeMaBPKKZug3%2BsIcgfKq7en8%3D&amp;ID=1&amp;day=2018-06-25&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-25&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2281" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;22.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;22.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka kuřecí s nudlemi ,  vepřové výpečky ,  zelí halušky <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-26" align="left">
+                <strong>Jídelníček na <span class="important">
+                        26.06.2018</span> - 
+                    <span>
+                        Úterý</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-26" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=u9axqpqYq3n9EPRPnsCjNn8yMgGMIccjh5SECVEWubM%3D&amp;ID=1&amp;day=2018-06-26&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-26&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2283" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;25.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;25.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka krupicová s vejcem ,  štěpánská hovězí pečeně ,  divoká rýže <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                <div class="jidelnicekItem ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=Rd34D1Sx5oOlks8FgyqsZ8gh1NF%2FalmJ4GYJ9cPz%2FGU%3D&amp;ID=2&amp;day=2018-06-26&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-26&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2284" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;25.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;25.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka krupicová s vejcem ,  zvěř. ragů na jalovci ,  div. rozink. rýže <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-27" align="left">
+                <strong>Jídelníček na <span class="important">
+                        27.06.2018</span> - 
+                    <span>
+                        Středa</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-27" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=IOG%2BUUeceYSRBPlbRDuZwva7zqmQdhQ8uDoqh03JYSQ%3D&amp;ID=1&amp;day=2018-06-27&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-27&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2285" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;26.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;26.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka ruský boršč ,  domací buchty plněné (tvaroh ,  povidla) ,  ovoce <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                <div class="jidelnicekItem ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=skCg5EXgfh4neIvioLV65%2F6SqQC4gb9sbBrEwBs%2Bhz0%3D&amp;ID=2&amp;day=2018-06-27&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-27&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2286" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;26.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;26.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka ruský boršč ,  široké nudle se špenátem ,  ovoce <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-28" align="left">
+                <strong>Jídelníček na <span class="important">
+                        28.06.2018</span> - 
+                    <span>
+                        Čtvrtek</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-28" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=rCk3erntRbz%2Bs4J9Y6Nknw9Kxx6yVeEbrCArqj3b%2F38%3D&amp;ID=1&amp;day=2018-06-28&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-28&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2287" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;27.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;27.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka čočková ,  kuřecí plátek přírodní ,  brambory ,  obloha <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="https://strav.nasejidelna.cz/0134/faces/secured/db/objednat.jsp">
+                                    <div id="day-2018-06-29" align="left">
+                <strong>Jídelníček na <span class="important">
+                        29.06.2018</span> - 
+                    <span>
+                        Pátek</span>
+                </strong>
+            </div>
+            <div id="orderContent2018-06-29" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                        <span>
+                                                            <span> 
+                                                                <a class="btn button-link button-link-main enabled" onclick="
+                                                                        ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1529272174025&amp;token=N8YpEn2oju%2Bya20I82PYOcgXRPfgkDf79HVIghFNi7w%3D&amp;ID=1&amp;day=2018-06-29&amp;type=make&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2018-06-29&#39;, &#39;enabled&#39;);" style="width: 239px;">
+                                                                    <span class="button-link-align">objednat</span>
+                                                                    <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">26.0&nbsp;Kč</span>
+                                                                        </a>
+                                                                <span id="icons2289" class="icons">
+                                                                    <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;28.06.2018 12:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;28.06.2018 12:00:00&lt;/b&gt;"></i>
+                                                                    </span>
+                                                            </span>
+                                                            <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                polévka gulášová ,  párek s hořčicí ,  rohlík <br>
+                                                                </span>
+                                                        </span>
+                                                        </div>
+                                                </div>
+                                </div>
+                    
+                                </form>
+                            </td></tr>
+                        
+                    
+            </tbody></table>
+            
+    
+    
+        <script type="text/javascript">
+            $(function () {
+                $("#bottom\\:messages-confirm").dialog({
+                    closeOnEscape: false,
+                    resizable: false,
+                    height: "auto",
+                    width: "auto",
+                    modal: true,
+                    buttons: {
+                        "Chci se odhlásit": function () {
+                            document.logout.submit();
+                        }
+                    }
+                });
+            });
+        </script>
+    
+    
+    <div align="center" class="topMenu topMenuMinWidth textGrey noPrint" style="position: relative; clear: both; z-index:1; text-align: center; margin-top: 10px"> Změna jídelníčku vyhrazena. | iCanteen 2.14.14
+        
+            | © Z-WARE 2003-2018 | <a href="https://strav.nasejidelna.cz/0134/faces/secured/mobile.jsp">Mobilní zobrazení</a>
+    </div>
+</div>
+
+
+
+  
+
+
+
+
+
+            </div>
+            
+            
+            
+        
+
+
+
+
+
+    <div id="container" class="ui-notify"></div>
+
+
+
+    
+      
+</body></html>

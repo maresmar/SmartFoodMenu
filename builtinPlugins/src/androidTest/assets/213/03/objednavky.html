@@ -1,0 +1,617 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0105)http://strav.nasejidelna.cz/0004/faces/secured/objednavky.jsp?terminal=false&keyboard=false&printer=false -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>iCanteen</title>
+        
+        <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="480">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link href="./objednavky_files/css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="http://strav.nasejidelna.cz/0004/img/favicon.ico">
+        <link type="text/css" href="./objednavky_files/style-2.13.26.css" rel="Stylesheet">
+        <link rel="stylesheet" href="./objednavky_files/font-awesome.min.css">
+        
+            <link type="text/css" href="./objednavky_files/jquery-ui-1.10.3.custom.min.css" rel="Stylesheet">
+            <link type="text/css" href="./objednavky_files/ui.notify.css" rel="Stylesheet">
+            <link type="text/css" href="./objednavky_files/jquery.lighter.css" rel="stylesheet">
+            <link type="text/css" href="./objednavky_files/jRating.jquery.css" rel="stylesheet">
+        
+        
+        <script type="text/javascript" src="./objednavky_files/jquery-1.10.2.min.js"></script>
+        
+            <script type="text/javascript" src="./objednavky_files/jquery-ui-1.10.3.custom.min.js"></script>
+            <script type="text/javascript" src="./objednavky_files/jquery.ui.datepicker-cs.js"></script>
+            <script type="text/javascript" src="./objednavky_files/jquery.ui.datepicker-en.js"></script>
+            <script type="text/javascript" src="./objednavky_files/jquery.notify.js"></script>
+            <script type="text/javascript" src="./objednavky_files/jquery.lighter.js"></script>
+            <script type="text/javascript" src="./objednavky_files/jRating.jquery.min.js"></script>
+        
+        <script type="text/javascript" src="./objednavky_files/jquery.blockUI.js"></script>
+        <script type="text/JavaScript" src="./objednavky_files/functions-2.13.26.js"></script>     
+    </head>
+    
+        
+    
+    
+        
+    
+    
+        
+                  
+    <body style="">
+        
+            
+        
+            <script type="text/javascript">
+                <!--
+                var time = null;
+                var timer;
+                function move() {
+                    window.location.href = document.getElementById("urlLogout").value;
+                }
+
+                $.ajaxSetup({cache: false});
+                $(document).ready(function () {
+                    if (typeof $.ui !== 'undefined') {
+                        $.datepicker.setDefaults($.datepicker.regional['cs']);
+                        calculateRatings();
+                    }
+
+                    $(function () {
+                        $('#topContext').on('click', '.menuExpander', function () {
+                            $('.mobileMenu').slideToggle(350, function () {
+                                calculateHeight();
+                            });
+                        });
+                    });
+
+                    calculateHeight();
+                    calculateButtonsWidth();
+
+            
+                    $(document).ajaxComplete(function () {
+                        calculateHeight();
+                        calculateButtonsWidth();
+                        if (typeof $.ui !== 'undefined') {
+                            calculateRatings();
+                        }
+                        clearTimeout(timer);
+            
+                    });
+                    $("#code").focus();
+                    tick();
+                    if (typeof $.ui !== 'undefined') {
+                        $("#container").notify({
+                            speed: 500
+                        });
+                    }
+
+                    $(document).bind('ajaxError', function (event, request, settings) {
+                        if (request.status === '403') {
+                            move();
+                        } else {
+                            if (typeof $.ui !== 'undefined') {
+                                $("#container").notify("create", {
+                                    title: 'Stav objednávky',
+                                    text: 'Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.'
+                                });
+                            }
+                            //alert('Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.');
+                        }
+                        ;
+                    });
+                    if ($(document).width() < 400) {
+                        $('.icons').hide();
+                    }
+                });
+                document.oncontextmenu = new Function("return false");
+                if ($.ui !== undefined) {
+                    $(function () {
+                        $(document).tooltip();
+                    });
+                }
+                //-->
+        </script>
+        <form name="reader" id="reader" style="margin:0px; display:inline;" method="POST" action="http://strav.nasejidelna.cz/0004/j_spring_security_logout?terminal=true&amp;keyboard=false&amp;printer=false">
+            <input type="hidden" name="code" id="code">
+        </form>
+        <div id="bodyContext"><div class="noPrint topContext" id="topContext">
+    
+    <div class="topMenu topMenuMinWidth" style="padding-top: 0px; padding-bottom: 0px">
+        <table style="width: 100%;"><tbody><tr>
+                <td class="statusBar" style="text-align: left;">
+                    
+                    
+                        <span class="topMenuItem">čas: <span id="Clock" style="font-weight: bold;">18:48:46 </span></span>
+                        
+                    <span id="kreditInclude">
+
+
+
+
+    <span class="topMenuItem"> <span title="Průběžně aktualizovaný kredit, který zahrnuje všechny objednávky i na období budoucí. Aktuální stav kreditu je Kč  120.0">kredit</span>:
+        
+            
+            <span id="Kredit" style="font-weight: bold; color: #99cc00;">120,00 Kč</span>
+        
+    </span>
+
+<span class="topMenuItem"><span title="Průběžně aktualizovaná spotřeba strávníka, ukazuje součet utracených peněz v aktuálním měsíci.">spotřeba</span>: <strong>336,00 Kč</strong></span></span>
+                    
+                        
+                            
+                        <span class="topMenuItem">výdejna: <span id="Vydejna" style="font-weight: bold; color: #FBE983"><span id="top:status:vydejnaName">Hlavní</span></span></span>
+                        
+                </td>
+                <td class="statusBar ">
+            
+            </td>                
+            <td class="statusBar statusBarRight">
+                
+                <!--<a href="help.jspx?terminal=false&amp;keyboard=false&amp;printer=false" title="Nápověda k používání systému"><i class="topMenuItem fa fa-question-circle fa-lg"></i></a>-->
+                
+                    <a href="javascript:window.print()" title="Vytisknout stránku"><i class="topMenuItem fa fa-print fa-lg"></i></a>
+                    <a href="http://strav.nasejidelna.cz/0004/faces/secured/info.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Informace o jídelně"><i class="topMenuItem fa fa-info-circle fa-lg"></i></a>
+                    <a href="http://strav.nasejidelna.cz/0004/faces/secured/audit.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Audit log operací v systému"><i class="topMenuItem fa fa-file-text fa-lg"></i></a>
+                    
+                    <a href="http://strav.nasejidelna.cz/0004/faces/secured/setting.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Možnosti nastavení systému"><i class="topMenuItem fa fa-cog fa-lg"></i></a>
+                    
+                <span class="topMenuItem"><span id="top:status:lastName">Novák</span>&nbsp;<span id="top:status:firstName">Matej</span></span>
+                <span><a href="http://strav.nasejidelna.cz/0004/j_spring_security_logout?terminal=false&amp;keyboard=false&amp;printer=false" title="Odhlášení uživatele ze systému"><i class="topMenuItem fa fa-power-off fa-lg warning"></i></a></span>
+            </td></tr></tbody></table>                                        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+        
+        <div class="topMenu topMenuMinWidth noPrint">
+            <table width="100%" border="0" cellspacing="2" cellpadding="0" style="table-layout: fixed;">
+                <tbody><tr>
+                
+                <td class="mainMenu" title="Jídelníček na jeden den s měsíčním kalendářem"><a href="http://strav.nasejidelna.cz/0004/faces/secured/main.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">1</strong></span><span class="mainMenuText">denní</span></span></a></td>
+                <td class="mainMenu" title="Jídelníček na jeden den s týdenním kalendářem"><a href="http://strav.nasejidelna.cz/0004/faces/secured/week.jsp?week=0&amp;terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">7</strong></span><span class="mainMenuText">týdenní</span></span></a></td>
+                <td class="mainMenu" title="Jídelníček se všemi schválenými dny"><a href="http://strav.nasejidelna.cz/0004/faces/secured/month.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">31</strong></span><span class="mainMenuText">měsíční</span></span></a></td>
+                
+                <td class="mainMenu" title="Historie plateb"><a href="http://strav.nasejidelna.cz/0004/faces/secured/platby.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-bank fa-3x"></i><span class="mainMenuText">platby</span></span></a></td>
+                <td class="mainMenu" title="Detaily objednávek včetně popisu jídla"><a href="http://strav.nasejidelna.cz/0004/faces/secured/objednavky.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-shopping-cart fa-3x"></i><span class="mainMenuText">objednávky</span></span></a></td>
+                
+                <td class="mainMenu" title="Nápověda k používání systému"><a href="http://strav.nasejidelna.cz/0004/faces/secured/help.jspx?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-question fa-3x"></i><span class="mainMenuText">nápověda</span></span></a></td>
+                
+                </tr>
+            </tbody></table>
+        </div>
+        <div class="topMenu topMenuMinWidth noPrint" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+            
+
+
+
+
+
+
+        </div>
+        <div class="bkg"></div>
+    
+         
+
+
+
+
+
+
+  
+
+
+
+</div><div class="mainContext mainContextMinWidth" id="mainContext" style="height: 474px;">
+    <span class="noPrint">
+        
+    </span>
+    <span class="noScreen">
+        <table class="center"><tbody><tr class="printSummaryRow"><td>od: 11.09.2017</td><td>do: 11.11.2017</td></tr>
+<tr class="printSummaryRow"><td>jméno: Matej</td><td>příjmení: Kejzlar</td></tr>
+</tbody></table>
+    </span>
+        
+    <table class="tableDataShow">
+        <tbody><tr class="smallBoldTitle">
+            <td>datum</td>
+            <td>varianta</td>
+            <td align="left">popis</td>
+            <td align="right">objednáno</td>
+            <td align="left">výdejna</td>
+            <td align="right">objednáno</td>
+            <td align="right">vydáno</td>
+            
+            
+                <td align="right">cena</td>      
+            
+        </tr>	
+        
+            
+            <tr class="mouseOutRow">
+                <td>20.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Hráškový krém [1,7,9], ;vepřenky s cibulí [1,10], brambory vařené maštěné máslem [7], rajčatový salát s pórkem, frutelka (s ovocným podílem), mléko [7],
+                        
+                        <br></td>      
+                    <td align="right">2017-10-09 07:49:18 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">0 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>19.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Zeleninová [3,7,9], ;hovězí pečeně na paprice [1,7], kolínka [1,3], čaj se sirupem, ovoce,
+                        
+                        <br></td>      
+                    <td align="right">2017-10-09 07:49:18 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">0 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>18.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Rajčatová s těstovinou [1,3,7], ;čočka s kuřecími prsíčky [1,9], chléb [1], okurkový salát, nápoj multivitamínový,
+                        
+                        <br></td>      
+                    <td align="right">2017-10-09 07:49:18 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">0 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>17.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Česneková,  [1,12], ;karlovarský kotouč (plněná roláda s párkem a vejci [3,7,10], brambory vařené maštěné máslem [7], mrkvový salát s ananasem, džus, ovocné mléko [7],
+                        
+                        <br></td>      
+                    <td align="right">2017-10-09 07:49:18 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">0 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>16.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Kuřecí s pórkem a jáhlami [12], ;srbské rizoto (lečo) [7], zelný salát s koprem, čaj bylinkový s medem, ovoce,
+                        
+                        <br></td>      
+                    <td align="right">2017-10-09 07:49:18 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">0 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>13.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Vývar se sýrovým kapáním [1,3,7,9], ;těstoviny s kuřetem a žampionovou omáčkou [1,7,12], tvarohový krém [7], čaj bylinkový,
+                        
+                        <br></td>      
+                    <td align="right">2017-10-02 08:14:33 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">0 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>12.10.2017</td>
+                <td>Oběd 2</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Hustá celerová [1,3,6,7,9], ;špagetová hnízda s boloňskou směsí a sýrem [1,6,7,12], nápoj multivitamínový, mléko [7], ovoce,
+                        
+                        <br></td>      
+                    <td align="right">2017-10-05 14:09:07 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">0 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>11.10.2017</td>
+                <td>Oběd 2</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Hrstková [1,9,12], ;vepřové na kmíně [1], kolínka [1,3], voda s citronem,
+                        
+                        <br></td>      
+                    <td align="right">2017-10-11 14:00:42 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">1 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>10.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Bramborová polévka s kroupami [1,9,12], ;dukátové buchtičky  s krémem [1,3,7], čaj ovocný, ovocné pyré,
+                        
+                        <br></td>      
+                    <td align="right">2017-10-11 07:22:51 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">1 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>09.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Zeleninovo-rýžová [1,9,12], ;marinované vepřové plátky [3,6,7,10], brambory vařené maštěné máslem [7], barevný salát, frutelka (s ovocným podílem), mléko [7],
+                        
+                        <br></td>      
+                    <td align="right">2017-10-10 07:19:42 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">1 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>06.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Starotáborská alá Minestrone [1,9], ;vařené vejce [3], fazolové lusky na smetaně s koprem [1,7], brambory vařené, mrkvový nápoj,
+                        
+                        <br></td>      
+                    <td align="right">2017-09-25 08:56:33 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">0 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>05.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Vývar s játrovými knedlíčky [1,3,6,9,12], ;maso dvou barev(kuřecí a vepř. maso) se zeleninou [1,6,9], rýže dušená, horká čokoláda [7], frutelka (s ovocným podílem), ovoce,
+                        
+                        <br></td>      
+                    <td align="right">2017-10-05 14:09:07 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">1 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>04.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Cizrnová s brokolicí [1,7,9,12], ;americké kotlety (kotlety v marinádě) [10,12], bramborová kaše maštěná máslem [7], míchaný salát, nápoj multivitamínový, mléko [7],
+                        
+                        <br></td>      
+                    <td align="right">2017-10-04 14:05:11 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">1 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>02.10.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Z vaječné jíšky [1,3,9], ;těstoviny po lotrinsku (zapečené těstoviny s vepř. [1,7], zelný salát s kukuřicí a paprikou, džus, ovocné mléko [7],
+                        
+                        <br></td>      
+                    <td align="right">2017-10-03 07:28:01 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">1 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+            
+            <tr class="mouseOutRow">
+                <td>25.09.2017</td>
+                <td>Oběd 1</td>
+                
+                
+                    <td align="left">	  
+                            
+                        
+                            Z kysaného zelí [1,7], ;zapečené mleté maso s rajčaty [1,3,6,7], brambory vařené maštěné máslem [7], ledový salát s rajčaty a mrkví, frutelka (s ovocným podílem), mléko [7],
+                        
+                        <br></td>      
+                    <td align="right">2017-09-18 07:41:47 (Pavouk)</td>
+                    <td align="right">Hlavní</td>
+                    <td align="right">1 ks</td>
+                    <td align="right">0 ks</td>
+                    
+                    
+                        <td align="right">24.0 (1 ks)</td>
+                    
+                 
+            </tr>		
+        
+    </tbody></table>
+         
+    
+        <script type="text/JavaScript">
+            $('#content\\:filterDateForm\\:startDate').datepicker();
+            $('#content\\:filterDateForm\\:endDate').datepicker();
+        </script>
+    
+    
+    <div align="center" class="topMenu topMenuMinWidth textGrey noPrint" style="position: relative; clear: both; z-index:1; text-align: center; margin-top: 10px"> Změna jídelníčku vyhrazena. | iCanteen verze 2.13.26
+        
+        | © Z-WARE 2003-2017
+    </div>
+</div>
+
+
+
+  
+
+
+
+
+</div>
+
+
+
+
+
+    <div id="container" class="ui-notify"></div>
+
+
+</body></html>

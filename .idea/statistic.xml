@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Statistic">
+    <option name="excludedDirectories">
+      <list>
+        <option value="$PROJECT_DIR$/app/build" />
+        <option value="$PROJECT_DIR$/build" />
+        <option value="$PROJECT_DIR$/foodPlugin/build" />
+        <option value="$PROJECT_DIR$/testPlugin/build" />
+        <option value="$PROJECT_DIR$/apiContract/build" />
+        <option value="$PROJECT_DIR$/dbContract/build" />
+        <option value="$PROJECT_DIR$/backup" />
+        <option value="$PROJECT_DIR$/docs/depracted" />
+        <option value="$PROJECT_DIR$/builtinPlugins/build" />
+      </list>
+    </option>
+  </component>
+</project>

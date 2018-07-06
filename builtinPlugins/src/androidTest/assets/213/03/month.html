@@ -1,0 +1,741 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0100)http://strav.nasejidelna.cz/0004/faces/secured/month.jsp?terminal=false&keyboard=false&printer=false -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>iCanteen</title>
+        
+        <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="480">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link href="./month_files/css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="http://strav.nasejidelna.cz/0004/img/favicon.ico">
+        <link type="text/css" href="./month_files/style-2.13.26.css" rel="Stylesheet">
+        <link rel="stylesheet" href="./month_files/font-awesome.min.css">
+        
+            <link type="text/css" href="./month_files/jquery-ui-1.10.3.custom.min.css" rel="Stylesheet">
+            <link type="text/css" href="./month_files/ui.notify.css" rel="Stylesheet">
+            <link type="text/css" href="./month_files/jquery.lighter.css" rel="stylesheet">
+            <link type="text/css" href="./month_files/jRating.jquery.css" rel="stylesheet">
+        
+        
+        <script type="text/javascript" src="./month_files/jquery-1.10.2.min.js"></script>
+        
+            <script type="text/javascript" src="./month_files/jquery-ui-1.10.3.custom.min.js"></script>
+            <script type="text/javascript" src="./month_files/jquery.ui.datepicker-cs.js"></script>
+            <script type="text/javascript" src="./month_files/jquery.ui.datepicker-en.js"></script>
+            <script type="text/javascript" src="./month_files/jquery.notify.js"></script>
+            <script type="text/javascript" src="./month_files/jquery.lighter.js"></script>
+            <script type="text/javascript" src="./month_files/jRating.jquery.min.js"></script>
+        
+        <script type="text/javascript" src="./month_files/jquery.blockUI.js"></script>
+        <script type="text/JavaScript" src="./month_files/functions-2.13.26.js"></script>     
+    </head>
+    
+        
+    
+    
+        
+    
+    
+        
+                  
+    <body style="">
+        
+            
+        
+            <script type="text/javascript">
+                <!--
+                var time = null;
+                var timer;
+                function move() {
+                    window.location.href = document.getElementById("urlLogout").value;
+                }
+
+                $.ajaxSetup({cache: false});
+                $(document).ready(function () {
+                    if (typeof $.ui !== 'undefined') {
+                        $.datepicker.setDefaults($.datepicker.regional['cs']);
+                        calculateRatings();
+                    }
+
+                    $(function () {
+                        $('#topContext').on('click', '.menuExpander', function () {
+                            $('.mobileMenu').slideToggle(350, function () {
+                                calculateHeight();
+                            });
+                        });
+                    });
+
+                    calculateHeight();
+                    calculateButtonsWidth();
+
+            
+                    $(document).ajaxComplete(function () {
+                        calculateHeight();
+                        calculateButtonsWidth();
+                        if (typeof $.ui !== 'undefined') {
+                            calculateRatings();
+                        }
+                        clearTimeout(timer);
+            
+                    });
+                    $("#code").focus();
+                    tick();
+                    if (typeof $.ui !== 'undefined') {
+                        $("#container").notify({
+                            speed: 500
+                        });
+                    }
+
+                    $(document).bind('ajaxError', function (event, request, settings) {
+                        if (request.status === '403') {
+                            move();
+                        } else {
+                            if (typeof $.ui !== 'undefined') {
+                                $("#container").notify("create", {
+                                    title: 'Stav objednávky',
+                                    text: 'Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.'
+                                });
+                            }
+                            //alert('Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.');
+                        }
+                        ;
+                    });
+                    if ($(document).width() < 400) {
+                        $('.icons').hide();
+                    }
+                });
+                document.oncontextmenu = new Function("return false");
+                if ($.ui !== undefined) {
+                    $(function () {
+                        $(document).tooltip();
+                    });
+                }
+                //-->
+        </script>
+        <form name="reader" id="reader" style="margin:0px; display:inline;" method="POST" action="http://strav.nasejidelna.cz/0004/j_spring_security_logout?terminal=true&amp;keyboard=false&amp;printer=false">
+            <input type="hidden" name="code" id="code">
+        </form>
+        <div id="bodyContext">
+        
+            <div id="topContext" class="noPrint topContext">
+            
+    
+    <div class="topMenu topMenuMinWidth" style="padding-top: 0px; padding-bottom: 0px">
+        <table style="width: 100%;"><tbody><tr>
+                <td class="statusBar" style="text-align: left;">
+                    
+                    
+                        <span class="topMenuItem">čas: <span id="Clock" style="font-weight: bold;">18:48:23 </span></span>
+                        
+                    <span id="kreditInclude">
+
+
+
+
+    <span class="topMenuItem"> <span title="Průběžně aktualizovaný kredit, který zahrnuje všechny objednávky i na období budoucí. Aktuální stav kreditu je Kč  120.0">kredit</span>:
+        
+            
+            <span id="Kredit" style="font-weight: bold; color: #99cc00;">120,00 Kč</span>
+        
+    </span>
+
+<span class="topMenuItem"><span title="Průběžně aktualizovaná spotřeba strávníka, ukazuje součet utracených peněz v aktuálním měsíci.">spotřeba</span>: <strong>336,00 Kč</strong></span></span>
+                    
+                        
+                            
+                        <span class="topMenuItem">výdejna: <span id="Vydejna" style="font-weight: bold; color: #FBE983"><span id="top:status:vydejnaName">Hlavní</span></span></span>
+                        
+                </td>
+                <td class="statusBar ">
+            
+            </td>                
+            <td class="statusBar statusBarRight">
+                
+                <!--<a href="help.jspx?terminal=false&amp;keyboard=false&amp;printer=false" title="Nápověda k používání systému"><i class="topMenuItem fa fa-question-circle fa-lg"></i></a>-->
+                
+                    <a href="javascript:window.print()" title="Vytisknout stránku"><i class="topMenuItem fa fa-print fa-lg"></i></a>
+                    <a href="http://strav.nasejidelna.cz/0004/faces/secured/info.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Informace o jídelně"><i class="topMenuItem fa fa-info-circle fa-lg"></i></a>
+                    <a href="http://strav.nasejidelna.cz/0004/faces/secured/audit.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Audit log operací v systému"><i class="topMenuItem fa fa-file-text fa-lg"></i></a>
+                    
+                    <a href="http://strav.nasejidelna.cz/0004/faces/secured/setting.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Možnosti nastavení systému"><i class="topMenuItem fa fa-cog fa-lg"></i></a>
+                    
+                <span class="topMenuItem"><span id="top:status:lastName">Novák</span>&nbsp;<span id="top:status:firstName">Matej</span></span>
+                <span><a href="http://strav.nasejidelna.cz/0004/j_spring_security_logout?terminal=false&amp;keyboard=false&amp;printer=false" title="Odhlášení uživatele ze systému"><i class="topMenuItem fa fa-power-off fa-lg warning"></i></a></span>
+            </td></tr></tbody></table>                                        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+        
+        <div class="topMenu topMenuMinWidth noPrint">
+            <table width="100%" border="0" cellspacing="2" cellpadding="0" style="table-layout: fixed;">
+                <tbody><tr>
+                
+                <td class="mainMenu" title="Jídelníček na jeden den s měsíčním kalendářem"><a href="http://strav.nasejidelna.cz/0004/faces/secured/main.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">1</strong></span><span class="mainMenuText">denní</span></span></a></td>
+                <td class="mainMenu" title="Jídelníček na jeden den s týdenním kalendářem"><a href="http://strav.nasejidelna.cz/0004/faces/secured/week.jsp?week=0&amp;terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">7</strong></span><span class="mainMenuText">týdenní</span></span></a></td>
+                <td class="mainMenu" title="Jídelníček se všemi schválenými dny"><a href="http://strav.nasejidelna.cz/0004/faces/secured/month.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">31</strong></span><span class="mainMenuText">měsíční</span></span></a></td>
+                
+                <td class="mainMenu" title="Historie plateb"><a href="http://strav.nasejidelna.cz/0004/faces/secured/platby.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-bank fa-3x"></i><span class="mainMenuText">platby</span></span></a></td>
+                <td class="mainMenu" title="Detaily objednávek včetně popisu jídla"><a href="http://strav.nasejidelna.cz/0004/faces/secured/objednavky.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-shopping-cart fa-3x"></i><span class="mainMenuText">objednávky</span></span></a></td>
+                
+                <td class="mainMenu" title="Nápověda k používání systému"><a href="http://strav.nasejidelna.cz/0004/faces/secured/help.jspx?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-question fa-3x"></i><span class="mainMenuText">nápověda</span></span></a></td>
+                
+                </tr>
+            </tbody></table>
+        </div>
+        <div class="topMenu topMenuMinWidth noPrint" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+            
+
+
+
+
+
+
+        </div>
+        <div class="bkg"></div>
+    
+         
+
+
+
+
+
+
+  
+
+
+
+
+        </div>
+        <div id="mainContext" class="mainContext mainContextMinWidth" style="height: 474px;">
+            
+            <table width="100%">
+                
+                
+                
+                    
+                        <tbody><tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="http://strav.nasejidelna.cz/0004/faces/secured/db/objednat.jsp">
+                                    <div id="day-2017-10-11" align="left">
+                <strong>Jídelníček na <span class="important">
+                        11.10.2017</span> - 
+                    <span>
+                        Středa</span>
+                </strong>
+            </div>
+            <div id="orderContent2017-10-11" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main disabled" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=1&amp;day=2017-10-11&amp;type=none&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-11&#39;, &#39;disabled&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">nelze objednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">24.0&nbsp;Kč</span>
+                                                                            </a>
+                                                                    <span id="icons5816" class="icons">
+                                                                        <i class="fa fa-ban fa-3x text-danger" style="vertical-align: middle;" title="&lt;span class=&#39;important warning&#39;&gt;Litujeme, ale můžete objednat jen jeden chod.&lt;/span&gt;"></i>
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;05.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;11.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Hrstková , ;moravský vrabec , zelí dušené  <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span>]</span>, houskový knedlík <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>,  voda s citronem <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span><span class="textGrey">, </span><span title="Oxid siřičitý a siřičitany v koncentracích vyšších než 10 mg, ml/kg, l, vyjádřeno SO2" class="textGrey">Oxid siřičitý a siřičitany</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    <!--TODO del-->
+                                                <div class="jidelnicekItem ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main disabled" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=39961164&amp;day=2017-10-11&amp;type=none&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-11&#39;, &#39;disabled&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">nelze zrušit<span class="warning" style="color:black">&nbsp;1&nbsp;ks</span></span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena objednaného jídla">24.0&nbsp;Kč</span>
+                                                                                <span style="float:right; display: inline-block; vertical-align: middle; color: #6C7EAA; padding-left: 6px;">
+                                                                                    <i class="fa fa-check fa-2x" title="Máte objednáno&lt;b&gt; 1 ks&lt;/b&gt; á &lt;b&gt;24.0 Kč&lt;/b&gt;"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                    <span id="icons5817" class="icons">
+                                                                        <i class="fa fa-ban fa-3x text-danger" style="vertical-align: middle;" title="&lt;span class=&#39;important warning&#39;&gt;Objednávka je již vydaná.&lt;/span&gt;"></i>
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;05.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;11.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Hrstková , ;vepřové na kmíně <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span>]</span>, kolínka <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span>]</span>,  voda s citronem <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span><span class="textGrey">, </span><span title="Oxid siřičitý a siřičitany v koncentracích vyšších než 10 mg, ml/kg, l, vyjádřeno SO2" class="textGrey">Oxid siřičitý a siřičitany</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                        
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="http://strav.nasejidelna.cz/0004/faces/secured/db/objednat.jsp">
+                                    <div id="day-2017-10-12" align="left">
+                <strong>Jídelníček na <span class="important">
+                        12.10.2017</span> - 
+                    <span>
+                        Čtvrtek</span>
+                </strong>
+            </div>
+            <div id="orderContent2017-10-12" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main disabled" onclick="if(confirm(&#39;Tento chod již nebude možné znovu objednat. Opravdu chcete zrušit objednávku?&#39;)) 
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=1&amp;day=2017-10-12&amp;type=none&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-12&#39;, &#39;disabled&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">nelze objednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">24.0&nbsp;Kč</span>
+                                                                            </a>
+                                                                    <span id="icons5818" class="icons">
+                                                                        <i class="fa fa-ban fa-3x text-danger" style="vertical-align: middle;" title="&lt;span class=&#39;important warning&#39;&gt;Litujeme, ale můžete objednat jen jeden chod.&lt;/span&gt;"></i>
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;05.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;12.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Hustá celerová <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Sójové boby (sója) - Sójové boby (sója) a výrobky z nich" class="textGrey">6</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, ;rybí filet se zeleninou <span style="padding: 0px;" class="textGrey">[<span title="Ryby - Ryby  a výrobky  z nich" class="textGrey">4</span><span class="textGrey">, </span><span title="Sójové boby (sója) - Sójové boby (sója) a výrobky z nich" class="textGrey">6</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, brambory vařené, nápoj multivitamínový, mléko <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>,  ovoce <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Ryby  a výrobky  z nich" class="textGrey">Ryby</span><span class="textGrey">, </span><span title="Sójové boby (sója) a výrobky z nich" class="textGrey">Sójové boby (sója)</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    <!--TODO del-->
+                                                <div class="jidelnicekItem ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main ordered" onclick="if(confirm(&#39;Tento chod již nebude možné znovu objednat. Opravdu chcete zrušit objednávku?&#39;)) 
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=39949199&amp;day=2017-10-12&amp;type=delete&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-12&#39;, &#39;ordered&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">zrušit<span class="warning" style="color:black">&nbsp;1&nbsp;ks</span></span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena objednaného jídla">24.0&nbsp;Kč</span>
+                                                                                <span style="float:right; display: inline-block; vertical-align: middle; color: #6C7EAA; padding-left: 6px;">
+                                                                                    <i class="fa fa-check fa-2x" title="Máte objednáno&lt;b&gt; 1 ks&lt;/b&gt; á &lt;b&gt;24.0 Kč&lt;/b&gt;"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                    <span id="icons5819" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;05.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;12.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Hustá celerová <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Sójové boby (sója) - Sójové boby (sója) a výrobky z nich" class="textGrey">6</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, ;špagetová hnízda s boloňskou směsí a sýrem , nápoj multivitamínový, mléko <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>,  ovoce <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Sójové boby (sója) a výrobky z nich" class="textGrey">Sójové boby (sója)</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span><span class="textGrey">, </span><span title="Oxid siřičitý a siřičitany v koncentracích vyšších než 10 mg, ml/kg, l, vyjádřeno SO2" class="textGrey">Oxid siřičitý a siřičitany</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                        
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="http://strav.nasejidelna.cz/0004/faces/secured/db/objednat.jsp">
+                                    <div id="day-2017-10-13" align="left">
+                <strong>Jídelníček na <span class="important">
+                        13.10.2017</span> - 
+                    <span>
+                        Pátek</span>
+                </strong>
+            </div>
+            <div id="orderContent2017-10-13" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <!--TODO del-->
+                                                <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main ordered" onclick="if(confirm(&#39;Tento chod již nebude možné znovu objednat. Opravdu chcete zrušit objednávku?&#39;)) 
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=39938547&amp;day=2017-10-13&amp;type=delete&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-13&#39;, &#39;ordered&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">zrušit<span class="warning" style="color:black">&nbsp;1&nbsp;ks</span></span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena objednaného jídla">24.0&nbsp;Kč</span>
+                                                                                <span style="float:right; display: inline-block; vertical-align: middle; color: #6C7EAA; padding-left: 6px;">
+                                                                                    <i class="fa fa-check fa-2x" title="Máte objednáno&lt;b&gt; 1 ks&lt;/b&gt; á &lt;b&gt;24.0 Kč&lt;/b&gt;"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                    <span id="icons5820" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;05.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;13.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Vývar se sýrovým kapáním <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, ;těstoviny s kuřetem a žampionovou omáčkou , tvarohový krém <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>,  čaj bylinkový <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span><span class="textGrey">, </span><span title="Oxid siřičitý a siřičitany v koncentracích vyšších než 10 mg, ml/kg, l, vyjádřeno SO2" class="textGrey">Oxid siřičitý a siřičitany</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    <div class="jidelnicekItem ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main disabled" onclick="if(confirm(&#39;Tento chod již nebude možné znovu objednat. Opravdu chcete zrušit objednávku?&#39;)) 
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=2&amp;day=2017-10-13&amp;type=none&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-13&#39;, &#39;disabled&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">nelze objednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena při objednání jídla">24.0&nbsp;Kč</span>
+                                                                            </a>
+                                                                    <span id="icons5821" class="icons">
+                                                                        <i class="fa fa-ban fa-3x text-danger" style="vertical-align: middle;" title="&lt;span class=&#39;important warning&#39;&gt;Litujeme, ale můžete objednat jen jeden chod.&lt;/span&gt;"></i>
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;05.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;13.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Vývar se sýrovým kapáním <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, ;hovězí v mrkvi <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, brambory vařené, tvarohový krém <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>,  čaj bylinkový <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                        
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="http://strav.nasejidelna.cz/0004/faces/secured/db/objednat.jsp">
+                                    <div id="day-2017-10-16" align="left">
+                <strong>Jídelníček na <span class="important">
+                        16.10.2017</span> - 
+                    <span>
+                        Pondělí</span>
+                </strong>
+            </div>
+            <div id="orderContent2017-10-16" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <!--TODO del-->
+                                                <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main ordered" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=39951597&amp;day=2017-10-16&amp;type=delete&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-16&#39;, &#39;ordered&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">zrušit<span class="warning" style="color:black">&nbsp;1&nbsp;ks</span></span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena objednaného jídla">24.0&nbsp;Kč</span>
+                                                                                <span style="float:right; display: inline-block; vertical-align: middle; color: #6C7EAA; padding-left: 6px;">
+                                                                                    <i class="fa fa-check fa-2x" title="Máte objednáno&lt;b&gt; 1 ks&lt;/b&gt; á &lt;b&gt;24.0 Kč&lt;/b&gt;"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                    <span id="icons5822" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;16.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Kuřecí s pórkem a jáhlami , ;srbské rizoto (lečo) <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>,  zelný salát s koprem ,  čaj bylinkový s medem ,  ovoce <br>
+                                                                    <span class="textGrey">(<span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Oxid siřičitý a siřičitany v koncentracích vyšších než 10 mg, ml/kg, l, vyjádřeno SO2" class="textGrey">Oxid siřičitý a siřičitany</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    <div class="jidelnicekItem ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main enabled" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=2&amp;day=2017-10-16&amp;type=reorder&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-16&#39;, &#39;enabled&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">přeobjednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Rozdíl ceny oproti stávající objednávce">0.0&nbsp;Kč</span>
+                                                                                <span title="Cena při objednání jídla">(24.0&nbsp;Kč)</span>
+                                                                            </a>
+                                                                    <span id="icons5823" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;16.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Kuřecí s pórkem a jáhlami , ;moravské halušky s jablky a skořicí ,  čaj bylinkový s medem ,  ovoce <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Oxid siřičitý a siřičitany v koncentracích vyšších než 10 mg, ml/kg, l, vyjádřeno SO2" class="textGrey">Oxid siřičitý a siřičitany</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                        
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="http://strav.nasejidelna.cz/0004/faces/secured/db/objednat.jsp">
+                                    <div id="day-2017-10-17" align="left">
+                <strong>Jídelníček na <span class="important">
+                        17.10.2017</span> - 
+                    <span>
+                        Úterý</span>
+                </strong>
+            </div>
+            <div id="orderContent2017-10-17" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <!--TODO del-->
+                                                <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main ordered" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=39951598&amp;day=2017-10-17&amp;type=delete&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-17&#39;, &#39;ordered&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">zrušit<span class="warning" style="color:black">&nbsp;1&nbsp;ks</span></span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena objednaného jídla">24.0&nbsp;Kč</span>
+                                                                                <span style="float:right; display: inline-block; vertical-align: middle; color: #6C7EAA; padding-left: 6px;">
+                                                                                    <i class="fa fa-check fa-2x" title="Máte objednáno&lt;b&gt; 1 ks&lt;/b&gt; á &lt;b&gt;24.0 Kč&lt;/b&gt;"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                    <span id="icons5824" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;17.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Česneková,  , ;karlovarský kotouč (plněná roláda s párkem a vejci , brambory vařené maštěné máslem <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, mrkvový salát s ananasem, džus, ovocné mléko <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Hořčice a  výrobky z ní" class="textGrey">Hořčice</span><span class="textGrey">, </span><span title="Oxid siřičitý a siřičitany v koncentracích vyšších než 10 mg, ml/kg, l, vyjádřeno SO2" class="textGrey">Oxid siřičitý a siřičitany</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    <div class="jidelnicekItem ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main enabled" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=2&amp;day=2017-10-17&amp;type=reorder&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-17&#39;, &#39;enabled&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">přeobjednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Rozdíl ceny oproti stávající objednávce">0.0&nbsp;Kč</span>
+                                                                                <span title="Cena při objednání jídla">(24.0&nbsp;Kč)</span>
+                                                                            </a>
+                                                                    <span id="icons5825" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;17.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Česneková,  , ;kuřecí nudličky se špenátem a těstovinou , džus, ovocné mléko <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Oxid siřičitý a siřičitany v koncentracích vyšších než 10 mg, ml/kg, l, vyjádřeno SO2" class="textGrey">Oxid siřičitý a siřičitany</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                        
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="http://strav.nasejidelna.cz/0004/faces/secured/db/objednat.jsp">
+                                    <div id="day-2017-10-18" align="left">
+                <strong>Jídelníček na <span class="important">
+                        18.10.2017</span> - 
+                    <span>
+                        Středa</span>
+                </strong>
+            </div>
+            <div id="orderContent2017-10-18" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <!--TODO del-->
+                                                <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main ordered" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=39951599&amp;day=2017-10-18&amp;type=delete&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-18&#39;, &#39;ordered&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">zrušit<span class="warning" style="color:black">&nbsp;1&nbsp;ks</span></span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena objednaného jídla">24.0&nbsp;Kč</span>
+                                                                                <span style="float:right; display: inline-block; vertical-align: middle; color: #6C7EAA; padding-left: 6px;">
+                                                                                    <i class="fa fa-check fa-2x" title="Máte objednáno&lt;b&gt; 1 ks&lt;/b&gt; á &lt;b&gt;24.0 Kč&lt;/b&gt;"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                    <span id="icons5826" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;18.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Rajčatová s těstovinou <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, ;čočka s kuřecími prsíčky <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, chléb <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span>]</span>,  okurkový salát ,  nápoj multivitamínový <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    <div class="jidelnicekItem ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main enabled" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=2&amp;day=2017-10-18&amp;type=reorder&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-18&#39;, &#39;enabled&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">přeobjednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Rozdíl ceny oproti stávající objednávce">0.0&nbsp;Kč</span>
+                                                                                <span title="Cena při objednání jídla">(24.0&nbsp;Kč)</span>
+                                                                            </a>
+                                                                    <span id="icons5827" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;18.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Rajčatová s těstovinou <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, ;bramborák s uzeným masem a kysané zelí <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span>]</span>,  nápoj multivitamínový <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                        
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="http://strav.nasejidelna.cz/0004/faces/secured/db/objednat.jsp">
+                                    <div id="day-2017-10-19" align="left">
+                <strong>Jídelníček na <span class="important">
+                        19.10.2017</span> - 
+                    <span>
+                        Čtvrtek</span>
+                </strong>
+            </div>
+            <div id="orderContent2017-10-19" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <!--TODO del-->
+                                                <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main ordered" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=39951600&amp;day=2017-10-19&amp;type=delete&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-19&#39;, &#39;ordered&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">zrušit<span class="warning" style="color:black">&nbsp;1&nbsp;ks</span></span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena objednaného jídla">24.0&nbsp;Kč</span>
+                                                                                <span style="float:right; display: inline-block; vertical-align: middle; color: #6C7EAA; padding-left: 6px;">
+                                                                                    <i class="fa fa-check fa-2x" title="Máte objednáno&lt;b&gt; 1 ks&lt;/b&gt; á &lt;b&gt;24.0 Kč&lt;/b&gt;"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                    <span id="icons5828" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;19.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Zeleninová <span style="padding: 0px;" class="textGrey">[<span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, ;hovězí pečeně na paprice <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, kolínka <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span>]</span>,  čaj se sirupem ,  ovoce <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    <div class="jidelnicekItem ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main enabled" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=2&amp;day=2017-10-19&amp;type=reorder&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-19&#39;, &#39;enabled&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">přeobjednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Rozdíl ceny oproti stávající objednávce">0.0&nbsp;Kč</span>
+                                                                                <span title="Cena při objednání jídla">(24.0&nbsp;Kč)</span>
+                                                                            </a>
+                                                                    <span id="icons5829" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;19.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Zeleninová <span style="padding: 0px;" class="textGrey">[<span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, ;zapečené maďarské brambory s rajčaty , ledový salát s ředkvičkou, kukuřicí a jogurtem <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, kolínka <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span>]</span>,  čaj se sirupem ,  ovoce <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span><span class="textGrey">, </span><span title="Oxid siřičitý a siřičitany v koncentracích vyšších než 10 mg, ml/kg, l, vyjádřeno SO2" class="textGrey">Oxid siřičitý a siřičitany</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                        
+                                </form>
+                            </td></tr>
+                        
+                        <tr><td valign="top" style="padding-top: 15px;">
+                                <form name="objednatJidlo-" action="http://strav.nasejidelna.cz/0004/faces/secured/db/objednat.jsp">
+                                    <div id="day-2017-10-20" align="left">
+                <strong>Jídelníček na <span class="important">
+                        20.10.2017</span> - 
+                    <span>
+                        Pátek</span>
+                </strong>
+            </div>
+            <div id="orderContent2017-10-20" align="left" class="orderContent">
+                <div style="width: 100%; min-width:250px">
+                            <!--TODO del-->
+                                                <div class="jidelnicekItem jidelnicekItemNoBorder ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main ordered" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=39951601&amp;day=2017-10-20&amp;type=delete&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-20&#39;, &#39;ordered&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">zrušit<span class="warning" style="color:black">&nbsp;1&nbsp;ks</span></span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 1</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Cena objednaného jídla">24.0&nbsp;Kč</span>
+                                                                                <span style="float:right; display: inline-block; vertical-align: middle; color: #6C7EAA; padding-left: 6px;">
+                                                                                    <i class="fa fa-check fa-2x" title="Máte objednáno&lt;b&gt; 1 ks&lt;/b&gt; á &lt;b&gt;24.0 Kč&lt;/b&gt;"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                    <span id="icons5830" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;20.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Hráškový krém <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, ;vepřenky s cibulí , brambory vařené maštěné máslem <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, rajčatový salát s pórkem, frutelka (s ovocným podílem), mléko <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span><span class="textGrey">, </span><span title="Hořčice a  výrobky z ní" class="textGrey">Hořčice</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    <div class="jidelnicekItem ">
+                                                            <span>
+                                                                <span> 
+                                                                    <a class="btn button-link button-link-main enabled" onclick="
+                                                                            ajaxOrder(this, &#39;db/dbProcessOrder.jsp?time=1507740341244&amp;ID=2&amp;day=2017-10-20&amp;type=reorder&amp;week=&amp;terminal=false&amp;keyboard=false&amp;printer=false&#39;, &#39;2017-10-20&#39;, &#39;enabled&#39;);" style="width: 285px;">
+                                                                        <span class="button-link-align">přeobjednat</span>
+                                                                        <span class="smallBoldTitle button-link-align">Oběd 2</span><span class="button-link-align">za&nbsp;</span>
+                                                                            <span class="important warning button-link-align" title="Rozdíl ceny oproti stávající objednávce">0.0&nbsp;Kč</span>
+                                                                                <span title="Cena při objednání jídla">(24.0&nbsp;Kč)</span>
+                                                                            </a>
+                                                                    <span id="icons5831" class="icons">
+                                                                        <i class="fa fa-clock-o fa-3x" style="vertical-align: middle;" title="výdej od: &lt;b&gt;14:00:00&lt;/b&gt; do: &lt;b&gt;14:00:00&lt;/b&gt;&lt;br/&gt; objednat do: &lt;b&gt;12.10.2017 14:00:00&lt;/b&gt;&lt;br/&gt; zrušit do: &lt;b&gt;20.10.2017 07:00:00&lt;/b&gt;"></i>
+                                                                        </span>
+                                                                </span>
+                                                                <span style="min-width: 250px; display: inline-block; word-wrap: break-word; vertical-align: middle;">
+                                                                    Hráškový krém <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, ;rybí filé na cibulce <span style="padding: 0px;" class="textGrey">[<span title="Ryby - Ryby  a výrobky  z nich" class="textGrey">4</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, rýže se zeleninou <span style="padding: 0px;" class="textGrey">[<span title="Obiloviny - Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">1</span><span class="textGrey">, </span><span title="Vejce - Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">3</span><span class="textGrey">, </span><span title="Sójové boby (sója) - Sójové boby (sója) a výrobky z nich" class="textGrey">6</span><span class="textGrey">, </span><span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span><span class="textGrey">, </span><span title="Celer - Celer a výrobky z  něj" class="textGrey">9</span>]</span>, rajčatový salát s pórkem, frutelka (s ovocným podílem), mléko <span style="padding: 0px;" class="textGrey">[<span title="Mléko - Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">7</span>]</span>, <br>
+                                                                    <span class="textGrey">(<span title="Obiloviny obsahující lepek–nejedná se o celiakii, výrobky z nich" class="textGrey">Obiloviny</span><span class="textGrey">, </span><span title="Vejce a výrobky z nich - patří mezi potraviny ohrožující život" class="textGrey">Vejce</span><span class="textGrey">, </span><span title="Ryby  a výrobky  z nich" class="textGrey">Ryby</span><span class="textGrey">, </span><span title="Sójové boby (sója) a výrobky z nich" class="textGrey">Sójové boby (sója)</span><span class="textGrey">, </span><span title="Mléko  a  výrobky  z  něj - patří mezi potraviny ohrožující život" class="textGrey">Mléko</span><span class="textGrey">, </span><span title="Celer a výrobky z  něj" class="textGrey">Celer</span>)</span>
+                                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                        
+                                </form>
+                            </td></tr>
+                        
+                    
+            </tbody></table>
+            
+    
+    <div align="center" class="topMenu topMenuMinWidth textGrey noPrint" style="position: relative; clear: both; z-index:1; text-align: center; margin-top: 10px"> Změna jídelníčku vyhrazena. | iCanteen verze 2.13.26
+        
+        | © Z-WARE 2003-2017
+    </div>
+</div>
+
+
+
+  
+
+
+
+
+
+            </div>
+            
+        
+
+
+
+
+
+    <div id="container" class="ui-notify"></div>
+
+
+
+    
+      
+<div id="ui-tooltip-30" role="tooltip" class="ui-tooltip ui-widget ui-corner-all ui-widget-content" style="top: 130px; left: 450px; display: block; opacity: 0.958877;"><div class="ui-tooltip-content">Jídelníček se všemi schválenými dny</div></div></body></html>

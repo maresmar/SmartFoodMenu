@@ -1,0 +1,2766 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0061)http://195.113.207.81:8080/nastoupach/faces/secured/month.jsp -->
+<html xmlns="http://www.w3.org/1999/xhtml" slick-uniqueid="3"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>iCanteen</title>
+        
+        <link rel="shortcut icon" href="http://195.113.207.81:8080/nastoupach/img/favicon.ico">
+        <link type="text/css" href="./iCanteen_files/style.css" rel="Stylesheet">
+        <link type="text/css" href="./iCanteen_files/jquery-ui-1.8.16.custom.css" rel="Stylesheet">
+        <link type="text/css" href="./iCanteen_files/ui.notify.css" rel="Stylesheet">
+        <script type="text/javascript" src="./iCanteen_files/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="./iCanteen_files/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript" src="./iCanteen_files/jquery.ui.datepicker-cs.js"></script>
+        <script type="text/javascript" src="./iCanteen_files/jquery.notify.js"></script>
+        <script type="text/JavaScript" src="./iCanteen_files/functions.js"></script></head><body><div id="fixedtipdiv" style="visibility:hidden;width:150px;background-color:lightyellow"></div>        
+        <style type="text/css" media="print">
+            <!--
+            .noPrint        { display: none }
+            -->
+        </style>
+        <style type="text/css" media="screen">
+            <!--
+            .noScreen        { display: none }
+            -->
+        </style>        
+    
+    
+    
+        
+            
+        
+        <script type="text/javascript">
+            var time = null
+            function move() {
+                window.location = "/nastoupach/index.jsp?terminal=true";
+            }            
+            
+            function Tisk() {
+                focus();
+                window.open(location.href, "printwin");
+            }
+
+            var PrintCommandObject = null;
+            function printPage() {
+                if (PrintCommandObject) {
+                    try{
+                        PrintCommandObject.ExecWB(6, 2);
+                        PrintCommandObject.outerHTML = "";
+                    }
+                    catch(e){
+                        window.print();
+                    }
+                } else {
+                    window.print();
+                }
+            }
+
+            if (this.name == "printwin") {
+                if (navigator.appName == "Microsoft Internet Explorer") {
+                    // attach and initialize print command ActiveX object
+                    try {
+                        var PrintCommand = '<object id="PrintCommandObject" classid="CLSID:8856F961-340A-11D0-A96B-00C04FD705A2" width="0" height="0"></object>';
+                        document.body.insertAdjacentHTML('beforeEnd', PrintCommand);
+                    } catch(e){}
+                }
+
+                setTimeout(printPage, 1);
+                setTimeout('self.close()',3000);
+
+            }
+
+            $(document).ready(function() {
+                $("#mainContext").height($(window).height() - $("#topContext").height() - 35);
+                $("#code").focus();
+                tick();
+            });
+            document.oncontextmenu=new Function("return false");
+        </script>
+        <form name="reader" style="margin:0px;display:inline;">
+            <input type="hidden" name="code" id="code">
+        </form>
+    
+    
+        
+        <div id="topContext" class="noPrint topContext">
+            
+
+
+
+
+
+
+
+
+    
+        
+    
+
+    <div class="topMenu" style="border-top: none;">
+        <table width="100%" border="0">
+            <tbody><tr>
+                <td align="center" nowrap="">
+                    <div class="bigText" align="center">
+                        <label>
+čas</label>: <span id="Clock" style="font-weight: bold;">20:19:24 </span>
+                        | <label>
+datum</label>: <strong>02.04.2014</strong>
+                        | <span onmouseover="fixedtooltip(&#39;Průběžně aktualizovaný kredit, který zahrnuje všechny objednávky i na období budoucí.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"> <label>
+kredit</label>:
+                                <span id="Kredit" style="font-weight: bold; color: green;" align="center"><span id="top:zustatekKreditu">875.0</span> Kč</span>
+                                </span>
+                                
+                        
+                        
+                        | <label>
+uživatel</label>: <strong><span id="top:lastName">Mares</span>&nbsp;<span id="top:firstName">Martin</span></strong>
+                        | <label>
+výdejna</label>: <span id="Vydejna" class="important" style="font-weight: bold;" align="center"><span id="top:vydejnaName">Hlavní</span></span>                                    
+                        
+                                                                    
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="topMenu">
+        <table width="95%" border="0" cellspacing="2" cellpadding="0" nowrap="">
+            <tbody><tr>
+                <td class="smallBoldTitle"><a href="http://195.113.207.81:8080/nastoupach/faces/secured/main.jsp"><img src="./iCanteen_files/button_1.png" id="obrazek1" title="Zobrazí jídelníček na jeden den s měsíčním kalendářem" align="middle" alt="jídelníček denní" border="0" width="88" height="88"></a></td>
+                <td class="smallBoldTitle"><a href="http://195.113.207.81:8080/nastoupach/faces/secured/week.jsp?week=0"><img src="./iCanteen_files/button_7.png" id="obrazek2" title="Zobrazí jídelníček na jeden den s týdenním kalendářem" align="middle" alt="jídelníček týdenní" border="0" width="88" height="88"></a></td>
+                <td class="smallBoldTitle"><a href="./iCanteen_files/iCanteen.html"><img src="./iCanteen_files/button_31.png" id="obrazek3" title="Zobrazí jídelníček na následující měsíc" align="middle" alt="jídelníček měsíční" border="0" width="88" height="88"></a></td>
+                
+                
+                <td class="smallBoldTitle"><a href="http://195.113.207.81:8080/nastoupach/faces/secured/objednavky.jsp"><img src="./iCanteen_files/orders.png" id="obrazek6" align="middle" alt="objednávky" title="Zobrazí historii objednávek jídel" border="0" width="88" height="88"></a></td>
+                
+                <td class="smallBoldTitle"><a href="http://195.113.207.81:8080/nastoupach/faces/secured/setting.jsp"><img src="./iCanteen_files/config.png" id="obrazek7" align="middle" alt="nastavení" title="Zobrazí možnosti nastavení systému" border="0" width="88" height="88"></a></td>
+                <td class="smallBoldTitle"><a href="http://195.113.207.81:8080/nastoupach/faces/secured/help.jspx"><img src="./iCanteen_files/help.png" id="obrazek8" align="middle" alt="nápověda" title="Zobrazí nápovědu k používání systému" border="0" width="88" height="88"></a></td>
+                <td class="smallBoldTitle"><a href="http://195.113.207.81:8080/nastoupach/faces/secured/info.jsp"><img src="./iCanteen_files/info.png" id="obrazek9" align="middle" alt="informace" border="0" width="88" height="88"></a></td>
+                <td class="smallBoldTitle"><a href="http://195.113.207.81:8080/nastoupach/j_spring_security_logout"><img src="./iCanteen_files/logout.png" id="obrazek10" align="middle" alt="odhlásit" title="Odhlášení uživatele ze systému" border="0" width="88" height="88"></a></td>
+                <td class="smallBoldTitle"><a href="http://195.113.207.81:8080/nastoupach/faces/secured/month.jsp#" onclick="Tisk()"><img src="./iCanteen_files/print.png" align="middle" alt="tisk" title="Vytisknout stránku" border="0"></a>&nbsp;&nbsp;<img src="./iCanteen_files/mail.png" align="middle" alt="poslat" title="poslat stránku" border="0"></td>
+                </tr>
+            </tbody></table>
+        </div>
+        <div class="topMenu" style="text-align: center; border-bottom: none;">
+        
+        
+            <label>
+                
+                
+                
+
+                
+                    
+                
+                
+        
+    </label></div>
+    <div class="bkg"></div>
+
+        </div>
+        <div id="mainContext" class="mainContext" style="height: 504px;">
+            
+                <table width="100%">
+                
+                
+                    <tbody><tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-02" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    02.04.2014
+                </span> - 
+                <span class="important">
+                    Středa
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tbody><tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    
+
+                                    
+                                    
+                                    
+                                        
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #FFCCCC;" value="nelze zrušit" onclick="this.disabled = true;" disabled="">
+                                </td><td align="left" class="orderedRow topRow" style="width: 99%">
+                                    <b> 1 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 01.04.2014 15:00:00&lt;br/&gt; Zrušit do:      01.04.2014 15:00:00&lt;br/&gt;&lt;img src=/nastoupach/img/warning.gif&gt; Objednávky jsou již uzavřeny.&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 1</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="orderedRow bottomRow">
+                                
+                                
+                                polévka slepičí s játr.knedlíčky a nudlemi,hovězí plátek v cibulovo-česnekové omáčce,kynutý bramb.knedlík s mrkví a pohankou
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #FFCCCC;" value="nelze objednat" onclick="this.disabled = true;" disabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 27.03.2014 15:00:00&lt;br/&gt; Zrušit do:      01.04.2014 15:00:00&lt;br/&gt;&lt;img src=/nastoupach/img/warning.gif&gt; Litujeme, ale můžete objednat jen jeden chod.&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 2</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                pečený filet ze pstruha,bramb.kaše,zel.salát
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #FFCCCC;" value="nelze objednat" onclick="this.disabled = true;" disabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 27.03.2014 15:00:00&lt;br/&gt; Zrušit do:      01.04.2014 15:00:00&lt;br/&gt;&lt;img src=/nastoupach/img/warning.gif&gt; Litujeme, ale můžete objednat jen jeden chod.&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 3</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                špagety s pestem a sýrem,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                </tbody></table>
+            </div>
+            
+                
+                <div class="textGrey">
+                    <font color="blue">
+                    <img src="./iCanteen_files/info_small.gif" align="middle" alt="warn"> Uvedené ceny platí pro objednání následujícího jídla! Změna jídelníčku vyhrazena.
+                    </font>
+                </div>
+            
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-03" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    03.04.2014
+                </span> - 
+                <span class="important">
+                    Čtvrtek
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tbody><tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    
+
+                                    
+                                    
+                                    
+                                        
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #FFCCCC;" value="nelze zrušit" onclick="this.disabled = true;" disabled="">
+                                </td><td align="left" class="orderedRow topRow" style="width: 99%">
+                                    <b> 1 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 02.04.2014 15:00:00&lt;br/&gt; Zrušit do:      02.04.2014 15:00:00&lt;br/&gt;&lt;img src=/nastoupach/img/warning.gif&gt; Objednávky jsou již uzavřeny.&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 1</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="orderedRow bottomRow">
+                                
+                                
+                                polévka koprová,vepřový špíz s rajčaty,brambory,tat.om.,zelenina
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #FFCCCC;" value="nelze objednat" onclick="this.disabled = true;" disabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 27.03.2014 15:00:00&lt;br/&gt; Zrušit do:      02.04.2014 15:00:00&lt;br/&gt;&lt;img src=/nastoupach/img/warning.gif&gt; Litujeme, ale můžete objednat jen jeden chod.&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 2</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                kuřecí plátek Gyros,zeleninový kuskus
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #FFCCCC;" value="nelze objednat" onclick="this.disabled = true;" disabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 27.03.2014 15:00:00&lt;br/&gt; Zrušit do:      02.04.2014 15:00:00&lt;br/&gt;&lt;img src=/nastoupach/img/warning.gif&gt; Litujeme, ale můžete objednat jen jeden chod.&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 3</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                zapečené těstoviny s brokolicí,zel.salát
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                </tbody></table>
+            </div>
+            
+                
+                <div class="textGrey">
+                    <font color="blue">
+                    <img src="./iCanteen_files/info_small.gif" align="middle" alt="warn"> Uvedené ceny platí pro objednání následujícího jídla! Změna jídelníčku vyhrazena.
+                    </font>
+                </div>
+            
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-04" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    04.04.2014
+                </span> - 
+                <span class="important">
+                    Pátek
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tbody><tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    
+
+                                    
+                                    
+                                    
+                                        
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #C9DAF8;" value="zrušit objednávku" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=152979624&amp;day=2014-04-04&amp;type=delete&amp;week=null&#39; " enabled="">
+                                </td><td align="left" class="orderedRow topRow" style="width: 99%">
+                                    <b> 1 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      03.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 1</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="orderedRow bottomRow">
+                                
+                                
+                                polévka čočková,kuřecí plátek na paprice,těstoviny,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #FFCCCC;" value="nelze objednat" onclick="this.disabled = true;" disabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 27.03.2014 15:00:00&lt;br/&gt; Zrušit do:      03.04.2014 15:00:00&lt;br/&gt;&lt;img src=/nastoupach/img/warning.gif&gt; Litujeme, ale můžete objednat jen jeden chod.&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 2</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                jitrnicový prejt,kočičí tanec(brambory se zelím),ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #FFCCCC;" value="nelze objednat" onclick="this.disabled = true;" disabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 27.03.2014 15:00:00&lt;br/&gt; Zrušit do:      03.04.2014 15:00:00&lt;br/&gt;&lt;img src=/nastoupach/img/warning.gif&gt; Litujeme, ale můžete objednat jen jeden chod.&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 3</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                dukátové buchtičky s krémem,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                </tbody></table>
+            </div>
+            
+                
+                <div class="textGrey">
+                    <font color="blue">
+                    <img src="./iCanteen_files/info_small.gif" align="middle" alt="warn"> Uvedené ceny platí pro objednání následujícího jídla! Změna jídelníčku vyhrazena.
+                    </font>
+                </div>
+            
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-07" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    07.04.2014
+                </span> - 
+                <span class="important">
+                    Pondělí
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tbody><tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="přeobjednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=3&amp;day=2014-04-07&amp;type=reorder&amp;chodid=null&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 04.04.2014 15:00:00&lt;br/&gt; Zrušit do:      04.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 1</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                polévka uzená s bramborem a kroupami,pečené kuře,rýže,zel.salát/kompot
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="přeobjednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=4&amp;day=2014-04-07&amp;type=reorder&amp;chodid=null&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      04.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 2</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                zapečené palačinky s masovou náplní,zel.salát/kompot
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    
+
+                                    
+                                    
+                                    
+                                        
+                                    
+                                    
+                                    
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                                                        
+                                        
+                                        
+                                    
+                                    
+                                                          
+                                    <input type="button" class="button buttonBig" style="background-color: #C9DAF8;" value="zrušit objednávku" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=152979631&amp;day=2014-04-07&amp;type=delete&amp;week=null&#39; " enabled="">
+                                </td><td align="left" class="orderedRow topRow" style="width: 99%">
+                                    <b> 1 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      04.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 3</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="orderedRow bottomRow">
+                                
+                                
+                                smažené žampióny,brambor,tat.om.,zel.salát/kompot
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                </tbody></table>
+            </div>
+            
+                
+                <div class="textGrey">
+                    <font color="blue">
+                    <img src="./iCanteen_files/info_small.gif" align="middle" alt="warn"> Uvedené ceny platí pro objednání následujícího jídla! Změna jídelníčku vyhrazena.
+                    </font>
+                </div>
+            
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-08" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    08.04.2014
+                </span> - 
+                <span class="important">
+                    Úterý
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tbody><tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=3&amp;day=2014-04-08&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 07.04.2014 15:00:00&lt;br/&gt; Zrušit do:      07.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 1</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                polévka hrachová,kuřecí plátek po srbsku,bramb.kaše,zelenina s cizrnou,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=4&amp;day=2014-04-08&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      07.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 2</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                vepřové maso na kmíně,těstoviny,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=5&amp;day=2014-04-08&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      07.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 3</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                rýžový nákyp s ovocem,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                </tbody></table>
+            </div>
+            
+                
+                <div class="textGrey">
+                    <font color="blue">
+                    <img src="./iCanteen_files/info_small.gif" align="middle" alt="warn"> Uvedené ceny platí pro objednání následujícího jídla! Změna jídelníčku vyhrazena.
+                    </font>
+                </div>
+            
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-09" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    09.04.2014
+                </span> - 
+                <span class="important">
+                    Středa
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tbody><tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=3&amp;day=2014-04-09&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 08.04.2014 15:00:00&lt;br/&gt; Zrušit do:      08.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 1</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                polévka hovězí s těstovinou,lovecký závitek(vepř.maso,salám,okurka,vejce),housk.knedlík
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=4&amp;day=2014-04-09&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      08.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 2</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                obalovaná treska s bylinkovou omáčkou(polot.),brambor,zel.salát
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=5&amp;day=2014-04-09&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      08.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 3</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                široké nudle se smetanovým špenátem a parmezánem
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                </tbody></table>
+            </div>
+            
+                
+                <div class="textGrey">
+                    <font color="blue">
+                    <img src="./iCanteen_files/info_small.gif" align="middle" alt="warn"> Uvedené ceny platí pro objednání následujícího jídla! Změna jídelníčku vyhrazena.
+                    </font>
+                </div>
+            
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-10" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    10.04.2014
+                </span> - 
+                <span class="important">
+                    Čtvrtek
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tbody><tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=3&amp;day=2014-04-10&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 09.04.2014 15:00:00&lt;br/&gt; Zrušit do:      09.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 1</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                polévka krupicová s vejcem,hovězí Chilli con carne,rýže,zelenina,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=4&amp;day=2014-04-10&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      09.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 2</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                krůtí sekaná,zapečené brambory se sýrem,okurka,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=5&amp;day=2014-04-10&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      09.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 3</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                italský těstovinový salát,pečivo,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                </tbody></table>
+            </div>
+            
+                
+                <div class="textGrey">
+                    <font color="blue">
+                    <img src="./iCanteen_files/info_small.gif" align="middle" alt="warn"> Uvedené ceny platí pro objednání následujícího jídla! Změna jídelníčku vyhrazena.
+                    </font>
+                </div>
+            
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-11" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    11.04.2014
+                </span> - 
+                <span class="important">
+                    Pátek
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tbody><tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=3&amp;day=2014-04-11&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 10.04.2014 15:00:00&lt;br/&gt; Zrušit do:      10.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 1</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                polévka mrkvovo-pomerančová,vepřový plátek na zelených fazolkách,opék.brambory
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=4&amp;day=2014-04-11&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      10.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 2</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                těstoviny s tuňákem a uzeným masem,červ.řepa
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        
+                            <tr><td align="left" nowrap="" rowspan="2" class="nonOrderedRow" style="white-space: nowrap;">
+                                    
+                                    
+                                        
+                                    
+
+                                    
+                                    
+
+                                    
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <input type="button" class="button buttonBig" style="background-color: #C4FFC4;" value="objednat" onclick="this.disabled = true;document.location=&#39;db/dbProcessOrder.jsp?time=1396461851540&amp;ID=5&amp;day=2014-04-11&amp;type=make&amp;week=null&#39;" enabled="">
+                                </td><td align="left" class="nonOrderedRow topRow" style="width: 99%">
+                                    <b> 0 &nbsp;ks</b>&nbsp;|&nbsp;
+                                    <span id="cena" class="important warning" align="center"> 25.0 Kč </span> |
+                                    <span onmouseover="fixedtooltip(&#39;Výdej od:     14:00:00 do: 14:00:00&lt;br/&gt; Objednat do: 03.04.2014 15:00:00&lt;br/&gt; Zrušit do:      10.04.2014 15:00:00&lt;br/&gt;&#39;, this, event, &#39;300px&#39;)" onmouseout="delayhidetip()">
+                                        <span class="smallBoldTitle">Oběd 3</span>
+                                        <span id="cena" class="information" align="center" onmouseover="fixedtooltip(&#39;Vaše jídelna funguje v režimu potvrzování objednávek.&lt;br/&gt;Objednávka bude potvrzena po zpracování v jídelně.&#39;, this, event, &#39;280px&#39;)" onmouseout="delayhidetip()"></span>
+                                    </span>
+                                    
+                                </td></tr><tr><td align="left" class="nonOrderedRow bottomRow">
+                                
+                                
+                                koprová omáčka,housk.knedlík,vejce,ovoce
+                                        
+                                    
+                                    
+                                         
+                                    
+                                                                        
+                                    
+                                    
+                                </td></tr>
+                            
+                            
+                    
+                </tbody></table>
+            </div>
+            
+                
+                <div class="textGrey">
+                    <font color="blue">
+                    <img src="./iCanteen_files/info_small.gif" align="middle" alt="warn"> Uvedené ceny platí pro objednání následujícího jídla! Změna jídelníčku vyhrazena.
+                    </font>
+                </div>
+            
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-14" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    14.04.2014
+                </span> - 
+                <span class="important">
+                    Pondělí
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                </table>
+            </div>
+            
+                <div class="textGrey"><img src="./iCanteen_files/warning.gif" alt="warn" align="middle"> Litujeme, ale na vybraný den nejsou zadána v jídelníčku žádná jídla.</div>
+                
+                
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-15" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    15.04.2014
+                </span> - 
+                <span class="important">
+                    Úterý
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                </table>
+            </div>
+            
+                <div class="textGrey"><img src="./iCanteen_files/warning.gif" alt="warn" align="middle"> Litujeme, ale na vybraný den nejsou zadána v jídelníčku žádná jídla.</div>
+                
+                
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-16" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    16.04.2014
+                </span> - 
+                <span class="important">
+                    Středa
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                </table>
+            </div>
+            
+                <div class="textGrey"><img src="./iCanteen_files/warning.gif" alt="warn" align="middle"> Litujeme, ale na vybraný den nejsou zadána v jídelníčku žádná jídla.</div>
+                
+                
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+                    <tr><td valign="top">
+                            <form name="objednatJidlo" action="http://195.113.207.81:8080/nastoupach/faces/secured/db/objednat.jsp">
+                                
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <div id="2014-04-17" align="left">
+            <strong>Jídelníček na 
+                <span class="important">
+                    17.04.2014
+                </span> - 
+                <span class="important">
+                    Čtvrtek
+                </span>
+            </strong>
+        </div>
+        
+        
+        
+            
+            <div align="left">
+                <table style="width: 100%;">
+                    
+                </table>
+            </div>
+            
+                <div class="textGrey"><img src="./iCanteen_files/warning.gif" alt="warn" align="middle"> Litujeme, ale na vybraný den nejsou zadána v jídelníčku žádná jídla.</div>
+                
+                
+        
+     
+ 
+
+                                
+                                
+                            </form>
+                        </td></tr>
+                    
+            </tbody></table>
+            
+
+
+
+
+<div align="center" class="topMenu textGrey noPrint" style="position: relative; clear: both; z-index:1; text-align: center; margin-top: 10px">This page was generated by iCanteen version 2.6.08 | 2014-04-02 08:04:16 | © Z-WARE 2003-2013 |
+     138438
+</div>
+
+
+            </div>
+    
+</body></html>

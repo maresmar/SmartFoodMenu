@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SFM - Test plugin</string>
+    <string name="plugin_name">Test plugin</string>
+    <string name="ui_portal_test_result">Portal test result</string>
+</resources>

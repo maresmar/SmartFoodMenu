@@ -1,0 +1,861 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0111)http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/objednavky.jsp?terminal=false&keyboard=false&printer=false -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>iCanteen</title>
+        
+        <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <link href="./objednavky_files/css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="http://skola.ozs-ji.cz:8080/nastoupach/img/favicon.ico">
+        <link type="text/css" href="./objednavky_files/style-2.10.29.css" rel="Stylesheet">
+        <link rel="stylesheet" href="./objednavky_files/font-awesome.min.css">
+        
+            <link type="text/css" href="./objednavky_files/jquery-ui-1.10.3.custom.min.css" rel="Stylesheet">
+            <link type="text/css" href="./objednavky_files/ui.notify.css" rel="Stylesheet">
+            <link type="text/css" href="./objednavky_files/jquery.lighter.css" rel="stylesheet">
+            <link type="text/css" href="./objednavky_files/jRating.jquery.css" rel="stylesheet">
+        
+        <script type="text/javascript" src="./objednavky_files/jquery-1.10.2.min.js"></script>
+        
+            <script type="text/javascript" src="./objednavky_files/jquery-ui-1.10.3.custom.min.js"></script>
+            <script type="text/javascript" src="./objednavky_files/jquery.ui.datepicker-cs.js"></script>
+            <script type="text/javascript" src="./objednavky_files/jquery.notify.js"></script>
+            <script type="text/javascript" src="./objednavky_files/jquery.lighter.js"></script>
+            <script type="text/javascript" src="./objednavky_files/jRating.jquery.min.js"></script>
+        
+        <script type="text/JavaScript" src="./objednavky_files/functions-2.10.29.js"></script>     
+    </head>
+    
+        
+    
+    
+        
+    
+    
+        
+                  
+    <body style="">
+        
+        
+    
+        <script type="text/javascript">
+            <!--
+            var time = null
+            var timer;
+            function move() {
+                window.location.href = document.getElementById("urlLogout").value;
+            }
+
+            $.ajaxSetup({cache: false});
+            $(document).ready(function () {
+                calculateHeight();
+                calculateButtonsWidth();
+                calculateRatings();
+        
+                $(document).ajaxComplete(function () {
+                    calculateHeight();
+                    calculateButtonsWidth();
+                    calculateRatings();
+                    clearTimeout(timer);
+                    $('#ajaxBusy').hide();
+        
+                });
+                $("#code").focus();
+                tick();
+
+                // Setup the ajax indicator
+                $('body').append('<div id="ajaxBusy"><p><img src="/nastoupach/img/loading.gif"><\/p><\/div>');
+
+                $('#ajaxBusy').css({
+                    display: "none",
+                    margin: "0px",
+                    paddingLeft: "0px",
+                    paddingRight: "0px",
+                    paddingTop: "0px",
+                    paddingBottom: "0px",
+                    position: "absolute",
+                    right: "10px",
+                    top: "50px",
+                    width: "auto"
+                });
+
+                $("#container").notify({
+                    speed: 500
+                });
+
+                $(document).bind('ajaxError', function (event, request, settings) {
+                    if (request.status == '403') {
+                        move();
+                    } else {
+                        $("#container").notify("create", {
+                            title: 'Stav objednávky',
+                            text: 'Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.'
+                        });
+                        //alert('Při zpracování objednávky došlo k chybě na serveru. Zkuste znovu načíst aplikaci a opakujte operaci.');
+                    }
+                    ;
+                });
+
+                if ($(document).width() < 400) {
+                    $('.icons').hide();
+                }
+            });
+            document.oncontextmenu = new Function("return false");
+
+            if ($.ui != undefined) {
+                $(function () {
+                    $(document).tooltip();
+                });
+            }
+//-->
+    </script>
+    <form name="reader" style="margin:0px; display:inline;" action="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/objednavky.jsp?terminal=false&amp;keyboard=false&amp;printer=false#">
+        <input type="hidden" name="code" id="code">
+        <input type="hidden" name="urlLogout" id="urlLogout" value="/nastoupach/j_spring_security_logout?terminal=false&amp;keyboard=false&amp;printer=false">
+    </form>
+    <div id="bodyContext"><div class="noPrint topContext" id="topContext">
+    
+    <div class="topMenu" style="padding-top: 0px; padding-bottom: 0px">
+        <table style="width: 100%;"><tbody><tr>
+                <td class="statusBar" style="text-align: left; padding-left: 20px;">
+                    
+                        <span class="topMenuItem">čas: <span id="Clock" style="font-weight: bold;">18:43:03 </span></span>
+                        
+                            <!--<span class="topMenuItem">datum: <strong>11.10.2017</strong></span>-->
+                    <span id="kreditInclude">
+
+
+
+    <span class="topMenuItem"> <span title="Průběžně aktualizovaný kredit, který zahrnuje všechny objednávky i na období budoucí.">kredit</span>:
+        
+            
+            <span id="Kredit" style="font-weight: bold; color: #99cc00;"><span id="top:status:zustatekKreditu">350.0</span> Kč</span>
+        
+    </span>
+
+<span class="topMenuItem"><span title="Průběžně aktualizovaná spotřeba strávníka, ukazuje součet utracených peněz v aktuálním měsíci.">spotřeba</span>: <strong><span id="top:status:MesicniSpotreba">425.0</span> Kč</strong></span> </span>          
+                    
+                        
+                    <span class="topMenuItem">výdejna: <span id="Vydejna" style="font-weight: bold; color: #FBE983"><span id="top:status:vydejnaName">Hlavní</span></span></span>
+                </td>
+                <td style="width: 100px;" class="statusBar">
+                    
+                    <!--<a href="help.jspx?terminal=false&amp;keyboard=false&amp;printer=false" title="Nápověda k používání systému"><i class="topMenuItem fa fa-question-circle fa-lg"></i></a>-->
+                    
+                        <a href="javascript:window.print()" title="Vytisknout stránku"><i class="topMenuItem fa fa-print fa-lg"></i></a>
+                        <a href="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/info.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Informace o jídelně"><i class="topMenuItem fa fa-info-circle fa-lg"></i></a>
+                        <a href="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/audit.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Audit log operací v systému"><i class="topMenuItem fa fa-file-text fa-lg"></i></a>
+                        
+                        <a href="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/setting.jsp?terminal=false&amp;keyboard=false&amp;printer=false" title="Možnosti nastavení systému"><i class="topMenuItem fa fa-cog fa-lg"></i></a>
+                        
+                    <span class="topMenuItem"><span id="top:status:lastName">Marešová</span>&nbsp;<span id="top:status:firstName">Eva</span></span>
+                    <span><a href="http://skola.ozs-ji.cz:8080/nastoupach/j_spring_security_logout?terminal=false&amp;keyboard=false&amp;printer=false" title="Odhlášení uživatele ze systému"><i class="topMenuItem fa fa-power-off fa-lg warning"></i></a></span>
+                </td></tr></tbody></table>                                        
+    </div>
+
+
+
+
+
+
+
+
+
+
+    
+    <div class="topMenu noPrint">
+        <table width="100%" border="0" cellspacing="2" cellpadding="0" style="table-layout: fixed;">
+            <tbody><tr>
+            <td class="mainMenu" title="Jídelníček na jeden den s měsíčním kalendářem"><a href="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/main.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><span class="fa-stack fa-stock-lg"><i class="fa fa-calendar-o fa-stack-2x"></i><strong class="fa-stack-1x calendar-text">1</strong></span><span class="mainMenuText">denní</span></span></a></td>
+            
+            
+            <td class="mainMenu" title="Můžete převzít jídlo jiného strávníka z burzy jídel"><a href="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/burza.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-line-chart fa-3x"></i><span class="mainMenuText">burza</span></span></a></td>
+            <td class="mainMenu" title="Historie plateb"><a href="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/platby.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-bank fa-3x"></i><span class="mainMenuText">platby</span></span></a></td>
+            <td class="mainMenu" title="Detaily objednávek včetně popisu jídla"><a href="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/objednavky.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-shopping-cart fa-3x"></i><span class="mainMenuText">objednávky</span></span></a></td>
+            <td class="mainMenu" title="Přehled plateb a objednávek"><a href="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/historie.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-history fa-3x"></i><span class="mainMenuText">historie</span></span></a></td>
+            <!--<td class="mainMenu" title="Možnosti nastavení systému"><a href="setting.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-cog fa-3x"></i><span class="mainMenuText">nastavení</span></span></a></td>-->
+            <!--<td class="mainMenu"><a href="info.jsp?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-info fa-3x"></i><span class="mainMenuText">informace</span></span></a></td>-->
+            <td class="mainMenu" title="Nápověda k používání systému"><a href="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/help.jspx?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-question fa-3x"></i><span class="mainMenuText">nápověda</span></span></a></td>
+            <!--<td class="mainMenu" title="Odhlášení uživatele ze systému"><a href="/nastoupach/j_spring_security_logout?terminal=false&amp;keyboard=false&amp;printer=false"><span class="mainMenuItem"><i class="fa fa-power-off fa-3x"></i><span class="mainMenuText">odhlásit</span></span></a></td>-->
+            
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="topMenu noPrint" style="text-align: center; border-bottom: none; padding-bottom: 0px;">
+        
+
+
+
+
+
+
+
+  
+
+    </div>
+    <div class="bkg"></div>
+
+
+
+
+
+
+
+
+  
+</div><div class="mainContext" id="mainContext" style="height: 476px;">
+
+
+
+
+
+
+
+
+    <span class="noPrint">
+        <form id="filterDateForm" name="filterDateForm" method="post" action="http://skola.ozs-ji.cz:8080/nastoupach/faces/secured/objednavky.jsp" enctype="application/x-www-form-urlencoded" style="padding-bottom: 10px;"><label for="filterDateForm:startDate">Zobrazit pouze objednávky od: </label><input id="filterDateForm:startDate" name="filterDateForm:startDate" type="text" value="11.09.2017" maxlength="10" class="form-control input hasDatepicker"><label for="filterDateForm:startDate">do: </label><input id="filterDateForm:endDate" name="filterDateForm:endDate" type="text" value="11.11.2017" maxlength="10" class="form-control input hasDatepicker"> <input id="filterDateForm:j_id_jsp_1876352466_7pc5" name="filterDateForm:j_id_jsp_1876352466_7pc5" type="submit" value="Filtrovat objednávky" class="btn btn-primary button"><input type="hidden" name="filterDateForm_SUBMIT" value="1"><input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="XlG/LfK/aYPW8Qh2eMCgzolwi4EiGzjdZlSt381ClOLFmGKLlFq3Vb9//3zJhwHfC6LszyxKTHL5gF2jugPxJAk4ezI0fYoDCSB3Wo+Iu3MhItyXWkg/cnEDb4fbpNcDVErN3Q=="></form>
+    </span>
+    <span class="noScreen">
+        <table class="center"><tbody><tr class="printSummaryRow"><td>Filtr od: 11.09.2017</td><td>Filtr do: 11.11.2017</td></tr>
+<tr class="printSummaryRow"><td>Jméno: Eva</td><td>Příjmení: Marešová</td></tr>
+</tbody></table>
+    </span>
+        
+    <table class="tableDataShow">
+        <tbody><tr class="smallBoldTitle">
+            <td>datum</td>
+            <td>chod</td>
+            <td align="left">popis jídla</td>
+            <td align="right">objednáno</td>
+            <td align="left">výdejna</td>
+            <td align="right">objednáno kusů</td>
+            <td align="right">vydáno kusů</td>
+            <td align="right">cena dotované</td>      
+            <td align="right">cena nedotované</td>            
+        </tr>	
+        
+            <tr class="mouseOutRow">
+                <td>24.10.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Čočková polévka [6], ;kuřecí plátek ve smetanovo-mandlové omáčce [1,7,8], rýže dušená, ovoce, čaj ovocný, citrónová voda [12], sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-10-06 10:30:23 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>23.10.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Polévka z rybího filé [1,4,6,7,9], ;špenátové halušky s parmezánem [1,7,12], ovoce, čaj černý, citrónová voda [12], sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-10-06 10:30:23 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>20.10.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Hovězí polévka s těstovinami [1,9], ;pečená kuřecí rolka (polot.) [1,3,6,7,10], brambory, zel.salát, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-10-04 13:45:29 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>19.10.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Cizrnová polévka se zeleninou [9], ;špecle se sýrovou omáčkou a smaženou cibulkou [1,3,7], ovoce, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-10-04 13:45:29 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>18.10.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Bramborová polévka s krupicí a vejcem [3,6,9], ;těstovinový salát s rajčaty a brokolicí [1,3,10], rohlík sezam [1,11], ovoce, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-10-04 13:45:29 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>17.10.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Květáková polévka [1,6,7], ;pečená plněná paprika s rýží a  tofu [6,7], brambory [7], zel.salát, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-10-04 13:45:28 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>16.10.2017</td>
+                <td>Oběd 2</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Frankfurtská polévka [1,6,7], ;kuřecí plátek přírodní [7], mexická rýže, kompot/zel.salát, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-10-04 13:45:29 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>13.10.2017</td>
+                <td>Oběd 2</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Hovězí polévka z vaječné jíšky [1,3,9], ;těstoviny s kuřecím masem a brokolicí [1,6], zelenina, kečup, ovoce, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-19 21:51:20 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>12.10.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Hrachová polévka [6], ;srbské rizoto z vepřového masa se sýrem [6,7], zel.salát, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-22 11:55:55 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>11.10.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Zeleninová polévka [6,7,9], ;krůtí plátek v hroznové omáčce [1,6], bramborová kaše [7], zel.salát, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-22 11:55:55 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>10.10.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Slepičí polévka s těstovinami [1,9], ;kuřecí Kung Pao [5,6,8], rýže dušená, ovoce, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-22 11:55:55 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>09.10.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Dýňovo bramborová polévka [7], ;vepřový plátek v hořčicové omáčce [1,7,10], brambory opékané, zelenina, ovoce, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-22 11:55:55 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>06.10.2017</td>
+                <td>Oběd 2</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Česneková polévka s bramborem [3,6], ;smažená brokolice [1,3,7], brambory, tat.om., zelenina, ovoce, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-13 09:44:42 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>05.10.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Gulášová polévka [1], ;vepřový plátek přírodní [6,7], bramborová kaše [7], zel.salát, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-13 09:44:43 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>04.10.2017</td>
+                <td>Oběd 2</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Porková polévka s vejci [3], ;špagety po zahradnicku se sýrem [1,6,7,9], ovoce, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-13 09:44:43 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>03.10.2017</td>
+                <td>Oběd 2</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Hovězí polévka s drožďovou rýží [1,3,9], ;bulgur s tuňákem a zeleninou [1,4], červená řepa, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-13 09:44:42 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>02.10.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Polévka z červené čočky [7,12], ;kuřecí soté se zeleninou  [1,3,6,7], hranolky, zel.salát, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-13 09:44:42 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>27.09.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Špenátová polévka [3,6,7], ;kapustové opečenky [1,3], bramborová kaše [7], zel.salát, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-13 09:44:42 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>26.09.2017</td>
+                <td>Oběd 2</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Slepičí polévka s nudlemi [1,3,9], ;těstovinový salát s kuřecím masem a zeleninou [1,7], rohlík sezam [1,11], ovoce, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-13 09:44:42 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>25.09.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Bramborová polévka [6,9], ;rizoto s pohankou a hlívou ústřičnou [7,12], zel.salát, ovoce, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-13 09:44:43 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>22.09.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Kapustová polévka s paprikou, ;zapečené brambory s kuřecím masem a sýrem [7], tat.omáčka [3,7,10], zel.salát, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-03 21:59:44 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>21.09.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Hovězí polévka s pórkem a jáhlami, ;pečená plněná paprika s cizrnovou náplní [1,3,10], brambory [7], zel.salát, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-10 20:57:50 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>20.09.2017</td>
+                <td>Oběd 2</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Česneková krémová polévka [1,6,7], ;pečený losos [4,7,9,10], široké nudle s brokolicí a sezamem, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-03 21:59:44 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>19.09.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Čočková polévka [6], ;špagety s vepřovým masem a sýrem [1,6,7], ovoce, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-03 21:59:44 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>18.09.2017</td>
+                <td>Oběd 2</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Slepičí polévka s játrovou rýží [1,3,9], ;kuřecí plátek Gyros [7], hranolky, kečup, zelenina, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-03 21:59:44 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>15.09.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Hrachová polévka [6], ;zapečené brambory se sýrem [7], tat.omáčka [3,7,10], zelenina, ovoce, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-03 21:59:45 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>14.09.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Slepičí polévka s těstovinami [1,9], ;kuřecí řízek smažený [1,3,7], bramborová kaše [7], zel.salát, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-03 21:59:45 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>13.09.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Polévka krupicová s vejcem [1,3,6,9], ;italský těstovinový salát [1,3,7,10], rohlík sójový [1,6,11], ovoce, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-03 21:59:44 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">0</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>12.09.2017</td>
+                <td>Oběd 1</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Hrstková polévka [1,6,9], ;kuřecí nudličky v sýrové omáčce [1,6,7], těstoviny [1], ovoce, čaj ovocný, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-03 21:59:45 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+            <tr class="mouseOutRow">
+                <td>11.09.2017</td>
+                <td>Oběd 3</td>
+                
+            
+                <td align="left">	  
+                    
+                
+                    Mrkvová polévka s bramborem [7], ;sójové maso po čínsku [6], celozrnné špecle [1,3], zel.salát, čaj černý, citrónová voda, sirup, ovocné mléko [7],
+                
+                <br></td>      
+                <td align="right">2017-09-07 09:52:39 (Internet)</td>
+                <td align="right">Hlavní</td>
+                <td align="right">1</td>
+                <td align="right">1</td>
+                <td align="right">0.0 (0 ks)</td> 
+                <td align="right">25.0 (1 ks)</td>      
+             
+            </tr>		
+        
+    </tbody></table>
+    
+    
+        <script type="text/JavaScript">
+            $('#filterDateForm\\:startDate').datepicker($.datepicker.regional['cs']);
+            $('#filterDateForm\\:endDate').datepicker($.datepicker.regional['cs']);
+        </script>
+    
+    
+    <div align="center" class="topMenu textGrey noPrint" style="position: relative; clear: both; z-index:1; text-align: center; margin-top: 10px">Změna jídelníčku vyhrazena. | iCanteen verze 2.10.29
+        
+        | © Z-WARE 2003-2015
+    </div>
+</div>
+
+</div><div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+
+
+
+
+    <div id="container" class="ui-notify"></div>
+
+
+<div id="ajaxBusy" style="display: none; margin: 0px; padding: 0px; position: absolute; right: 10px; top: 50px; width: auto;"><p><img src="./objednavky_files/loading.gif"></p></div></body></html>

@@ -1,0 +1,42 @@
+<!--
+  ~ SmartFoodMenu - Android application for canteens extendable with plugins
+  ~
+  ~ Copyright © 2016-2018  Martin Mareš <mmrmartin[at]gmail[dot]com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="10000"
+    android:viewportHeight="10000">
+  <group>
+    <clip-path android:pathData="M0,0h10000v10000h-10000z M 0,0"/>
+    <path
+        android:pathData="M 3766,1913 C 2995,1913 2481,2795 2652,3677 2823,4559 3509,4912 3509,5618 3509,6323 3338,6853 3338,7382 3338,7911 3435,8088 3680,8088 L 3852,8088 C 4097,8088 4194,7911 4194,7382 4194,6853 4023,6323 4023,5618 4023,4912 4709,4559 4880,3677 5051,2795 4537,1913 3766,1913 Z"
+        android:strokeLineJoin="round"
+        android:strokeWidth="28.222"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#FFFFFF"
+        android:fillType="evenOdd"/>
+    <path
+        android:pathData="M 5512,1991 C 5472,1991 5441,2306 5441,2697 L 5441,2815 5441,2873 5441,3107 C 5441,3173 5443,3236 5444,3298 5438,3440 5444,3587 5469,3733 5472,3753 5477,3771 5481,3790 5482,3800 5483,3809 5485,3818 5488,3836 5493,3853 5496,3867 5674,4642 6194,4989 6194,5649 6194,6346 6050,6869 6050,7392 6050,7914 6131,8088 6339,8088 L 6484,8088 C 6692,8088 6773,7914 6773,7392 6773,6869 6629,6346 6629,5649 6629,4989 7149,4642 7327,3867 7329,3861 7330,3855 7332,3849 7334,3839 7336,3828 7338,3818 7340,3809 7341,3800 7343,3790 7346,3771 7351,3753 7355,3733 7379,3587 7386,3440 7379,3298 7381,3236 7382,3173 7382,3107 L 7382,2873 7382,2697 C 7382,2306 7351,1991 7312,1991 L 7100,1991 C 7061,1991 7029,2306 7029,2697 L 7029,2873 C 7029,3069 7006,3226 6976,3226 L 6906,3226 C 6876,3226 6853,3069 6853,2873 L 6853,2697 C 6853,2306 6806,1991 6747,1991 L 6606,1991 C 6547,1991 6500,2306 6500,2697 L 6500,2873 C 6500,3069 6476,3226 6447,3226 L 6376,3226 C 6347,3226 6323,3069 6323,2873 L 6323,2697 C 6323,2306 6276,1991 6218,1991 L 6076,1991 C 6018,1991 5970,2306 5970,2697 L 5970,2873 C 5970,3069 5947,3226 5917,3226 L 5847,3226 C 5818,3226 5794,3069 5794,2873 L 5794,2697 C 5794,2306 5762,1991 5723,1991 L 5590,1991 5530,1991 5512,1991 Z"
+        android:strokeLineJoin="round"
+        android:strokeWidth="28.222"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#FFFFFF"
+        android:fillType="evenOdd"/>
+  </group>
+</vector>

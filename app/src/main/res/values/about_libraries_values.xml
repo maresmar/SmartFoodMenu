@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SmartFoodMenu - Android application for canteens extendable with plugins
+  ~
+  ~ Copyright © 2016-2018  Martin Mareš <mmrmartin[at]gmail[dot]com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- About info -->
+    <string name="aboutLibraries_description_showIcon" translatable="false">true</string>
+    <string name="aboutLibraries_description_showVersion" translatable="false">true</string>
+
+    <!-- First button -->
+    <string name="aboutLibraries_description_special1_name">License</string>
+    <string name="aboutLibraries_description_special1_text" translatable="false">@string/app_license</string>
+
+    <!-- Second button -->
+    <string name="aboutLibraries_description_special2_name">Changelog</string>
+    <string name="aboutLibraries_description_special2_text" translatable="false">@string/app_changelog</string>
+
+    <!-- Divider -->http://www.apache.org/licenses/LICENSE-2.0.html
+    <string name="aboutLibraries_description_text">Open source libraries used in SmartFoodMenu</string>
+
+    <!-- Extra -->
+    <string name="app_license" translatable="false"><![CDATA[
+        <b>Smart Food Menu</b> - Android application designed for off-line food menu displaying,
+        ordering food at school and public canteens
+        <br />
+        Copyright © 2016-2018  Martin Mareš &lt;mmrmartin[at]gmail[dot]com&gt;
+        <br /><br />
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+        <br /><br />
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+        <br /><br />
+        You should have received a copy of the GNU General Public License
+        along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+    ]]></string>
+
+    <!-- Custom libraries -->
+    <!-- MaterialDesign -->
+    <string name="define_Templarian_MaterialDesign" translatable="false" />
+    <string name="library_Templarian_MaterialDesign_author" translatable="false">Austin Andrews</string>
+    <string name="library_Templarian_MaterialDesign_authorWebsite" translatable="false">http://templarian.com/</string>
+    <string name="library_Templarian_MaterialDesign_libraryName" translatable="false">MaterialDesign Icons</string>
+    <string name="library_Templarian_MaterialDesign_libraryDescription" translatable="false">2300+ Material Design Icons from the Community</string>
+    <string name="library_Templarian_MaterialDesign_libraryWebsite" translatable="false">https://materialdesignicons.com</string>
+    <string name="library_Templarian_MaterialDesign_licenseId" translatable="false">SIL</string>
+    <string name="library_Templarian_MaterialDesign_isOpenSource" translatable="false">true</string>
+    <string name="library_Templarian_MaterialDesign_repositoryLink" translatable="false">https://github.com/templarian/MaterialDesign/</string>
+
+    <string name="define_license_SIL" translatable="false" />
+    <string name="license_SIL_licenseName" translatable="false">SIL Open Font License 1.1</string>
+    <string name="license_SIL_licenseWebsite" translatable="false">http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web</string>
+</resources>

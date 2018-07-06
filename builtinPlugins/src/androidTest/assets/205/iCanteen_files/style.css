@@ -1,0 +1,257 @@
+body {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #F6F6F6;
+/**    background-image: url("../img/bg.gif");    */
+}
+
+.topMenu {
+    /**border-top: 1px dashed #AF1014;*/
+    border-bottom: 1px dashed #AF1014;
+    padding: 8px;
+    text-align: center;
+}
+
+.bkg {
+    clear: both;
+    height: 9px;
+    background: #B30000;
+    font-size: 1px;
+}
+
+.input {
+    margin: 1px;
+    padding: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    border: 1px solid #3399FF;
+    background-color: #F3F5F9;
+}
+.button {
+    background-color: #F3F5F9;
+    border: thin outset #999999;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    width: 130px
+}
+.show {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #FF0000;
+    text-align: center;
+}
+
+p, h1, h2, h3, h4, h5, h6, table, td, th, ul, ol, dt, dd
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+form {
+    text-align: center;
+}
+table {
+    text-align: center;
+    border-collapse: collapse;
+    padding: 1px;
+}
+.tableShow {
+    border: 1px solid #000000;
+    text-align: center;
+}
+.smallBoldTitle {
+    font-weight: bold;
+    font-size: 13px;
+}
+.mainDiv {
+    text-align: center;
+    width: 96%;
+}
+.printSummary {
+    text-align: center;
+    width: 500px;
+}
+
+table.center {
+    margin-left:auto;
+    margin-right:auto;
+    width: 500px;
+}
+
+
+.printSummaryRow {
+    padding: 5px;
+    margin: 5px;
+    text-align: left;
+}
+
+.pageTitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #006600;
+}
+.mainTable {
+    margin: 0px;
+    padding: 0px;
+    background-color: #FFFFFF;
+}
+
+.loading {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFFFFF;
+    border: thin dotted #999999;
+}
+.mouseOverRow {
+    background-color: #FF9900;
+}
+.mouseOutRow {
+    background-color: #FFFFCC;
+}
+.tableDataShow {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000066;
+    background-color: #FFFFCC;
+    border: 1px solid #000000;
+}
+.KalZahlavi {
+    font-weight: bold;
+    COLOR: #FFFFFF;
+    background-color:#AF1014;
+    border-color: #AF1014;
+    font-size: 11px;
+}
+
+.KalTable {
+    border:1px inset #AF1014;
+    background-color:#DFDCD8;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.KalDatum {
+    /**background-image: url("../img/bg.gif");*/
+    background-color: #E0E0E0;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.KalDnes {
+    BACKGROUND-COLOR: #6C7EAA;
+    color:#FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.Kal1 {
+    BACKGROUND-COLOR: #FFE4CA;
+    font-size: 14px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.Kal3 {
+    BACKGROUND-COLOR: #FFCC99;
+    font-size: 14px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.Kal5 {
+    BACKGROUND-COLOR: #FFCC00;
+    font-size: 14px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.Kal6 {
+    BACKGROUND-COLOR: #66CCFF;
+    font-size: 14px;
+    cursor: hand;
+    cursor: pointer;
+}
+.switchDiv {
+    background-color: #CCCCCC;
+    cursor:hand;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 1px;
+}
+.warning {
+    font-weight: bold;
+    color: red;
+}
+.information {
+    font-weight: bold;
+    color: green;
+}
+.orderedRow {
+    background-color: #D17B25;
+}
+.nonOrderedRow {
+    background-color: transparent;
+}
+.firstRow {
+    background-color: #BAC6D2;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+.tableRow {
+    background-color: #F3F5F9;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+a:link {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+a:hover {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+    text-decoration: underline;
+}
+a:visited {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+.textGrey {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    color: #999999;
+    text-align: left;
+    padding: 5px;
+}
+#fixedtipdiv{
+    position:absolute;
+    padding: 2px;
+    border:1px solid black;
+    font:normal 10px Verdana;
+    line-height:18px;
+    z-index:100;
+    text-align: left;
+}
+.hr {  
+    height:1.5em;
+    width:25em;
+    border:1px solid #AF1014;
+}
+.medium {
+    vertical-align: top; 
+    text-align: center;
+}
