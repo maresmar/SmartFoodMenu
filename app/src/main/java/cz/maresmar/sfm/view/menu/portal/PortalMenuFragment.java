@@ -41,7 +41,6 @@ import cz.maresmar.sfm.R;
 import cz.maresmar.sfm.provider.ProviderContract;
 import cz.maresmar.sfm.utils.MenuUtils;
 import cz.maresmar.sfm.view.FragmentChangeRequestListener;
-import cz.maresmar.sfm.view.init.WelcomeActivity;
 import cz.maresmar.sfm.view.menu.CursorPagerAdapter;
 import cz.maresmar.sfm.view.menu.MenuViewAdapter;
 import timber.log.Timber;

@@ -39,7 +39,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.init.WelcomeActivity"
+            android:name=".view.guide.WelcomeActivity"
             android:label="@string/welcome_activity_title"
             android:theme="@style/SplashTheme" />
 

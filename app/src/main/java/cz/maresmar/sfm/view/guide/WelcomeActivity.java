@@ -17,7 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cz.maresmar.sfm.view.init;
+package cz.maresmar.sfm.view.guide;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;

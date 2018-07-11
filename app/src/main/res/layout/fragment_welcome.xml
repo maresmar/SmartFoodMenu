@@ -22,7 +22,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cz.maresmar.sfm.view.init.WelcomeFragment">
+    tools:context="cz.maresmar.sfm.view.guide.WelcomeFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
