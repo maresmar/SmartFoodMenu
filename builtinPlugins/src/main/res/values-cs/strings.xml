@@ -20,7 +20,7 @@
 
 <resources>
     <string name="ui_portal_version_name">Verze portálu:</string>
-    <string name="ui_allergens_pattern_des">Použíte regulární výrazy z Javy</string>
+    <string name="ui_allergens_pattern_des">Použijte regulární výrazy z Javy</string>
     <string name="ui_portal_auto_update_des">Automaticky aktualizovat verzi, pokud ji aplikace detekuje</string>
     <string name="ui_portal_auto_update_name">Automaticky aktualizovat verzi portálu</string>
     <string name="ui_allergens_pattern_name">Regulární výraz na odstranění alergenů</string>

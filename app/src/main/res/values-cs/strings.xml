@@ -22,7 +22,7 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
-        <i>Version 3.0.3</i><br />
+        <i>Verze 3.0.3</i><br />
         - Oprava drobných chyb<br />
         <i>Verze 3.0.2</i><br />
         - Volitelná synchronizace po spuštění<br />
@@ -44,7 +44,7 @@
     <string name="aboutLibraries_description_text">Open source knihovny použité v aplikaci</string>
     <string name="main_today_fragment_title">Dnes</string>
     <string name="main_orders_fragment_title">Objednávky</string>
-    <string name="main_edit_saved_text">Změny uloženy, budou synchronizovaný při připojení k síti…</string>
+    <string name="main_edit_saved_text">Změny uloženy, budou synchronizované při připojení k síti…</string>
     <string name="drawer_today">Dnes</string>
     <string name="drawer_day">Den</string>
     <string name="drawer_portal">Jídelna</string>
@@ -56,7 +56,7 @@
     <string name="drawer_help">Nápověda</string>
     <string name="drawer_add_portal">Přidat jídelnu</string>
     <string name="drawer_manage_portals">Spravovat jídelny</string>
-    <string name="welcome_activity_title">Rychlí průvodce</string>
+    <string name="welcome_activity_title">Rychlý průvodce</string>
     <string name="welcome_about_action">O aplikaci</string>
     <string name="welcome_hi_text">Ahoj!!!</string>
     <string name="welcome_intro_text">
@@ -66,7 +66,7 @@
     <string name="welcome_terms_text">
         Tento program je rozšiřován v naději, že bude užitečný, avšak BEZ JAKÉKOLIV ZÁRUKY.
         Jde o svobodný software a jeho šíření je za určitých podmínek vítáno, nahlédněte do
-        licence v sekci o aplikaci v toolbaru.
+        licence v sekci O aplikaci v toolbaru.
         \n
         \nTato aplikace může využívat Google Analytics pro anonymní sledování používání aplikace.
         Uživatel také může zaslat zprávu vývojáři obsahující ladící informace. Všechna takto získaná
@@ -109,7 +109,7 @@
     <string name="credential_list_delete">Smazat přihlašovací údaje</string>
     <string name="credential_list_without_credential">Bez přihlašovacích údajů</string>
     <string name="login_detail_title">Přihlašovací údaje</string>
-    <string name="login_detail_checking_data">Kontrolování přihlašovacích… Prosím čekejte…</string>
+    <string name="login_detail_checking_data">Kontrolování přihlašovacích údajů… Prosím čekejte…</string>
     <string name="credential_screen_title">Přihlašovací údaje</string>
     <string name="credential_password_hint">Heslo:</string>
     <string name="credential_username_hint">Uživatelské jméno:</string>
@@ -198,7 +198,7 @@
     <string name="help_sub_title">Můžou být zobrazeny později z menu…</string>
     <string name="help_long_press_text">Každá položka seznamu má více možností po dlouhém doteku…</string>
     <string name="empty_try_to_refresh">Zkuste aktualizovat nebo přidat novou jídelnu…</string>
-    <string name="empty_try_to_add_credential">Zkuste přidat nový přihlašovací údaje…</string>
+    <string name="empty_try_to_add_credential">Zkuste přidat nové přihlašovací údaje…</string>
     <string name="extra_invalid_input_error">Nalezen neplatný vstup</string>
     <string name="extra_value_not_follow_pattern_error">Hodnota nesplňuje vzor %s</string>
     <string name="sync_result_wrong_credentials">Špatné přihlašovací údaje, zkontrolujte je…</string>
