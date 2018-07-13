@@ -31,6 +31,7 @@ import cz.maresmar.sfm.plugin.BroadcastContract;
 import cz.maresmar.sfm.plugin.ExtraFormat;
 import cz.maresmar.sfm.plugin.service.TaskGroup;
 import cz.maresmar.sfm.plugin.service.TasksPluginService;
+import cz.maresmar.sfm.plugin.service.WebPageFormatChangedException;
 import cz.maresmar.sfm.provider.PublicProviderContract;
 import cz.maresmar.sfm.testplugin.model.Credit;
 import cz.maresmar.sfm.testplugin.model.Menu;
@@ -196,7 +197,6 @@ public class UpdateService extends TasksPluginService {
 
     private void parseMenu(LogData data, URL url) throws IOException {
         HttpURLConnection urlConnection = openUrl(url);
-        urlConnection.setConnectTimeout(0);
 
         try (FirstLineInputStream is = new FirstLineInputStream(urlConnection.getInputStream())) {
             Reader reader = new InputStreamReader(is, "UTF-8");
@@ -224,12 +224,13 @@ public class UpdateService extends TasksPluginService {
             }
             saveMenuEntries(menuEntries);
             saveGroupMenuEntries(groupMenuEntries);
+        } finally {
+            urlConnection.disconnect();
         }
     }
 
     private void parseOrders(LogData data, URL url, boolean history) throws IOException {
         HttpURLConnection urlConnection = openUrl(url);
-        urlConnection.setConnectTimeout(0);
 
         try (FirstLineInputStream is = new FirstLineInputStream(urlConnection.getInputStream())) {
             Reader reader = new InputStreamReader(is, "UTF-8");
@@ -281,6 +282,8 @@ public class UpdateService extends TasksPluginService {
                 saveActions(menuActions);
                 saveActions(paymentActions);
             }
+        } finally {
+            urlConnection.disconnect();
         }
     }
 
@@ -360,8 +363,13 @@ public class UpdateService extends TasksPluginService {
                 // Send the change
                 URL changeUrl = new URL(data.portalReference + ORDER_PATH + params);
                 HttpURLConnection urlConnection = openUrl(changeUrl);
-                urlConnection.setConnectTimeout(0);
-                urlConnection.getResponseCode();
+
+                int responseCode = urlConnection.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    throw new WebPageFormatChangedException("Illegal server response " + responseCode);
+                }
+
+                urlConnection.disconnect();
             }
 
             if (doneSth) {
@@ -407,7 +415,6 @@ public class UpdateService extends TasksPluginService {
         public void run(@NonNull LogData data) throws IOException {
             URL creditUrl = new URL(data.portalReference + CREDIT_PATH + "&user=" + data.credentialName);
             HttpURLConnection urlConnection = openUrl(creditUrl);
-            urlConnection.setConnectTimeout(0);
 
             try (FirstLineInputStream is = new FirstLineInputStream(urlConnection.getInputStream())) {
                 Reader reader = new InputStreamReader(is, "UTF-8");
@@ -416,6 +423,8 @@ public class UpdateService extends TasksPluginService {
 
                 data.credit = result.credit * 100;
                 updateProvidedLogData();
+            } finally {
+                urlConnection.disconnect();
             }
         }
     }

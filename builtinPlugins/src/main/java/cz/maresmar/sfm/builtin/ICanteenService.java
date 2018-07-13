@@ -121,6 +121,7 @@ public class ICanteenService extends TasksPluginService {
                 }
             }
             sc.close();
+            urlConnection.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -288,9 +289,11 @@ public class ICanteenService extends TasksPluginService {
             int responseCode = urlConnection.getResponseCode();
             if (responseCode != HttpURLConnection.HTTP_OK)
                 throw new WebPageFormatChangedException("Illegal server response " + responseCode);
+        } finally {
+            urlConnection.disconnect();
         }
 
-        if(mPortalVersion >= 214) {
+        if (mPortalVersion >= 214) {
             throw new WebPageFormatChangedException("No csrf found");
         } else {
             return null;
@@ -343,6 +346,8 @@ public class ICanteenService extends TasksPluginService {
             int responseCode = urlConnection.getResponseCode();
             if (responseCode != HttpURLConnection.HTTP_OK)
                 throw new WebPageFormatChangedException("Illegal server response " + responseCode);
+        } finally {
+            urlConnection.disconnect();
         }
     }
 
@@ -356,6 +361,8 @@ public class ICanteenService extends TasksPluginService {
         int responseCode = urlConnection.getResponseCode();
         if (responseCode != HttpURLConnection.HTTP_OK)
             throw new WebPageFormatChangedException("Illegal server response " + responseCode);
+
+        urlConnection.disconnect();
     }
 
     @VisibleForTesting
@@ -426,6 +433,8 @@ public class ICanteenService extends TasksPluginService {
 
             } catch (XmlPullParserException e) {
                 throw new WebPageFormatChangedException("New web server version....", e);
+            } finally {
+                urlConnection.disconnect();
             }
         }
     }
@@ -455,7 +464,7 @@ public class ICanteenService extends TasksPluginService {
         @Override
         public void run(@NonNull LogData data) throws IOException {
             String selection = PublicProviderContract.Action.SYNC_STATUS + " = " + PublicProviderContract.ACTION_SYNC_STATUS_LOCAL + " AND " +
-                    PublicProviderContract.Action.ME_DATE + " > " +  getTodayDate();
+                    PublicProviderContract.Action.ME_DATE + " > " + getTodayDate();
             List<Action.MenuEntryAction> actions = (List<Action.MenuEntryAction>) loadActions(selection, null, null);
 
             boolean doneSth = false;
@@ -511,6 +520,7 @@ public class ICanteenService extends TasksPluginService {
                 // Check result in every case
                 if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_OK)
                     throw new WebPageFormatChangedException("Illegal server response");
+                urlConnection.disconnect();
             }
 
             if (doneSth) {

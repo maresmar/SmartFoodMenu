@@ -206,6 +206,8 @@ public class PortalsUpdateService extends IntentService {
                 Timber.e(e, "Cannot connect to db");
                 throw new RuntimeException("Cannot connect to db", e);
             }
+        } finally {
+            urlConnection.disconnect();
         }
     }
 
@@ -245,6 +247,8 @@ public class PortalsUpdateService extends IntentService {
                 Timber.e(e, "Cannot connect to db");
                 throw new RuntimeException("Cannot connect to db", e);
             }
+        } finally {
+            urlConnection.disconnect();
         }
     }
 
