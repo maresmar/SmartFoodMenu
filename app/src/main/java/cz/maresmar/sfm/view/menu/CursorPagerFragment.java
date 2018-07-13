@@ -175,9 +175,11 @@ public class CursorPagerFragment extends Fragment implements ViewPager.OnPageCha
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        // Fixing sensitivity of SwipeUpdateLayout
-        // see https://stackoverflow.com/a/29946734/1392034 for more
-        mListener.enableSwipeRefresh(state == ViewPager.SCROLL_STATE_IDLE);
+        if(getPagerAdapter().getCount() > 1) {
+            // Fixing sensitivity of SwipeUpdateLayout
+            // see https://stackoverflow.com/a/29946734/1392034 for more
+            mListener.enableSwipeRefresh(state == ViewPager.SCROLL_STATE_IDLE);
+        }
     }
 
     /**
