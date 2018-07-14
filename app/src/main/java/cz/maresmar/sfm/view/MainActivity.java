@@ -118,14 +118,14 @@ public class MainActivity extends AppCompatActivity
     // User part of drawer
     private static final int ADD_USER_DRAWER_ITEM_ID = 500_000;
     private static final ProfileSettingDrawerItem ADD_USER_DRAWER_ITEM = new ProfileSettingDrawerItem()
-            .withName("Add user")
-            .withDescription("Add new child, friend etc...")
+            .withName(R.string.drawer_add_user)
+            .withDescription(R.string.drawer_add_user_description)
             .withIcon(R.drawable.ic_add_user)
             .withIconTinted(true)
             .withIdentifier(ADD_USER_DRAWER_ITEM_ID);
     private static final int MANAGE_USERS_DRAWER_ID = 500_001;
     private static final ProfileSettingDrawerItem MANAGE_USER_DRAWER_ITEM = new ProfileSettingDrawerItem()
-            .withName("Manage users")
+            .withName(R.string.drawer_manage_users)
             .withIcon(R.drawable.ic_settings)
             .withIconTinted(true)
             .withIdentifier(MANAGE_USERS_DRAWER_ID);

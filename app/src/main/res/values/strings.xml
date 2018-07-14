@@ -58,6 +58,9 @@
     <string name="drawer_help">Help</string>
     <string name="drawer_add_portal">Add portal</string>
     <string name="drawer_manage_portals">Manage portals</string>
+    <string name="drawer_manage_users">Manage users</string>
+    <string name="drawer_add_user">Add user</string>
+    <string name="drawer_add_user_description">Add child, friend…</string>
 
 
     <!-- Welcome activity -->

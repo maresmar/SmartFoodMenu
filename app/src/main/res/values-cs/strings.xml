@@ -56,6 +56,9 @@
     <string name="drawer_help">Nápověda</string>
     <string name="drawer_add_portal">Přidat jídelnu</string>
     <string name="drawer_manage_portals">Spravovat jídelny</string>
+    <string name="drawer_manage_users">Spravovat uživatele</string>
+    <string name="drawer_add_user">Přidat uživatele</string>
+    <string name="drawer_add_user_description">Přidat dítě, kamaráda…</string>
     <string name="welcome_activity_title">Rychlý průvodce</string>
     <string name="welcome_about_action">O aplikaci</string>
     <string name="welcome_hi_text">Ahoj!!!</string>
