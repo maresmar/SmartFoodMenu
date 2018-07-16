@@ -22,6 +22,10 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
+        <i>Verze 3.0.4</i><br />
+        - Oprava překlepů<br />
+        - UI opravy<br />
+        - Oprava přístupu k síti<br />
         <i>Verze 3.0.3</i><br />
         - Oprava drobných chyb<br />
         <i>Verze 3.0.2</i><br />
