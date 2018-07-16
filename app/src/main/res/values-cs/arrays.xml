@@ -20,8 +20,8 @@
 
 <resources>
     <string-array name="connection_security_values">
-        <item id="100">Bezpeční, věřit důvěryhodným certifikátům</item>
-        <item id="101">Nebezpčené, věřit všem certifikátům</item>
+        <item id="100">Bezpečné, věřit důvěryhodným certifikátům</item>
+        <item id="101">Nebezpečné, věřit všem certifikátům</item>
         <item id="102">Vůbec nešifrovat</item>
     </string-array>
 
