@@ -26,7 +26,7 @@ public class WebPageFormatChangedException extends FoodPluginException {
      * Creates new exception
      *
      * @param msg       Exception message
-     * @param throwable Source {@link Throwable}
+     * @param e         Source {@link Exception}
      */
     public WebPageFormatChangedException(String msg, Exception e) {
         super(msg, e);

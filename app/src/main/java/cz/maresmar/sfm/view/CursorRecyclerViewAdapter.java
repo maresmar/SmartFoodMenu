@@ -26,9 +26,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
 /**
- * {@link RecyclerView.Adapter} that is based on {@link Cursor}. The {@link Cursor} must contains
+ * {@link android.support.v7.widget.RecyclerView.Adapter} that is based on {@link Cursor}. The {@link Cursor} must contains
  * column with {@link BaseColumns#_ID} which work as connection between {@link Cursor}'s row and
- * {@link RecyclerView.ViewHolder} item's ID.
+ * {@link android.support.v7.widget.RecyclerView.ViewHolder} item's ID.
  */
 
 public abstract class CursorRecyclerViewAdapter<T extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<T> {

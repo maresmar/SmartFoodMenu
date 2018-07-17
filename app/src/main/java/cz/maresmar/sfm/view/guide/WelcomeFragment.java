@@ -36,7 +36,7 @@ import cz.maresmar.sfm.view.DataForm;
 /**
  * Fragment that shows welcome information like license and some intro to the app
  * <p>
- * Activity that uses this fragment must implement {@link DataValidityListener} interface to handle
+ * Activity that uses this fragment must implement {@link cz.maresmar.sfm.view.DataForm.DataValidityListener} interface to handle
  * interaction events.</p>
  */
 public class WelcomeFragment extends Fragment implements View.OnClickListener, DataForm {

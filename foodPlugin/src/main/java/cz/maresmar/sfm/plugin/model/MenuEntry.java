@@ -12,7 +12,7 @@ import cz.maresmar.sfm.provider.PublicProviderContract;
 /**
  * MenuEntry model
  * <p>
- * This class is related to {@link PublicProviderContract.MenuEntry} view
+ * This class is related to {@link cz.maresmar.sfm.provider.PublicProviderContract.MenuEntry} view
  * </p>
  */
 public class MenuEntry {

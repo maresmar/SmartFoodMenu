@@ -19,7 +19,7 @@ import static cz.maresmar.sfm.provider.PublicProviderContract.ActionEntryType;
 /**
  * Action model
  * <p>
- * This class is related to {@link PublicProviderContract.Action} view
+ * This class is related to {@link cz.maresmar.sfm.provider.PublicProviderContract.Action} view
  * </p>
  */
 public abstract class Action {

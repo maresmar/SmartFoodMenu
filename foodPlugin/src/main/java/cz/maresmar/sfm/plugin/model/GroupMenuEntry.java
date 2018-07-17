@@ -10,7 +10,7 @@ import cz.maresmar.sfm.provider.PublicProviderContract;
 /**
  * GroupMenuEntry model, this class stores menu info that could be valid only for group of users
  * <p>
- * This class is related to {@link PublicProviderContract.GroupMenuEntry} view
+ * This class is related to {@link cz.maresmar.sfm.provider.PublicProviderContract.GroupMenuEntry} view
  * </p>
  *
  * @see MenuEntry

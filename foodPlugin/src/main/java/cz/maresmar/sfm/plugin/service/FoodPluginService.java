@@ -555,7 +555,7 @@ public abstract class FoodPluginService extends JobIntentService {
      * The change uses parameters from current sync action
      * </p>
      *
-     * @param newEntries Entries sorted by {@link Action.MenuEntryAction#relativeMenuEntryId}
+     * @param newEntries Entries sorted by {@link cz.maresmar.sfm.plugin.model.Action.MenuEntryAction#relativeMenuEntryId}
      * @param sinceDate  Time in millis where the merge should start
      */
     protected void mergeActionEntries(@NonNull List<Action.MenuEntryAction> newEntries, long sinceDate) {
@@ -775,12 +775,12 @@ public abstract class FoodPluginService extends JobIntentService {
 
     /**
      * Converts {@link URL} to (optimally subclass of) {@link HttpURLConnection} with application of
-     * {@link PublicProviderContract.LogData#PORTAL_SECURITY}. This validates using of encryption and
+     * {@link cz.maresmar.sfm.provider.PublicProviderContract.LogData#PORTAL_SECURITY}. This validates using of encryption and
      * approach to certificates.
      *
      * @param url Url to be converted
      * @return Valid connection object with selected encryption and certificate trusting
-     * @throws IOException
+     * @throws IOException If an I/O exception occurs
      */
     @NonNull
     protected HttpURLConnection openUrl(@NonNull URL url) throws IOException {

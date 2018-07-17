@@ -42,7 +42,7 @@ import timber.log.Timber;
  * Fragment that shows {@link PortalMenuFragment}s together so user can swipe to another portal
  * <p>
  * Activities that contain this fragment must implement the
- * {@link CursorPagerFragment.PagerPageChangedListener} interface
+ * {@link cz.maresmar.sfm.view.menu.CursorPagerFragment.PagerPageChangedListener} interface
  * to handle interaction events.</p><p>
  * Use the {@link PortalMenuPagerFragment#newInstance} factory method to
  * create an instance of this fragment.</p>

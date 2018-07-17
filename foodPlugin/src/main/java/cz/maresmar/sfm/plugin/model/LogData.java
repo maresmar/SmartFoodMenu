@@ -15,7 +15,7 @@ import static cz.maresmar.sfm.provider.PublicProviderContract.PortalFeatures;
 /**
  * LogData model
  * <p>
- * This class is related to {@link PublicProviderContract.LogData} view
+ * This class is related to {@link cz.maresmar.sfm.provider.PublicProviderContract.LogData} view
  * </p>
  */
 public class LogData {
