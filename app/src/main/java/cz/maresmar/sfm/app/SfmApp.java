@@ -58,7 +58,7 @@ public class SfmApp extends Application {
      */
     public static void startAboutActivity(@NonNull Context context) {
         new LibsBuilder()
-                .withActivityTitle("About")
+                .withActivityTitle(context.getString(R.string.drawer_about))
                 //provide a style (optional) (LIGHT, DARK, LIGHT_DARK_TOOLBAR)
                 .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
                 .withAboutAppName(context.getString(R.string.app_name))

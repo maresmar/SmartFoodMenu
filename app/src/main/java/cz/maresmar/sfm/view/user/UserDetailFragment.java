@@ -81,6 +81,7 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
     private static final String ARG_USER_TEMP_URI = "userTempUri";
     private static final String ARG_PICTURE_URI = "pictureUri";
     private static final String ARG_PICTURE_BITMAP = "pictureBitmap";
+    private static final String ARG_GENERATE_BITMAP = "generateBitmap";
 
     // UI elements
     CircleImageView mProfileImageButton;
@@ -93,6 +94,7 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
 
     Uri mPictureUri;
     Bitmap mPictureBitmap;
+    boolean mGenerateBitmap = true;
 
     /**
      * Creates new fragment empty fragment that can be used for creating of new user
@@ -135,7 +137,7 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
             mUserTempUri = savedInstanceState.getParcelable(ARG_USER_TEMP_URI);
             mPictureUri = savedInstanceState.getParcelable(ARG_PICTURE_URI);
             mPictureBitmap = savedInstanceState.getParcelable(ARG_PICTURE_BITMAP);
-            mLoadDataFromDb = false;
+            mGenerateBitmap = savedInstanceState.getBoolean(ARG_GENERATE_BITMAP);
         }
     }
 
@@ -168,8 +170,9 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (mPictureBitmap == null)
+                if (mGenerateBitmap) {
                     setDefaultProfilePicture();
+                }
             }
         });
 
@@ -183,7 +186,7 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
         super.onActivityCreated(savedInstanceState);
 
         // Loads portal data from DB
-        if (mUserUri != null && mLoadDataFromDb) {
+        if (mUserUri != null) {
             getLoaderManager().initLoader(USER_LOADER_ID, null, this);
         }
     }
@@ -200,6 +203,7 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
         outState.putParcelable(ARG_USER_TEMP_URI, mUserTempUri);
         outState.putParcelable(ARG_PICTURE_URI, mPictureUri);
         outState.putParcelable(ARG_PICTURE_BITMAP, mPictureBitmap);
+        outState.putBoolean(ARG_GENERATE_BITMAP, mGenerateBitmap);
     }
 
     // -------------------------------------------------------------------------------------------
@@ -231,7 +235,7 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
                     }
 
                     // Save selected image
-                    new PictureLoaderAsyncTask(this, true).execute(data.getData());
+                    new PictureLoaderAsyncTask(this).execute(data.getData());
                 }
                 break;
             case CROP_PROFILE_PICTURE:
@@ -276,19 +280,21 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
         switch (loader.getId()) {
             case USER_LOADER_ID:
-                Timber.d("User data loaded");
+                if(mLoadDataFromDb) {
+                    Timber.d("User data loaded");
 
-                cursor.moveToFirst();
-                if (BuildConfig.DEBUG) {
-                    Assert.isOne(cursor.getCount());
-                }
+                    cursor.moveToFirst();
+                    if (BuildConfig.DEBUG) {
+                        Assert.isOne(cursor.getCount());
+                    }
 
-                // User name
-                mNameText.setText(cursor.getString(0));
-                // Picture
-                mPictureUri = Uri.parse(cursor.getString(1));
-                if (mPictureBitmap != null) {
-                    new PictureLoaderAsyncTask(this, false).execute(mPictureUri);
+                    // User name
+                    mNameText.setText(cursor.getString(0));
+                    // Picture
+                    mPictureUri = Uri.parse(cursor.getString(1));
+                    new PictureLoaderAsyncTask(this).execute(mPictureUri);
+
+                    mLoadDataFromDb = false;
                 }
                 break;
             default:
@@ -317,8 +323,10 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
     private void setProfilePicture(Bitmap bitmap) {
         mPictureBitmap = bitmap;
         if (bitmap != null) {
+            mGenerateBitmap = false;
             mProfileImageButton.setImageBitmap(mPictureBitmap);
         } else {
+            mGenerateBitmap = true;
             setDefaultProfilePicture();
         }
     }
@@ -328,7 +336,9 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
      */
     private void setDefaultProfilePicture() {
         if (mNameText.getText().length() > 0) {
-            mProfileImageButton.setImageDrawable(generateDefaultPicture());
+            Drawable drawable = generateDefaultPicture();
+            mProfileImageButton.setImageDrawable(drawable);
+            mPictureBitmap = getBitmap(drawable);
         }
     }
 
@@ -450,9 +460,6 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
         File outputFile = new File(outputDir, "profile_" + UUID.randomUUID().toString() + ".jpg");
 
         try (OutputStream outputStream = new FileOutputStream(outputFile)) {
-            if (mPictureBitmap == null) {
-                mPictureBitmap = getBitmap(generateDefaultPicture());
-            }
             mPictureBitmap.compress(Bitmap.CompressFormat.PNG, 95, outputStream);
         } catch (IOException ex) {
             Timber.e(ex, "Profile picture cannot been saved");
@@ -486,11 +493,9 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
     private static class PictureLoaderAsyncTask extends AsyncTask<Uri, Void, Bitmap> {
 
         WeakReference<UserDetailFragment> mFragmentRef;
-        boolean mOverrideLoaded;
 
-        private PictureLoaderAsyncTask(UserDetailFragment userDetailFragment, boolean overrideLoaded) {
+        private PictureLoaderAsyncTask(UserDetailFragment userDetailFragment) {
             mFragmentRef = new WeakReference<>(userDetailFragment);
-            mOverrideLoaded = overrideLoaded;
         }
 
         @Override
@@ -515,9 +520,8 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             Timber.d("Profile image loaded");
-            if (mOverrideLoaded || mFragmentRef.get().mPictureBitmap == null) {
-                mFragmentRef.get().setProfilePicture(bitmap);
-            }
+
+            mFragmentRef.get().setProfilePicture(bitmap);
         }
     }
 

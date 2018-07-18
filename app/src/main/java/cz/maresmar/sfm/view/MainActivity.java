@@ -171,7 +171,6 @@ public class MainActivity extends AppCompatActivity
 
     long mSelectedUserId = SettingsContract.LAST_USER_UNKNOWN;
     long mSelectedFragmentId = SettingsContract.LAST_FRAGMENT_UNKNOWN;
-    boolean mReloadPortals = true;
     boolean mIsRefreshing = false;
 
     private final BroadcastReceiver mSyncResultReceiver = new SyncHandler.SyncResultReceiver(this);
@@ -200,6 +199,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Returns {@link PendingIntent} that can start this activity with last used fragment
+     *
      * @param context Some valid context
      * @return PendingIntent that starts activity
      */
@@ -211,6 +211,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Returns {@link PendingIntent} that can start this activity with {@link OrderFragment}
+     *
      * @param context Some valid context
      * @return PendingIntent that starts activity
      */
@@ -223,6 +224,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Returns {@link PendingIntent} that can start this activity with open {@link Drawer}
+     *
      * @param context Some valid context
      * @return PendingIntent that starts activity
      */
@@ -387,8 +389,6 @@ public class MainActivity extends AppCompatActivity
         );
         mSwipeRefreshLayout.setOnRefreshListener(this::startRefresh);
 
-        mReloadPortals = true;
-
         // Load users from db
         getSupportLoaderManager().initLoader(USER_LOADER_ID, null, this);
 
@@ -423,14 +423,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
 
         // Save last user and selected fragment
         mPrefs.edit()
                 .putLong(SettingsContract.LAST_USER, mSelectedUserId)
                 .putLong(SettingsContract.LAST_FRAGMENT, mSelectedFragmentId)
                 .apply();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
         manager.unregisterReceiver(mSyncResultReceiver);
@@ -446,7 +451,7 @@ public class MainActivity extends AppCompatActivity
         long syncFreq = DAYS.toMillis(Integer.parseInt(mPrefs.getString(SettingsContract.SYNC_FREQUENCY,
                 SettingsContract.SYNC_FREQUENCY_DEFAULT)));
 
-        if(mPrefs.getBoolean(SettingsContract.SYNC_WHEN_APP_OPENS, SettingsContract.SYNC_WHEN_APP_OPENS_DEFAULT) &&
+        if (mPrefs.getBoolean(SettingsContract.SYNC_WHEN_APP_OPENS, SettingsContract.SYNC_WHEN_APP_OPENS_DEFAULT) &&
                 ((lastUpdate + TimeUnit.HOURS.toMillis(12)) < System.currentTimeMillis())) {
             SyncHandler.startFullSync(this);
         }
@@ -683,41 +688,38 @@ public class MainActivity extends AppCompatActivity
             case PORTAL_LOADER_ID: {
                 Timber.d("Portal data loaded");
 
-                if (mReloadPortals) {
-                    // Clear old portals
-                    int oldPortalCount = mPortalDrawerItem.getSubItems().size();
-                    mPortalDrawerItem.getSubItems().clear();
+                // Clear old portals
+                int oldPortalCount = mPortalDrawerItem.getSubItems().size();
+                mPortalDrawerItem.getSubItems().clear();
 
-                    // Insert new portals
-                    if (cursor.moveToFirst()) {
-                        do {
-                            Long portalId = cursor.getLong(0);
-                            String portalName = cursor.getString(1);
-                            int credit = cursor.getInt(2);
+                // Insert new portals
+                if (cursor.moveToFirst()) {
+                    do {
+                        Long portalId = cursor.getLong(0);
+                        String portalName = cursor.getString(1);
+                        int credit = cursor.getInt(2);
 
-                            SecondaryDrawerItem portalItem = new SecondaryDrawerItem()
-                                    .withIdentifier(portalId)
-                                    .withName(portalName)
-                                    .withDescription(MenuUtils.getPriceStr(this, credit))
-                                    .withTag(PORTAL_ITEM_DRAWER_TAG);
-                            mPortalDrawerItem.withSubItems(portalItem);
-                        } while (cursor.moveToNext());
-                    }
-
-                    // Insert control entries
-                    mPortalDrawerItem.withSubItems(ADD_PORTAL_DRAWER_ITEM, MANAGE_PORTAL_DRAWER_ITEM);
-
-                    // Notify about changes
-                    if (mPortalDrawerItem.isExpanded()) {
-                        mDrawer.getExpandableExtension().notifyAdapterSubItemsChanged(
-                                mDrawer.getPosition(mPortalDrawerItem), oldPortalCount);
-                    }
-
-                    // Show saved fragment in UI
-                    showOrResetFragment(mSelectedFragmentId);
-
-                    mReloadPortals = false;
+                        SecondaryDrawerItem portalItem = new SecondaryDrawerItem()
+                                .withIdentifier(portalId)
+                                .withName(portalName)
+                                .withDescription(MenuUtils.getPriceStr(this, credit))
+                                .withTag(PORTAL_ITEM_DRAWER_TAG);
+                        mPortalDrawerItem.withSubItems(portalItem);
+                    } while (cursor.moveToNext());
                 }
+
+                // Insert control entries
+                mPortalDrawerItem.withSubItems(ADD_PORTAL_DRAWER_ITEM, MANAGE_PORTAL_DRAWER_ITEM);
+
+                // Notify about changes
+                if (mPortalDrawerItem.isExpanded()) {
+                    mDrawer.getExpandableExtension().notifyAdapterSubItemsChanged(
+                            mDrawer.getPosition(mPortalDrawerItem), oldPortalCount);
+                }
+
+                // Show saved fragment in UI
+                showOrResetFragment(mSelectedFragmentId);
+
                 break;
             }
             case CREDENTIAL_LOADER_ID: {
@@ -836,7 +838,6 @@ public class MainActivity extends AppCompatActivity
                 mSelectedUserId = profile.getIdentifier();
                 mProfiles.setActiveProfile(profile);
                 // Update other UIs data
-                mReloadPortals = true;
                 getSupportLoaderManager().restartLoader(PORTAL_LOADER_ID, null, this);
                 getSupportLoaderManager().restartLoader(CREDENTIAL_LOADER_ID, null, this);
                 getSupportLoaderManager().restartLoader(EDIT_ACTIONS_COUNT_LOADER_ID, null, this);
