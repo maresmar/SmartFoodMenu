@@ -32,6 +32,7 @@ import cz.maresmar.sfm.plugin.ExtraFormat;
 import cz.maresmar.sfm.plugin.service.TaskGroup;
 import cz.maresmar.sfm.plugin.service.TasksPluginService;
 import cz.maresmar.sfm.plugin.service.WebPageFormatChangedException;
+import cz.maresmar.sfm.plugin.service.WrongPassException;
 import cz.maresmar.sfm.provider.PublicProviderContract;
 import cz.maresmar.sfm.testplugin.model.Credit;
 import cz.maresmar.sfm.testplugin.model.Menu;
@@ -166,6 +167,21 @@ public class UpdateService extends TasksPluginService {
             // ...
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onSyncRequestStarted(@NonNull LogData data) throws IOException {
+        super.onSyncRequestStarted(data);
+
+        // Test credential name
+        switch (data.credentialName) {
+            case "1":
+            case "2":
+            case "3":
+                break;
+            default:
+                throw new WrongPassException("Unsupported user name");
         }
     }
 
