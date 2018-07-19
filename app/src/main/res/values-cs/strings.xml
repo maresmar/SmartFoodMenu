@@ -22,6 +22,8 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
+        <i>Verze 3.0.5</i><br />
+        - UX vylepšení<br />
         <i>Verze 3.0.4</i><br />
         - Oprava překlepů<br />
         - UI opravy<br />
@@ -150,7 +152,7 @@
     <string name="menu_detail_pick_new_value">Vyberte novou hodnotu pro změnu</string>
     <string name="credit_no_info">Bez kreditu</string>
     <string name="credit_text">%.2f Kč</string>
-    <string name="order_standard_action_description">Objednáno %d, nabídnuto %d, odebráno %d</string>
+    <string name="order_standard_action_description">Objednáno %d, nabídnuto %d, odeb. %d</string>
     <string name="order_standard_info_text">%s - %s</string>
     <string name="order_delete_change">Smazat změnu</string>
     <string name="order_show_menu">Zobrazit jídlo</string>
