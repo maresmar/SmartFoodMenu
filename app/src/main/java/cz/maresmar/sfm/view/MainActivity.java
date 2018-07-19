@@ -693,6 +693,7 @@ public class MainActivity extends AppCompatActivity
                 mPortalDrawerItem.getSubItems().clear();
 
                 // Insert new portals
+                boolean selectedFound = false;
                 if (cursor.moveToFirst()) {
                     do {
                         Long portalId = cursor.getLong(0);
@@ -704,6 +705,18 @@ public class MainActivity extends AppCompatActivity
                                 .withName(portalName)
                                 .withDescription(MenuUtils.getPriceStr(this, credit))
                                 .withTag(PORTAL_ITEM_DRAWER_TAG);
+
+                        // Updates selected fragment if new user hasn't the old one
+                        if(portalId == mSelectedFragmentId) {
+                            portalItem.withSetSelected(true);
+                            setTitle(portalName);
+                            selectedFound = true;
+                        } else if(cursor.isLast() && !selectedFound) {
+                            mSelectedFragmentId = portalId;
+                            portalItem.withSetSelected(true);
+                            setTitle(portalName);
+                        }
+
                         mPortalDrawerItem.withSubItems(portalItem);
                     } while (cursor.moveToNext());
                 }
@@ -715,6 +728,11 @@ public class MainActivity extends AppCompatActivity
                 if (mPortalDrawerItem.isExpanded()) {
                     mDrawer.getExpandableExtension().notifyAdapterSubItemsChanged(
                             mDrawer.getPosition(mPortalDrawerItem), oldPortalCount);
+                }
+
+                // Set default title as title on empty cursor
+                if(cursor.getCount() == 0) {
+                    setTitle(R.string.drawer_portal);
                 }
 
                 // Show saved fragment in UI
@@ -941,7 +959,7 @@ public class MainActivity extends AppCompatActivity
     private void showOrResetPortalPager(long portalId) {
         Timber.i("Showing PortalPager fragment");
 
-        mSelectedFragmentId = portalId;
+        // The mSelectedFragmentId ID will be returned from listener
         Uri userUri = getUserUri();
 
         Fragment actualFragment = getSupportFragmentManager().findFragmentById(R.id.main_content);
@@ -1117,25 +1135,27 @@ public class MainActivity extends AppCompatActivity
     private void onPortalChanged(long portalId) {
         Timber.i("PortalPager changed to portal %d", portalId);
 
-        mSelectedFragmentId = portalId;
-        List<IDrawerItem> subItems = mPortalDrawerItem.getSubItems();
+        if(mSelectedFragmentId != portalId) {
+            mSelectedFragmentId = portalId;
+            List<IDrawerItem> subItems = mPortalDrawerItem.getSubItems();
 
-        for (IDrawerItem subItem : subItems) {
-            if (subItem.getIdentifier() == portalId) {
-                SecondaryDrawerItem portalItem = (SecondaryDrawerItem) subItem;
+            for (IDrawerItem subItem : subItems) {
+                if (subItem.getIdentifier() == portalId) {
+                    SecondaryDrawerItem portalItem = (SecondaryDrawerItem) subItem;
 
-                // Show portal name
-                setTitle(portalItem.getName().getText());
-                // Show portal selected in UI
-                portalItem.withSetSelected(true);
-            } else {
-                subItem.withSetSelected(false);
+                    // Show portal name
+                    setTitle(portalItem.getName().getText());
+                    // Show portal selected in UI
+                    portalItem.withSetSelected(true);
+                } else {
+                    subItem.withSetSelected(false);
+                }
             }
-        }
 
-        if (mPortalDrawerItem.isExpanded()) {
-            mDrawer.getExpandableExtension().notifyAdapterSubItemsChanged(
-                    mDrawer.getPosition(mPortalDrawerItem), subItems.size());
+            if (mPortalDrawerItem.isExpanded()) {
+                mDrawer.getExpandableExtension().notifyAdapterSubItemsChanged(
+                        mDrawer.getPosition(mPortalDrawerItem), subItems.size());
+            }
         }
     }
 

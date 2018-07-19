@@ -35,7 +35,7 @@ public class SettingsContract {
     public static final long LAST_FRAGMENT_UNKNOWN = MainActivity.DAY_PAGER_FRAGMENT_ID;
 
     public static final String PLUGINS_TIMEOUT = "pluginsTimeout";
-    public static final String PLUGINS_TIMEOUT_DEFAULT = "60";
+    public static final String PLUGINS_TIMEOUT_DEFAULT = "120";
 
     public static final String SYNC_FREQUENCY = "syncFrequency";
     public static final String SYNC_FREQUENCY_DEFAULT = "7";
