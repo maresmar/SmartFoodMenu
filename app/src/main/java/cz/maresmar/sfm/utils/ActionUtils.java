@@ -21,6 +21,7 @@ package cz.maresmar.sfm.utils;
 
 import android.app.PendingIntent;
 import android.content.ContentProviderOperation;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -262,12 +263,14 @@ public class ActionUtils {
     @WorkerThread
     public static void saveEdits(@NonNull Context context, @NonNull Uri userUri) {
         Uri actionUri = Uri.withAppendedPath(userUri, ProviderContract.ACTION_PATH);
+        long userId = ContentUris.parseId(userUri);
 
         // Delete conflict local rows
         int conflictRows = context.getContentResolver().delete(
                 actionUri,
                 ProviderContract.Action.SYNC_STATUS + " == " + ProviderContract.ACTION_SYNC_STATUS_LOCAL + " AND " +
                         "EXISTS ( SELECT * FROM " + DbContract.FoodAction.TABLE_NAME + " AS EditAct WHERE " +
+                        "EditAct." + DbContract.FoodAction.COLUMN_NAME_CID + " == " + ProviderContract.Action.CREDENTIAL_ID + " AND " +
                         "EditAct." + DbContract.FoodAction.COLUMN_NAME_ME_PID + " == " + ProviderContract.Action.ME_PORTAL_ID + " AND " +
                         "EditAct." + DbContract.FoodAction.COLUMN_NAME_ME_RELATIVE_ID + " == " + ProviderContract.Action.ME_RELATIVE_ID + " AND " +
                         "EditAct." + DbContract.FoodAction.COLUMN_NAME_SYNC_STATUS + " == " + ProviderContract.ACTION_SYNC_STATUS_EDIT + " )",
@@ -285,11 +288,17 @@ public class ActionUtils {
                 newValues,
                 ProviderContract.Action.SYNC_STATUS + " == " + ProviderContract.ACTION_SYNC_STATUS_EDIT + " AND (" +
                         "NOT EXISTS (SELECT * FROM " + DbContract.FoodAction.TABLE_NAME + " AS SyncAct WHERE " +
+                        "SyncAct." + DbContract.FoodAction.COLUMN_NAME_CID +
+                            " IN (SELECT " + DbContract.Credential._ID + " FROM " + DbContract.Credential.TABLE_NAME +
+                                " WHERE " + DbContract.Credential.COLUMN_NAME_UID + " == " + userId + ") AND " +
                         "SyncAct." + DbContract.FoodAction.COLUMN_NAME_ME_PID + " == " + ProviderContract.Action.ME_PORTAL_ID + " AND " +
                         "SyncAct." + DbContract.FoodAction.COLUMN_NAME_ME_RELATIVE_ID + " == " + ProviderContract.Action.ME_RELATIVE_ID + " AND " +
                         "SyncAct." + DbContract.FoodAction.COLUMN_NAME_SYNC_STATUS + " == " + ProviderContract.ACTION_SYNC_STATUS_SYNCED + " ) " +
                         "AND (" + ProviderContract.Action.RESERVED_AMOUNT + " > 0 OR " + ProviderContract.Action.OFFERED_AMOUNT + " > 0 ) " +
                         "OR EXISTS (SELECT * FROM " + DbContract.FoodAction.TABLE_NAME + " AS SyncAct WHERE " +
+                        "SyncAct." + DbContract.FoodAction.COLUMN_NAME_CID +
+                            " IN (SELECT " + DbContract.Credential._ID + " FROM " + DbContract.Credential.TABLE_NAME +
+                                " WHERE " + DbContract.Credential.COLUMN_NAME_UID + " == " + userId + ") AND " +
                         "SyncAct." + DbContract.FoodAction.COLUMN_NAME_ME_PID + " == " + ProviderContract.Action.ME_PORTAL_ID + " AND " +
                         "SyncAct." + DbContract.FoodAction.COLUMN_NAME_ME_RELATIVE_ID + " == " + ProviderContract.Action.ME_RELATIVE_ID + " AND " +
                         "SyncAct." + DbContract.FoodAction.COLUMN_NAME_SYNC_STATUS + " == " + ProviderContract.ACTION_SYNC_STATUS_SYNCED + " AND (" +

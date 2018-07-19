@@ -711,10 +711,11 @@ public class MainActivity extends AppCompatActivity
                             portalItem.withSetSelected(true);
                             setTitle(portalName);
                             selectedFound = true;
-                        } else if(cursor.isLast() && !selectedFound) {
+                        } else if(cursor.isLast() && !selectedFound && mSelectedFragmentId >= 0) {
                             mSelectedFragmentId = portalId;
                             portalItem.withSetSelected(true);
                             setTitle(portalName);
+                            showToolbar();
                         }
 
                         mPortalDrawerItem.withSubItems(portalItem);
@@ -733,6 +734,7 @@ public class MainActivity extends AppCompatActivity
                 // Set default title as title on empty cursor
                 if(cursor.getCount() == 0) {
                     setTitle(R.string.drawer_portal);
+                    showToolbar();
                 }
 
                 // Show saved fragment in UI
@@ -959,7 +961,17 @@ public class MainActivity extends AppCompatActivity
     private void showOrResetPortalPager(long portalId) {
         Timber.i("Showing PortalPager fragment");
 
-        // The mSelectedFragmentId ID will be returned from listener
+        // Show toolbar portal is changed
+        if(portalId != mSelectedFragmentId) {
+            showToolbar();
+        }
+
+        // Switch fragment category tu portals
+        if(mSelectedFragmentId < 0) {
+            mSelectedFragmentId = Integer.MAX_VALUE;
+            // The mSelectedFragmentId ID will be returned from listener
+        }
+
         Uri userUri = getUserUri();
 
         Fragment actualFragment = getSupportFragmentManager().findFragmentById(R.id.main_content);
@@ -971,8 +983,6 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.main_content, newFragment)
                     .commit();
         }
-
-        showToolbar();
     }
 
     private void startLoginListActivity(String action) {
@@ -1128,8 +1138,10 @@ public class MainActivity extends AppCompatActivity
 
         if (date > 0)
             setTitle(MenuUtils.getDateStr(this, date));
-        else
+        else {
             setTitle(R.string.drawer_day);
+            showToolbar();
+        }
     }
 
     private void onPortalChanged(long portalId) {
