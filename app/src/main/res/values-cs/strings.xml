@@ -22,6 +22,8 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
+        <i>Verze 3.0.6</i><br />
+        - UI opravy<br />
         <i>Verze 3.0.5</i><br />
         - UX vylepšení<br />
         <i>Verze 3.0.4</i><br />
@@ -32,9 +34,6 @@
         - Oprava drobných chyb<br />
         <i>Verze 3.0.2</i><br />
         - Volitelná synchronizace po spuštění<br />
-        <i>Verze 3.0.1</i><br />
-        - UI opravy<br />
-        - Opravy textů<br />
         <i>Verze 3.0.0</i><br />
         - Nové jídelny<br />
         - Material design<br />
