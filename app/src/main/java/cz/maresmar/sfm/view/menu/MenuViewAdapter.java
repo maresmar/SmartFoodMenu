@@ -343,7 +343,15 @@ public class MenuViewAdapter
         int syncedEditableCount = syncedReserved - syncedTaken;
 
         if (lowestEditableCount > 1 || syncedEditableCount > 1) {
-            return ACTION_SHOW_DETAIL;
+            boolean canOrderNew = (menuStatus & ProviderContract.MENU_STATUS_ORDERABLE) == ProviderContract.MENU_STATUS_ORDERABLE;
+            boolean canCancelOld = (menuStatus & ProviderContract.MENU_STATUS_CANCELABLE) == ProviderContract.MENU_STATUS_CANCELABLE;
+            boolean canUsesStock = (menuStatus & ProviderContract.MENU_STATUS_COULD_USE_STOCK) == ProviderContract.MENU_STATUS_COULD_USE_STOCK;
+
+            if(canCancelOld || canOrderNew || canUsesStock) {
+                return ACTION_SHOW_DETAIL;
+            } else {
+                return ACTION_DISABLED;
+            }
         }
 
         switch (lowestSyncStatus) {
@@ -401,12 +409,24 @@ public class MenuViewAdapter
                             return ACTION_DISABLED;
                         }
                     default:
-                        return ACTION_SHOW_DETAIL;
+                        if(canCancelOld || canOrderNew || canUsesStock) {
+                            return ACTION_SHOW_DETAIL;
+                        } else {
+                            return ACTION_DISABLED;
+                        }
                 }
             case 1:
-                return ACTION_REMOVE_FROM_STOCK;
+                if(canUsesStock) {
+                    return ACTION_REMOVE_FROM_STOCK;
+                } else {
+                    return ACTION_DISABLED;
+                }
             default:
-                return ACTION_SHOW_DETAIL;
+                if(canCancelOld || canOrderNew || canUsesStock) {
+                    return ACTION_SHOW_DETAIL;
+                } else {
+                    return ACTION_DISABLED;
+                }
         }
     }
 

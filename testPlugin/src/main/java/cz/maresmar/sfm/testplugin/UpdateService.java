@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Stack;
 
 import cz.maresmar.sfm.Assert;
+import cz.maresmar.sfm.plugin.controller.ObjectHandler;
 import cz.maresmar.sfm.plugin.model.Action;
 import cz.maresmar.sfm.plugin.model.GroupMenuEntry;
 import cz.maresmar.sfm.plugin.model.LogData;
@@ -214,6 +215,9 @@ public class UpdateService extends TasksPluginService {
     private void parseMenu(LogData data, URL url) throws IOException {
         HttpURLConnection urlConnection = openUrl(url);
 
+        long actTime = System.currentTimeMillis();
+        long today = actTime - (actTime % (1000 * 60 * 60 * 24));
+
         try (FirstLineInputStream is = new FirstLineInputStream(urlConnection.getInputStream())) {
             Reader reader = new InputStreamReader(is, "UTF-8");
 
@@ -229,8 +233,16 @@ public class UpdateService extends TasksPluginService {
                 menuEntry.group = parsedEntry.group;
                 menuEntry.label = parsedEntry.label;
                 menuEntry.date = parsedEntry.date;
-                menuEntry.remainingToOrder = parsedEntry.remainingToOrder;
-                menuEntry.remainingToTake = parsedEntry.remainingToTake;
+                if(parsedEntry.remainingToOrder != -1 || today != parsedEntry.date) {
+                    menuEntry.remainingToOrder = parsedEntry.remainingToOrder;
+                } else {
+                    menuEntry.remainingToOrder = ObjectHandler.EXCLUDED;
+                }
+                if(parsedEntry.remainingToTake != -1 || today != parsedEntry.date) {
+                    menuEntry.remainingToTake = parsedEntry.remainingToTake;
+                } else {
+                    menuEntry.remainingToTake = ObjectHandler.EXCLUDED;
+                }
                 menuEntries.add(menuEntry);
 
                 GroupMenuEntry groupMenuEntry = new GroupMenuEntry(parsedEntry.relativeId, data.credentialGroupId);
@@ -289,7 +301,9 @@ public class UpdateService extends TasksPluginService {
                 }
             }
             if (!history) {
-                mergeActionEntries(menuActions, System.currentTimeMillis());
+                long actTime = System.currentTimeMillis();
+                long today = actTime - (actTime % (1000 * 60 * 60 * 24));
+                mergeActionEntries(menuActions, today);
 
                 if (BuildConfig.DEBUG) {
                     Assert.isZero(paymentActions.size());
@@ -345,7 +359,9 @@ public class UpdateService extends TasksPluginService {
         @Override
         @ActionContract.SyncTask
         public int depends() {
-            return ActionContract.TASK_MENU_SYNC;
+            return ActionContract.TASK_MENU_SYNC |
+                    ActionContract.TASK_REMAINING_TO_ORDER_SYNC |
+                    ActionContract.TASK_REMAINING_TO_TAKE_SYNC;
         }
 
         @Override

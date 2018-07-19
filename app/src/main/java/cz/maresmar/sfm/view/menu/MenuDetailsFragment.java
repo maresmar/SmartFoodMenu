@@ -238,16 +238,20 @@ public class MenuDetailsFragment extends Fragment implements LoaderManager.Loade
 
                 // Amount table
                 // Synced
-                int reserved = cursor.getInt(6);
-                int offered = cursor.getInt(7);
-                mSyncedReservedText.setText(String.valueOf(reserved));
-                mSyncedReserved = reserved;
+                mSyncedReserved = cursor.getInt(6);
+                int syncedOffered = cursor.getInt(7);
+
+                mSyncedReservedText.setText(String.valueOf(mSyncedReserved));
                 if ((status & ProviderContract.MENU_STATUS_CANCELABLE) == ProviderContract.MENU_STATUS_CANCELABLE) {
                     mMinReserved = mSyncedTaken;
                 } else {
                     mMinReserved = mSyncedReserved;
                 }
-                mSyncedOfferedText.setText(String.valueOf(offered));
+                mSyncedOfferedText.setText(String.valueOf(syncedOffered));
+
+                int reserved = mSyncedReserved;
+                int offered = syncedOffered;
+
                 // To sync
                 if (!cursor.isNull(8)) {
                     reserved = cursor.getInt(8);
@@ -279,11 +283,11 @@ public class MenuDetailsFragment extends Fragment implements LoaderManager.Loade
                 // To order handling
                 final int toOrder = cursor.getInt(14);
                 if (toOrder != ProviderContract.NO_INFO) {
-                    mToOrderText.setText(String.valueOf(toOrder));
+                    mToOrderText.setText(String.valueOf(Math.max(0, toOrder - syncedOffered)));
                     if ((features & ProviderContract.FEATURE_MULTIPLE_ORDERS) == ProviderContract.FEATURE_MULTIPLE_ORDERS) {
-                        mMaxReserved = mSyncedReserved + toOrder;
+                        mMaxReserved = mSyncedReserved + Math.max(0, toOrder - syncedOffered);
                     } else {
-                        mMaxReserved = Math.min(1, mSyncedReserved + toOrder);
+                        mMaxReserved = Math.min(1, mSyncedReserved + Math.max(0, toOrder - syncedOffered));
                     }
                 } else {
                     if ((status & ProviderContract.MENU_STATUS_ORDERABLE) == ProviderContract.MENU_STATUS_ORDERABLE) {
