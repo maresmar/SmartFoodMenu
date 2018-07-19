@@ -2,10 +2,6 @@
 -- version 4.4.4
 -- http://www.phpmyadmin.net
 --
--- Počítač: sql.endora.cz:3311
--- Vytvořeno: Pát 06. čec 2018, 03:27
--- Verze serveru: 5.6.28-76.1
--- Verze PHP: 5.4.45
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
