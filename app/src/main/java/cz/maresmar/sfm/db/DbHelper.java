@@ -115,9 +115,9 @@ public class DbHelper extends SQLiteOpenHelper {
                     MenuEntry.COLUMN_NAME_LABEL + TEXT_TYPE + NOT_NULL + COMMA_SEP +
                     MenuEntry.COLUMN_NAME_DATE + INTEGER_TYPE +
                         " CHECK (" + MenuEntry.COLUMN_NAME_DATE + " > 0 )" + COMMA_SEP +
-                    MenuEntry.COLUMN_NAME_REMAINING_TO_TAKE + INTEGER_TYPE + NOT_NULL +
+                    MenuEntry.COLUMN_NAME_REMAINING_TO_TAKE + INTEGER_TYPE + NOT_NULL + " DEFAULT -1 " +
                         " CHECK (" + MenuEntry.COLUMN_NAME_REMAINING_TO_TAKE + " >= -1 )" + COMMA_SEP +
-                    MenuEntry.COLUMN_NAME_REMAINING_TO_ORDER + INTEGER_TYPE + NOT_NULL +
+                    MenuEntry.COLUMN_NAME_REMAINING_TO_ORDER + INTEGER_TYPE + NOT_NULL + " DEFAULT -1 " +
                         " CHECK (" + MenuEntry.COLUMN_NAME_REMAINING_TO_ORDER + " >= -1 )" + COMMA_SEP +
                     MenuEntry.COLUMN_NAME_EXTRA + TEXT_TYPE + COMMA_SEP +
                     "FOREIGN KEY(" + MenuEntry.COLUMN_NAME_PID + ") REFERENCES "
