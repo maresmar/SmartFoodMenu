@@ -26,12 +26,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -43,7 +40,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
-import android.support.v4.content.FileProvider;
 import android.support.v4.content.Loader;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -66,7 +62,6 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
-import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -81,8 +76,8 @@ import cz.maresmar.sfm.service.plugin.sync.SyncHandler;
 import cz.maresmar.sfm.utils.ActionUtils;
 import cz.maresmar.sfm.utils.MenuUtils;
 import cz.maresmar.sfm.view.credential.LoginListActivity;
-import cz.maresmar.sfm.view.help.HelpActivity;
 import cz.maresmar.sfm.view.guide.WelcomeActivity;
+import cz.maresmar.sfm.view.help.HelpActivity;
 import cz.maresmar.sfm.view.menu.CursorPagerFragment;
 import cz.maresmar.sfm.view.menu.MenuDetailsFragment;
 import cz.maresmar.sfm.view.menu.day.DayMenuFragment;
@@ -1032,34 +1027,8 @@ public class MainActivity extends AppCompatActivity
     private void startSendFeedback() {
         Timber.i("Starting send feedback");
 
-        Timber.i("Device %s (%s) on SDK %d", Build.DEVICE, Build.MANUFACTURER,
-                Build.VERSION.SDK_INT);
-
         SfmApp app = (SfmApp) getApplication();
-        File logFile = app.getLogFile();
-        Uri logUri = FileProvider.getUriForFile(
-                MainActivity.this,
-                "cz.maresmar.sfm.FileProvider",
-                logFile);
-
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        emailIntent.setType("text/plain");
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"mmrmartin" + '@' + "gmail.com"});
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[sfm] Feedback");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.feedback_mail_text));
-        emailIntent.putExtra(Intent.EXTRA_STREAM, logUri);
-        emailIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-        List<ResolveInfo> resInfoList = getPackageManager().queryIntentActivities(emailIntent,
-                PackageManager.MATCH_DEFAULT_ONLY);
-        for (ResolveInfo resolveInfo : resInfoList) {
-            String packageName = resolveInfo.activityInfo.packageName;
-            grantUriPermission(packageName, logUri,
-                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        }
-
-        startActivity(Intent.createChooser(emailIntent, getString(R.string.feedback_choose_email_app_dialog)));
+        app.sendFeedback();
     }
 
     private void startHelpActivity() {

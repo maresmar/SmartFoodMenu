@@ -22,7 +22,13 @@ package cz.maresmar.sfm.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -36,6 +42,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import cz.maresmar.sfm.Assert;
@@ -121,6 +128,39 @@ public class SfmApp extends Application {
     public File getLogFile() {
         mPrintStream.flush();
         return mTmpFile;
+    }
+
+    /**
+     * Opens email app with log file
+     */
+    public void sendFeedback() {
+        Timber.i("Device %s (%s) on SDK %d", Build.DEVICE, Build.MANUFACTURER,
+                Build.VERSION.SDK_INT);
+
+        File logFile = getLogFile();
+        Uri logUri = FileProvider.getUriForFile(
+                this,
+                "cz.maresmar.sfm.FileProvider",
+                logFile);
+
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        emailIntent.setType("text/plain");
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"mmrmartin+dev" + '@' + "gmail.com"});
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[sfm] Feedback");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.feedback_mail_text));
+        emailIntent.putExtra(Intent.EXTRA_STREAM, logUri);
+        emailIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        List<ResolveInfo> resInfoList = getPackageManager().queryIntentActivities(emailIntent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        for (ResolveInfo resolveInfo : resInfoList) {
+            String packageName = resolveInfo.activityInfo.packageName;
+            grantUriPermission(packageName, logUri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+
+        startActivity(Intent.createChooser(emailIntent, getString(R.string.feedback_choose_email_app_dialog)));
     }
 
     /**
