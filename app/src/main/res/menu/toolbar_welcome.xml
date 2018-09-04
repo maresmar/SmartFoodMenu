@@ -26,6 +26,11 @@
         android:orderInCategory="1000"
         android:title="@string/welcome_about_action"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_feedback"
+        android:orderInCategory="500"
+        android:title="@string/welcome_feedback_action"
+        app:showAsAction="never" />
     <group android:checkableBehavior="all">
         <item
             android:id="@+id/advanced_check_box"

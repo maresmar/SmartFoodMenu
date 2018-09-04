@@ -291,6 +291,10 @@ public class WelcomeActivity extends AppCompatActivity
             case R.id.action_about:
                 SfmApp.startAboutActivity(this);
                 return true;
+            case R.id.action_feedback:
+                SfmApp app = (SfmApp)getApplication();
+                app.sendFeedback(this);
+                return true;
             case R.id.advanced_check_box:
                 // Android doesn't handle checked <-> unchecked behavior automatically
                 // in popup menu
