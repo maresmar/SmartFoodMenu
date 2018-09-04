@@ -217,4 +217,5 @@
     <string name="sync_result_not_supported">Nic k provedení, zkuste přidat jídelnu…</string>
     <string name="actions_sync_failed">Některé objednávky nemohly být provedeny :-/</string>
     <string name="actions_food_stock_on_restricted_to_one">Nejde říct, co se stane, pokud si objednáte jídlo z burzy v tomto případě…</string>
+    <string name="action_feedback_send">POSLAT</string>
 </resources>

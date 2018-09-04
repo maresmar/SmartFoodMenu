@@ -492,12 +492,23 @@ public class WelcomeActivity extends AppCompatActivity
             @StringRes
             int errMsg = MenuUtils.getSyncErrorMessage(worstResult);
 
-            Snackbar.make(findViewById(android.R.id.content),
-                    errMsg, Snackbar.LENGTH_LONG)
-                    .setAction(android.R.string.ok, view -> {
-                        // Only dismiss message
-                    })
-                    .show();
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
+                    errMsg, Snackbar.LENGTH_LONG);
+
+            if (errMsg == BroadcastContract.RESULT_UNKNOWN_PORTAL_FORMAT) {
+                // Give user option to send logs
+                snackbar.setAction(R.string.action_feedback_send, view -> {
+                    SfmApp app = (SfmApp)getApplication();
+                    app.sendFeedback();
+                });
+            } else {
+                // Only dismiss
+                snackbar.setAction(android.R.string.ok, view -> {
+                    // Only dismiss message
+                });
+            }
+
+            snackbar.show();
         }
     }
 

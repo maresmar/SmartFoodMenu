@@ -268,5 +268,6 @@
 
     <string name="actions_sync_failed">Same changes cannot be done :-/</string>
     <string name="actions_food_stock_on_restricted_to_one">It\'s hard to say what happens if you take food from food stock in this case…</string>
+    <string name="action_feedback_send">SEND</string>
 
 </resources>

@@ -556,10 +556,23 @@ public class MainActivity extends AppCompatActivity
 
         if (worstResult != BroadcastContract.RESULT_OK) {
             @StringRes int errMsg = MenuUtils.getSyncErrorMessage(worstResult);
-            Snackbar.make(mSwipeRefreshLayout, errMsg, Snackbar.LENGTH_LONG)
-                    .setAction(android.R.string.ok, view -> {
-                    })
-                    .show();
+
+            Snackbar snackbar = Snackbar.make(mSwipeRefreshLayout, errMsg, Snackbar.LENGTH_LONG);
+
+            if (errMsg == BroadcastContract.RESULT_UNKNOWN_PORTAL_FORMAT) {
+                // Give user option to send logs
+                snackbar.setAction(R.string.action_feedback_send, view -> {
+                    SfmApp app = (SfmApp)getApplication();
+                    app.sendFeedback();
+                });
+            } else {
+                // Only dismiss
+                snackbar.setAction(android.R.string.ok, view -> {
+                    // Only dismiss message
+                });
+            }
+
+            snackbar.show();
         }
     }
 

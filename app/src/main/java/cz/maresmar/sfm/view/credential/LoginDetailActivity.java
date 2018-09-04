@@ -298,12 +298,23 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
             mActiveToast.show();
 
             /* Disappears in 1 s (probably bug in support library)
-            Snackbar.make(mSwipeRefreshLayout, errMsg, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.action_ok, view -> {
-                        // Only dismiss message
-                    })
-                    .show();
-                    */
+            Snackbar snackbar = Snackbar.make(mSwipeRefreshLayout, errMsg, Snackbar.LENGTH_LONG);
+
+            if (errMsg == BroadcastContract.RESULT_UNKNOWN_PORTAL_FORMAT) {
+                // Give user option to send logs
+                snackbar.setAction(R.string.action_feedback_send, view -> {
+                    SfmApp app = (SfmApp)getApplication();
+                    app.sendFeedback();
+                });
+            } else {
+                // Only dismiss
+                snackbar.setAction(android.R.string.ok, view -> {
+                    // Only dismiss message
+                });
+            }
+
+            snackbar.show();
+            */
         }
     }
 
