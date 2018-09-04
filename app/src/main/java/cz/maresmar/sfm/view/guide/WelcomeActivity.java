@@ -499,7 +499,7 @@ public class WelcomeActivity extends AppCompatActivity
                 // Give user option to send logs
                 snackbar.setAction(R.string.action_feedback_send, view -> {
                     SfmApp app = (SfmApp)getApplication();
-                    app.sendFeedback();
+                    app.sendFeedback(this);
                 });
             } else {
                 // Only dismiss

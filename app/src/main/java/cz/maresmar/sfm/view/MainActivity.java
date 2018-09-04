@@ -563,7 +563,7 @@ public class MainActivity extends AppCompatActivity
                 // Give user option to send logs
                 snackbar.setAction(R.string.action_feedback_send, view -> {
                     SfmApp app = (SfmApp)getApplication();
-                    app.sendFeedback();
+                    app.sendFeedback(this);
                 });
             } else {
                 // Only dismiss
@@ -1041,7 +1041,7 @@ public class MainActivity extends AppCompatActivity
         Timber.i("Starting send feedback");
 
         SfmApp app = (SfmApp) getApplication();
-        app.sendFeedback();
+        app.sendFeedback(this);
     }
 
     private void startHelpActivity() {

@@ -133,7 +133,7 @@ public class SfmApp extends Application {
     /**
      * Opens email app with log file
      */
-    public void sendFeedback() {
+    public void sendFeedback(Context context) {
         Timber.i("Device %s (%s) on SDK %d", Build.DEVICE, Build.MANUFACTURER,
                 Build.VERSION.SDK_INT);
 
@@ -156,11 +156,11 @@ public class SfmApp extends Application {
                 PackageManager.MATCH_DEFAULT_ONLY);
         for (ResolveInfo resolveInfo : resInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
-            grantUriPermission(packageName, logUri,
+            context.grantUriPermission(packageName, logUri,
                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
 
-        startActivity(Intent.createChooser(emailIntent, getString(R.string.feedback_choose_email_app_dialog)));
+        context.startActivity(Intent.createChooser(emailIntent, getString(R.string.feedback_choose_email_app_dialog)));
     }
 
     /**
