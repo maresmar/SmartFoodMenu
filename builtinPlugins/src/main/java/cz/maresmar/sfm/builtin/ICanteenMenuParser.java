@@ -46,9 +46,10 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
 
     private static final String ORDER_URL_DISABLED = "-disabledUrl-";
 
-    private static final Pattern FOOD_LABEL_PATTERN = Pattern.compile(" *(.*[^ ]) +([0-9]+) *");
-    private static final int FOOD_LABEL_PATTERN_GROUP_NAME = 1;
-    private static final int FOOD_LABEL_PATTERN_POSITION_IN_GROUP = 2;
+    private static final Pattern FOOD_LABEL_PATTERN = Pattern.compile(" *((.*[^ ])( +([0-9].*))|.*) *");
+    private static final int FOOD_LABEL_PATTERN_GROUP_NAME_SIMPLE = 1;
+    private static final int FOOD_LABEL_PATTERN_GROUP_NAME = 2;
+    private static final int FOOD_LABEL_PATTERN_POSITION_IN_GROUP = 4;
 
     private static final String MULTI_SPACE_TRIM_PATTERN = " *( ([,.]|)) *";
     private static final String MULTI_SPACE_TRIM_REPLACE = "$2 ";
@@ -214,10 +215,10 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
                             creditStr = creditStr.substring(0, creditStr.length() - 3);
                             creditStr = creditStr.replace(',', '.');
                         }
-                        if ("volný účet".equals(creditStr)) {
-                            mCredit = PublicProviderContract.NO_INFO;
-                        } else {
+                        try {
                             mCredit = (int) (Double.parseDouble(creditStr) * 100);
+                        } catch (NumberFormatException e) {
+                            mCredit = PublicProviderContract.NO_INFO;
                         }
                     }
                     findElementID("div", "mainContext", null);
@@ -388,10 +389,16 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
         }
         String groupName = labelMatcher.group(FOOD_LABEL_PATTERN_GROUP_NAME);
         int positionInGroup;
-        try {
-            positionInGroup = Integer.parseInt(labelMatcher.group(FOOD_LABEL_PATTERN_POSITION_IN_GROUP));
-        } catch (NumberFormatException e) {
-            throw new WebPageFormatChangedException("Cannot parse position of food in menu group");
+
+        if (groupName != null) {
+            try {
+                positionInGroup = Integer.parseInt(labelMatcher.group(FOOD_LABEL_PATTERN_POSITION_IN_GROUP));
+            } catch (NumberFormatException e) {
+                throw new WebPageFormatChangedException("Cannot parse position of food in menu group");
+            }
+        } else {
+            groupName = labelMatcher.group(FOOD_LABEL_PATTERN_GROUP_NAME_SIMPLE);
+            positionInGroup = 0;
         }
 
         final long menuEntryRelId = countMenuEntryRelativeId(date, groupName, positionInGroup);
@@ -474,10 +481,16 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
         }
         String groupName = labelMatcher.group(FOOD_LABEL_PATTERN_GROUP_NAME);
         int positionInGroup;
-        try {
-            positionInGroup = Integer.parseInt(labelMatcher.group(FOOD_LABEL_PATTERN_POSITION_IN_GROUP));
-        } catch (NumberFormatException e) {
-            throw new WebPageFormatChangedException("Cannot parse position of food in menu group");
+
+        if (groupName != null) {
+            try {
+                positionInGroup = Integer.parseInt(labelMatcher.group(FOOD_LABEL_PATTERN_POSITION_IN_GROUP));
+            } catch (NumberFormatException e) {
+                throw new WebPageFormatChangedException("Cannot parse position of food in menu group");
+            }
+        } else {
+            groupName = labelMatcher.group(FOOD_LABEL_PATTERN_GROUP_NAME_SIMPLE);
+            positionInGroup = 0;
         }
 
         final long menuEntryRelId = countMenuEntryRelativeId(date, groupName, positionInGroup);

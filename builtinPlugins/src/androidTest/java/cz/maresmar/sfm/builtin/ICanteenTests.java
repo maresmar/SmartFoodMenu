@@ -11,6 +11,7 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -1342,6 +1343,34 @@ public class ICanteenTests {
                 Assert.assertEquals(ACTION_SYNC_STATUS_SYNCED, action.syncStatus);
                 Assert.assertEquals(ACTION_ENTRY_TYPE_STANDARD, action.entryType);
                 Assert.assertEquals(menuEntries.get(1).relativeId, action.relativeMenuEntryId);
+            }
+
+            @Test
+            public void noInGroupIdEntry() throws ParseException {
+                MenuEntry menuEntry = menuEntries.get(8);
+                GroupMenuEntry groupMenuEntry = groupMenuEntries.get(8);
+
+                Date date = mFormatter.parse("2018-06-22");
+                Assert.assertEquals(date.getTime(), menuEntry.date);
+                Assert.assertEquals("Oběd", menuEntry.label);
+                Assert.assertEquals(2400, groupMenuEntry.price);
+
+                // MenuEntry entry menuStatus
+                Assert.assertEquals(MENU_STATUS_ORDERABLE | MENU_STATUS_CANCELABLE,
+                        groupMenuEntry.menuStatus);
+
+                // Some extras
+                Assert.assertEquals("Oběd", menuEntry.group);
+
+
+                Action.MenuEntryAction action = orderEntries.get(3);
+
+                Assert.assertEquals(1, action.reservedAmount);
+                Assert.assertEquals(0, action.offeredAmount);
+                Assert.assertEquals(ACTION_SYNC_STATUS_SYNCED, action.syncStatus);
+                Assert.assertEquals(ACTION_ENTRY_TYPE_STANDARD, action.entryType);
+                Assert.assertEquals(menuEntry.relativeId, action.relativeMenuEntryId);
+
             }
         }
     }
