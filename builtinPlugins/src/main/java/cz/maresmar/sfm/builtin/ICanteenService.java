@@ -464,7 +464,7 @@ public class ICanteenService extends TasksPluginService {
         @Override
         public void run(@NonNull LogData data) throws IOException {
             String selection = PublicProviderContract.Action.SYNC_STATUS + " = " + PublicProviderContract.ACTION_SYNC_STATUS_LOCAL + " AND " +
-                    PublicProviderContract.Action.ME_DATE + " > " + getTodayDate();
+                    PublicProviderContract.Action.ME_DATE + " >= " + getTodayDate();
             List<Action.MenuEntryAction> actions = (List<Action.MenuEntryAction>) loadActions(selection, null, null);
 
             boolean doneSth = false;
@@ -473,7 +473,17 @@ public class ICanteenService extends TasksPluginService {
             String lastUrlTime = null;
             for (Action.MenuEntryAction action : actions) {
                 // Skip task where is nothing to do
-                if (action.reservedAmount == action.syncedReservedAmount)
+                if (action.reservedAmount == action.syncedReservedAmount && action.offeredAmount == action.syncedOfferedAmount)
+                    continue;
+
+                // If new order is not possible
+                if (action.reservedAmount > action.syncedReservedAmount &&
+                        ((action.groupStatus & PublicProviderContract.MENU_STATUS_ORDERABLE) != PublicProviderContract.MENU_STATUS_ORDERABLE))
+                    continue;
+
+                // If order cancel is not possible
+                if (action.reservedAmount < action.syncedReservedAmount &&
+                        ((action.groupStatus & PublicProviderContract.MENU_STATUS_CANCELABLE) != PublicProviderContract.MENU_STATUS_CANCELABLE))
                     continue;
 
                 doneSth = true;
