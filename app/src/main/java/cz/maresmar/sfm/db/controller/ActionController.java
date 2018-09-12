@@ -124,7 +124,30 @@ public class ActionController extends SimpleController {
                     " ON (" + DbContract.Credential.TABLE_NAME + "." + DbContract.Credential._ID + " = " +
                     DbContract.FoodAction.TABLE_NAME + "." + FoodAction.COLUMN_NAME_CID + " AND " +
                     DbContract.Credential.TABLE_NAME + "." + DbContract.Credential.COLUMN_NAME_UID + " = " +
-                    userId + ")";
+                    userId + ")" +
+                    // Group menu entry
+                    " LEFT OUTER JOIN " + DbContract.GroupMenuEntry.TABLE_NAME +
+                    " ON (" + DbContract.GroupMenuEntry.TABLE_NAME + "." + DbContract.GroupMenuEntry.COLUMN_NAME_CGID + " = " +
+                    DbContract.Credential.TABLE_NAME + "." + DbContract.Credential.COLUMN_NAME_CGID + " AND " +
+                    DbContract.GroupMenuEntry.TABLE_NAME + "." + DbContract.GroupMenuEntry.COLUMN_NAME_ME_PID + " = " +
+                    FoodAction.TABLE_NAME + "." + FoodAction.COLUMN_NAME_ME_PID + " AND " +
+                    DbContract.GroupMenuEntry.TABLE_NAME + "." + DbContract.GroupMenuEntry.COLUMN_NAME_ME_RELATIVE_ID + " = " +
+                    FoodAction.TABLE_NAME + "." + FoodAction.COLUMN_NAME_ME_RELATIVE_ID + ")";
+        } else if (selection.contains(DbContract.FoodAction.COLUMN_NAME_CID)) {
+            // Filter rows with correct userId
+            long credentialId = getIdFromSelection(selection, DbContract.FoodAction.COLUMN_NAME_CID);
+            tables = mQueryTables +
+                    // Credential table
+                    " LEFT OUTER JOIN " + DbContract.Credential.TABLE_NAME +
+                    " ON (" + DbContract.Credential.TABLE_NAME + "." + DbContract.Credential._ID + " = " + credentialId + ")" +
+                    // Group menu entry
+                    " LEFT OUTER JOIN " + DbContract.GroupMenuEntry.TABLE_NAME +
+                    " ON (" + DbContract.GroupMenuEntry.TABLE_NAME + "." + DbContract.GroupMenuEntry.COLUMN_NAME_CGID + " = " +
+                    DbContract.Credential.TABLE_NAME + "." + DbContract.Credential.COLUMN_NAME_CGID + " AND " +
+                    DbContract.GroupMenuEntry.TABLE_NAME + "." + DbContract.GroupMenuEntry.COLUMN_NAME_ME_PID + " = " +
+                    FoodAction.TABLE_NAME + "." + FoodAction.COLUMN_NAME_ME_PID + " AND " +
+                    DbContract.GroupMenuEntry.TABLE_NAME + "." + DbContract.GroupMenuEntry.COLUMN_NAME_ME_RELATIVE_ID + " = " +
+                    FoodAction.TABLE_NAME + "." + FoodAction.COLUMN_NAME_ME_RELATIVE_ID + ")";
         } else {
             // Takes all rows
             tables = mQueryTables;

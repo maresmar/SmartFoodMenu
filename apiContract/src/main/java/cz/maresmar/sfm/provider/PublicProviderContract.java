@@ -279,6 +279,7 @@ public class PublicProviderContract {
         // RO - other tables join
         public static final String ME_DATE = DbContract.MenuEntry.COLUMN_NAME_DATE;
         public static final String ME_LABEL = DbContract.MenuEntry.COLUMN_NAME_LABEL;
+        public static final String ME_GROUP_STATUS = DbContract.GroupMenuEntry.COLUMN_NAME_STATUS;
         public static final String ME_FOOD_NAME = DbContract.Food.COLUMN_NAME_NAME;
         public static final String ME_GROUP_NAME = DbContract.MenuGroup.COLUMN_NAME_NAME;
         public static final String ME_EXTRA = DbContract.MenuEntry.COLUMN_NAME_EXTRA;

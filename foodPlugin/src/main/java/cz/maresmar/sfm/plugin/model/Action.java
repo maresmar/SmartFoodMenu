@@ -94,6 +94,10 @@ public abstract class Action {
         @ProviderColumn(name = PublicProviderContract.Action.ME_EXTRA, ro = true)
         public String extra;
 
+        @ProviderColumn(name = PublicProviderContract.Action.ME_GROUP_STATUS, ro = true)
+        @PublicProviderContract.MenuStatus
+        public int groupStatus;
+
         /**
          * Creates new order
          * @param actionId ID of action that is unique for one credentials
@@ -224,7 +228,8 @@ public abstract class Action {
                     PublicProviderContract.Action.PRICE,
                     PublicProviderContract.Action.ME_RELATIVE_ID,
                     PublicProviderContract.Action.ME_PORTAL_ID,
-                    PublicProviderContract.Action.ME_EXTRA
+                    PublicProviderContract.Action.ME_EXTRA,
+                    PublicProviderContract.Action.ME_GROUP_STATUS
             };
         }
     }
