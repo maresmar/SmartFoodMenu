@@ -6,4 +6,8 @@
     <string name="ui_portal_auto_update_des">Automatically update portal version if app detects it</string>
     <string name="ui_allergens_pattern_name">Allergens removal pattern:</string>
     <string name="ui_allergens_pattern_des">Use standard Java regular expression</string>
+    <string name="ui_portal_id_name">Portal ID</string>
+    <string name="ui_portal_id_des">
+        A number that specifies concrete canteen within one credential. It should be empty in most cases.
+    </string>
 </resources>

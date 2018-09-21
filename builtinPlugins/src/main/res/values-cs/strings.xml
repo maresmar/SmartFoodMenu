@@ -24,4 +24,9 @@
     <string name="ui_portal_auto_update_des">Automaticky aktualizovat verzi, pokud ji aplikace detekuje</string>
     <string name="ui_portal_auto_update_name">Automaticky aktualizovat verzi portálu</string>
     <string name="ui_allergens_pattern_name">Regulární výraz na odstranění alergenů</string>
+    <string name="ui_portal_id_name">ID jídelny</string>
+    <string name="ui_portal_id_des">
+        Číslo, které specifikuje konkrétní jídelnu v rámci přihlašovacích údajů. Většinou by pole mělo
+být prázdné.
+    </string>
 </resources>

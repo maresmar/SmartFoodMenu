@@ -3,6 +3,7 @@ package cz.maresmar.sfm.builtin;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -51,6 +52,7 @@ public class ICanteenService extends TasksPluginService {
 
     protected static final String EXTRA_PORTAL_VERSION = "portalVersion";
     protected static final String EXTRA_PORTAL_VERSION_AUTO_UPDATE = "portalAutoUpdate";
+    protected static final String EXTRA_PORTAL_ID = "portalId";
     protected static final String EXTRA_ALLERGENS_PATTERN = "allergensPattern";
 
     private static final String YES = "✔️";
@@ -67,6 +69,7 @@ public class ICanteenService extends TasksPluginService {
     int mPortalVersion = 213;
     boolean mPluginDataAutoUpdate = true;
     String mAllergensPattern = null;
+    Integer mPortalId = null;
 
     @Override
     public void onCreate() {
@@ -150,6 +153,13 @@ public class ICanteenService extends TasksPluginService {
         extra.valuesList = new String[]{YES, NO};
         extraFormats.add(extra);
 
+        // Portal ID
+        name = getString(R.string.ui_portal_id_name);
+        extra = new ExtraFormat(EXTRA_PORTAL_ID, name);
+        extra.pattern = "[0-9]*";
+        extra.description = getString(R.string.ui_portal_id_des);
+        extraFormats.add(extra);
+
         // Allergens pattern
         name = getString(R.string.ui_allergens_pattern_name);
         extra = new ExtraFormat(EXTRA_ALLERGENS_PATTERN, name);
@@ -190,6 +200,14 @@ public class ICanteenService extends TasksPluginService {
 
             // Auto update
             mPluginDataAutoUpdate = YES.equals(extraData.getString(EXTRA_PORTAL_VERSION_AUTO_UPDATE));
+
+            // Portal ID
+            String portalIdString = extraData.getString(EXTRA_PORTAL_ID);
+            if (!TextUtils.isEmpty(portalIdString)) {
+                mPortalId = Integer.valueOf(portalIdString);
+            } else {
+                mPortalId = null;
+            }
 
             // Allergens pattern
             mAllergensPattern = extraData.getString(EXTRA_ALLERGENS_PATTERN);
@@ -234,6 +252,13 @@ public class ICanteenService extends TasksPluginService {
                 extraData.put(EXTRA_PORTAL_VERSION_AUTO_UPDATE, YES);
             } else {
                 extraData.put(EXTRA_PORTAL_VERSION_AUTO_UPDATE, NO);
+            }
+
+            // Portal ID
+            if (mPortalId != null) {
+                extraData.put(EXTRA_PORTAL_ID, "" + mPortalId);
+            } else {
+                extraData.put(EXTRA_PORTAL_ID, "");
             }
 
             // Allergens pattern
@@ -391,7 +416,12 @@ public class ICanteenService extends TasksPluginService {
 
         @Override
         public void run(@NonNull LogData data) throws IOException {
-            URL monthUrl = new URL(data.portalReference + URL_MONTH);
+            String idParam = "";
+            if (mPortalId != null) {
+                idParam = "&vydejna=" + mPortalId;
+            }
+
+            URL monthUrl = new URL(data.portalReference + URL_MONTH + idParam);
 
             HttpURLConnection urlConnection = openUrl(monthUrl);
             urlConnection.addRequestProperty("Content-Type", "text/xml; charset=utf-8");
