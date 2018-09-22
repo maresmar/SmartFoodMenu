@@ -22,18 +22,14 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
+         <i>Version 3.1.0</i><br />
+        - Better feedback messages<br />
+        - Smaller app size<br />
+        - Parsing bug fixes<br />
          <i>Version 3.0.6</i><br />
         - UI fixes<br />
          <i>Version 3.0.5</i><br />
         - UX fixes<br />
-         <i>Version 3.0.4</i><br />
-        - Typo fixes<br />
-        - UI fixes<br />
-        - Network access fixes<br />
-         <i>Version 3.0.3</i><br />
-        - Bug fixes<br />
-         <i>Version 3.0.2</i><br />
-        - Optimal auto sync after startup<br />
         <i>Version 3.0.0</i><br />
         - New portals<br />
         - Material design<br />
