@@ -244,4 +244,22 @@ public class EnclosedXmlParser {
             throw new XmlPullParserException("Cannot read text from non TEXT type", mParser, null);
         }
     }
+
+    /**
+     * Returns first text after parser
+     *
+     * @return Read text
+     * @throws XmlPullParserException Thrown when parser is not on {@link XmlPullParser#TEXT}
+     * @throws IOException            Thrown if IO Exception occurs
+     * @see XmlPullParser#next()
+     */
+    protected String readFirstText() throws IOException, XmlPullParserException {
+        int type;
+        while ((type = mParser.next()) != XmlPullParser.END_DOCUMENT) {
+            if (type == XmlPullParser.TEXT) {
+                return mParser.getText();
+            }
+        }
+        throw new XmlPullParserException("Cannot find any TEXT type", mParser, null);
+    }
 }

@@ -201,7 +201,7 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
                 case 210: {
                     findElementID("span", "Kredit", null);
                     findNextType(XmlPullParser.START_TAG);
-                    final String creditStr = readText();
+                    final String creditStr = readFirstText();
                     mCredit = (int) (Double.parseDouble(creditStr) * 100);
                     findElementID("div", "mainContext", null);
                     break;
@@ -210,7 +210,7 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
                     findElementClass("div", "topMenu", null);
                     final int found = findElementID("span", "Kredit", "div");
                     if (found != XmlPullParser.END_TAG) {
-                        String creditStr = readText();
+                        String creditStr = readFirstText();
                         if (creditStr.endsWith(" Kč")) {
                             creditStr = creditStr.substring(0, creditStr.length() - 3);
                             creditStr = creditStr.replace(',', '.');
