@@ -65,6 +65,8 @@ public class ICanteenService extends TasksPluginService {
     private static final String VERSION_206 = "2.6";
     private static final String VERSION_205 = "2.5";
 
+    private static final Pattern VERSION_PATTERN = Pattern.compile(".*iCanteen (verze|version) ([1-9])\\.([0-9]+)\\.([0-9]+).*");
+
     // LogData related variables
     int mPortalVersion = 213;
     boolean mPluginDataAutoUpdate = true;
@@ -304,10 +306,13 @@ public class ICanteenService extends TasksPluginService {
             Pattern pattern = Pattern.compile(".*<input +type=\"hidden\" +name=\"_csrf\" +value=\"([^\"]+) *\"/>.*");
 
             while (sc.hasNextLine()) {
-                Matcher matcher = pattern.matcher(sc.nextLine());
+                String line = sc.nextLine();
+                Matcher matcher = pattern.matcher(line);
 
                 if (matcher.matches()) {
                     return matcher.group(1);
+                } else if (line.contains("iCanteen")) {
+                    autoUpdatePortalVersion(line);
                 }
             }
 
@@ -393,8 +398,7 @@ public class ICanteenService extends TasksPluginService {
     @VisibleForTesting
     void autoUpdatePortalVersion(String line) {
         if (mPluginDataAutoUpdate) {
-            Pattern pattern = Pattern.compile(".*iCanteen (verze|version) ([1-9])\\.([0-9]+)\\.([0-9]+).*");
-            Matcher matcher = pattern.matcher(line);
+            Matcher matcher = VERSION_PATTERN.matcher(line);
             if (matcher.matches()) {
                 mPortalVersion = Integer.parseInt(matcher.group(2)) * 100
                         + Integer.parseInt(matcher.group(3));
