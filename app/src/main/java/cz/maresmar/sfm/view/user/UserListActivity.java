@@ -97,11 +97,11 @@ public class UserListActivity extends AppCompatActivity implements LoaderManager
         }
 
         // Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Fab
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_discard_fab);
+        FloatingActionButton fab = findViewById(R.id.main_discard_fab);
         if (mTwoPane) {
             AppCompatActivity sourceActivity = this;
             fab.setOnClickListener(view -> {
@@ -182,7 +182,7 @@ public class UserListActivity extends AppCompatActivity implements LoaderManager
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
             case R.id.user_edit:
-                long itemId = (long) info.id;
+                long itemId = info.id;
                 Uri userUri = ContentUris.withAppendedId(ProviderContract.User.getUri(), itemId);
                 return true;
             case R.id.user_delete:
@@ -372,8 +372,8 @@ public class UserListActivity extends AppCompatActivity implements LoaderManager
 
             ViewHolder(View view) {
                 super(view);
-                mUserImage = (CircleImageView) view.findViewById(R.id.user_image);
-                mUserName = (TextView) view.findViewById(R.id.user_name);
+                mUserImage = view.findViewById(R.id.user_image);
+                mUserName = view.findViewById(R.id.user_name);
             }
         }
     }

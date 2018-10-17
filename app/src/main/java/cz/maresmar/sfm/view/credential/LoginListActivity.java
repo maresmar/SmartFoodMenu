@@ -75,14 +75,14 @@ public class LoginListActivity extends AppCompatActivity implements LoaderManage
         mPortalsUri = Uri.withAppendedPath(mUserUri, ProviderContract.PORTAL_PATH);
 
         // Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRecyclerView = findViewById(R.id.credential_list);
         setupRecyclerView(mRecyclerView);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_discard_fab);
+        FloatingActionButton fab = findViewById(R.id.main_discard_fab);
         fab.setOnClickListener((View v) -> startPortalPickerActivity());
 
         // Prepare empty view
@@ -358,8 +358,8 @@ public class LoginListActivity extends AppCompatActivity implements LoaderManage
 
             ViewHolder(View view) {
                 super(view);
-                mPortalGroupName = (TextView) view.findViewById(R.id.portal_group_name_text);
-                mUserName = (TextView) view.findViewById(R.id.user_name_text);
+                mPortalGroupName = view.findViewById(R.id.portal_group_name_text);
+                mUserName = view.findViewById(R.id.user_name_text);
             }
         }
 

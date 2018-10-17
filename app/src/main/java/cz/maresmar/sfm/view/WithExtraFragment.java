@@ -95,7 +95,7 @@ public abstract class WithExtraFragment extends Fragment implements ExtraFormatH
         super.onResume();
 
         //noinspection ConstantConditions
-        mExtraLinearLayout = (LinearLayout) getView().findViewById(mExtraLinearLayoutId);
+        mExtraLinearLayout = getView().findViewById(mExtraLinearLayoutId);
 
         //noinspection ConstantConditions
         getContext().registerReceiver(mExtraReceiver, ExtraFormatHandler.INTENT_FILTER);

@@ -115,7 +115,7 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
         mPortalUri = getIntent().getParcelableExtra(PORTAL_URI);
         mCredentialUri = getIntent().getParcelableExtra(CREDENTIAL_URI);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
@@ -123,10 +123,10 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -143,7 +143,7 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
         );
         mSwipeRefreshLayout.setEnabled(false);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_discard_fab);
+        FloatingActionButton fab = findViewById(R.id.main_discard_fab);
         fab.setOnClickListener(view -> confirmData());
 
         registerReceiver(mPortalTestReceiver, new IntentFilter(PortalTestHandler.BROADCAST_PORTAL_TEST_RESULT));

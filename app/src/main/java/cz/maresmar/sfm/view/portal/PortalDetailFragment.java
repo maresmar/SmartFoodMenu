@@ -179,7 +179,7 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
         mRefText = view.findViewById(R.id.refText);
 
         // Plugin options
-        mPluginSpinner = (Spinner) view.findViewById(R.id.pluginSpinner);
+        mPluginSpinner = view.findViewById(R.id.pluginSpinner);
         // Loads plugins
         getLoaderManager().initLoader(PLUGIN_LOADER_ID, null, new LoaderManager.LoaderCallbacks<List<PluginInfo>>() {
             @NonNull
@@ -214,7 +214,7 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
         });
 
         // Security options
-        mSecuritySpinner = (Spinner) view.findViewById(R.id.securitySpinner);
+        mSecuritySpinner = view.findViewById(R.id.securitySpinner);
         //noinspection ConstantConditions
         mSecuritySpinnerAdapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.connection_security_values, R.layout.support_simple_spinner_dropdown_item);
@@ -224,7 +224,7 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
         mNewMenuNotificationCheckBox = view.findViewById(R.id.portalNewMenuNotify);
 
         // Gets the MapView from the XML layout and creates it
-        mMapView = (MapView) view.findViewById(R.id.mapView);
+        mMapView = view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
 
 
@@ -248,14 +248,14 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
                 startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
             } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
                 boolean serviceAvailable = SfmApp.checkPlayServices(getActivity());
-                Timber.e(e, "Cannot start Place picker intent, " +
-                        "(Google play service available = %b)", serviceAvailable);
+                Timber.e(e, "Cannot start Place picker intent, (Google play service available = %b)",
+                        serviceAvailable);
                 e.printStackTrace();
             }
         });
 
         // Remove location button
-        mRemoteButton = (Button) view.findViewById(R.id.remoteButton);
+        mRemoteButton = view.findViewById(R.id.remoteButton);
         mRemoteButton.setOnClickListener(buttonView -> removeLocation());
 
         return view;
@@ -459,7 +459,7 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
         int position = -1;
         // There are only few entries in adapter so its ok to do it with for cycle
         for (int i = 0; i < mPluginAdapter.getCount(); i++) {
-            if (((PluginInfo) mPluginAdapter.getItem(i)).id.equals(pluginId)) {
+            if (mPluginAdapter.getItem(i).id.equals(pluginId)) {
                 position = i;
             }
         }

@@ -157,7 +157,7 @@ public class WelcomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_welcome);
 
         // Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_app);
         setSupportActionBar(toolbar);
 
@@ -172,7 +172,7 @@ public class WelcomeActivity extends AppCompatActivity
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mPagerAdapter);
         // Watch for pages without FAB button
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -204,7 +204,7 @@ public class WelcomeActivity extends AppCompatActivity
         });
 
         // Floating action button
-        mFab = (FloatingActionButton) findViewById(R.id.main_discard_fab);
+        mFab = findViewById(R.id.main_discard_fab);
         mFab.setOnClickListener(view -> tryToMoveToNextPage());
 
         registerReceiver(mPortalTestReceiver, new IntentFilter(PortalTestHandler.BROADCAST_PORTAL_TEST_RESULT));
@@ -216,7 +216,7 @@ public class WelcomeActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.toolbar_welcome, menu);
 
-        mAdvSettingsMenuItem = (MenuItem) menu.findItem(R.id.advanced_check_box);
+        mAdvSettingsMenuItem = menu.findItem(R.id.advanced_check_box);
         mAdvSettingsMenuItem.setChecked(mAdvSettings);
         return true;
     }

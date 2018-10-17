@@ -64,7 +64,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener, D
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_welcome, container, false);
 
-        mAcceptTermsCheckBox = (AppCompatCheckBox) rootView.findViewById(R.id.acceptTermsCheckBox);
+        mAcceptTermsCheckBox = rootView.findViewById(R.id.acceptTermsCheckBox);
         mAcceptTermsCheckBox.setOnClickListener(this);
 
         return rootView;

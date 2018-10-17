@@ -43,10 +43,10 @@ public class UserDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+        Toolbar toolbar = findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_discard_fab);
+        FloatingActionButton fab = findViewById(R.id.main_discard_fab);
         AppCompatActivity sourceActivity = this;
         fab.setOnClickListener(view -> {
             UserDetailFragment userDetailFragment = (UserDetailFragment) getSupportFragmentManager().

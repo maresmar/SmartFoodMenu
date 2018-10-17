@@ -93,9 +93,9 @@ public class PluginAdapter extends BaseAdapter {
             // This is how you obtain a reference to the TextViews.
             // These TextViews are created in the XML files we defined.
 
-            TextView pluginName = (TextView) convertView.findViewById(R.id.pluginName);
+            TextView pluginName = convertView.findViewById(R.id.pluginName);
             pluginName.setText(info.name);
-            TextView pluginId = (TextView) convertView.findViewById(R.id.pluginId);
+            TextView pluginId = convertView.findViewById(R.id.pluginId);
             pluginId.setText(info.id);
         }
 

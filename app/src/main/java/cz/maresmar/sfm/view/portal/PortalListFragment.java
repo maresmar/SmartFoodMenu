@@ -161,7 +161,7 @@ public class PortalListFragment extends Fragment implements LoaderManager.Loader
         Context context = view.getContext();
 
         // Update layout
-        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setRefreshing(mPortalUpdatingState);
         mSwipeRefreshLayout.setOnRefreshListener(this::updatePortalsData);
         mSwipeRefreshLayout.setColorSchemeColors(
@@ -169,7 +169,7 @@ public class PortalListFragment extends Fragment implements LoaderManager.Loader
         );
 
         // RecyclerView
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.list);
+        RecyclerView mRecyclerView = view.findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.setAdapter(mAdapter);
         return view;
@@ -400,8 +400,8 @@ public class PortalListFragment extends Fragment implements LoaderManager.Loader
 
             ViewHolder(View view) {
                 super(view);
-                mTypeText = (TextView) view.findViewById(R.id.type);
-                mNameText = (TextView) view.findViewById(R.id.name);
+                mTypeText = view.findViewById(R.id.type);
+                mNameText = view.findViewById(R.id.name);
             }
 
             @Override

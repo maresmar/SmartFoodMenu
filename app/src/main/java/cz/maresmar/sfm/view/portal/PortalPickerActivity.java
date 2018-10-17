@@ -40,10 +40,10 @@ public class PortalPickerActivity extends AppCompatActivity implements PortalLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_portal_picker);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+        Toolbar toolbar = findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_discard_fab);
+        FloatingActionButton fab = findViewById(R.id.main_discard_fab);
         AppCompatActivity sourceActivity = this;
         fab.setOnClickListener(view -> {
             Intent data = new Intent();
