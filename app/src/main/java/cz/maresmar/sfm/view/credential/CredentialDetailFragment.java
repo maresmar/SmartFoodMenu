@@ -61,8 +61,6 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
     private static final int CREDENTIAL_GROUPS_LOADER_ID = 2;
     private static final int PORTAL_LOADER_ID = 3;
 
-    private static final long UNKNOWN_CREDENTIAL_GROUP_ID = -1;
-
     private static final String ARG_START_WITH_EMPTY = "startWithEmpty";
     private static final String ARG_PORTAL_URI = "portalUri";
     private static final String ARG_CREDENTIAL_URI = "credentialUri";
@@ -70,14 +68,15 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
     private static final String ARG_USER_PREFIX_URI = "userPrefixUri";
     private static final String ARG_PORTAL_GROUP_ID = "portalGroupId";
     private static final String ARG_LAST_PLUGIN = "lastPlugin";
+    private static final String ARG_QUERY_URI = "queryUri";
+    private static final String ARG_QUERY_SELECTION = "querySelection";
 
     // Local variables
     private Uri mCredentialUri;
     private Uri mCredentialTempUri;
     private Uri mUserPrefixUri;
     private Uri mPortalUri;
-    private String mPortalSelection;
-    private long mPortalGroupId = UNKNOWN_CREDENTIAL_GROUP_ID;
+    private long mPortalGroupId;
     private String mLastPlugin = null;
     private boolean mLoadDataFromDb = true;
 
@@ -187,7 +186,11 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
         super.onStart();
 
         if (mPortalUri != null) {
-            getLoaderManager().initLoader(PORTAL_LOADER_ID, null, this);
+            Bundle args = new Bundle();
+            args.putParcelable(ARG_QUERY_URI, mPortalUri);
+            args.putString(ARG_QUERY_SELECTION, null);
+
+            getLoaderManager().initLoader(PORTAL_LOADER_ID, args, this);
         }
 
         getLoaderManager().initLoader(CREDENTIAL_GROUPS_LOADER_ID, null, this);
@@ -225,7 +228,11 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
         mUserPrefixUri = userPrefixUri;
         mPortalUri = portalUri;
         if (mPortalUri != null) {
-            getLoaderManager().restartLoader(PORTAL_LOADER_ID, null, this);
+            Bundle args = new Bundle();
+            args.putParcelable(ARG_QUERY_URI, mPortalUri);
+            args.putString(ARG_QUERY_SELECTION, null);
+
+            getLoaderManager().restartLoader(PORTAL_LOADER_ID, args, this);
         } else {
             mNameText.setText("");
             mPasswordText.setText("");
@@ -276,12 +283,12 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
             case PORTAL_LOADER_ID:
                 return new CursorLoader(
                         context,
-                        mPortalUri,
+                        args.getParcelable(ARG_QUERY_URI),
                         new String[]{
                                 ProviderContract.Portal.PLUGIN,
                                 ProviderContract.Portal.PORTAL_GROUP_ID,
                         },
-                        mPortalSelection,
+                        args.getString(ARG_QUERY_SELECTION),
                         null,
                         null
                 );
@@ -301,16 +308,17 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
                     Assert.isOne(cursor.getCount());
                 }
 
-                if (mPortalGroupId == UNKNOWN_CREDENTIAL_GROUP_ID) {
+                if (mPortalUri == null) {
                     mPortalGroupId = cursor.getLong(4);
 
-                    mPortalSelection = ProviderContract.Portal.PORTAL_GROUP_ID + " = " + mPortalGroupId;
-                    mPortalUri = ProviderContract.Portal.getUri();
+                    String selection = ProviderContract.Portal.PORTAL_GROUP_ID + " = " + mPortalGroupId;
+                    Uri uri = ProviderContract.Portal.getUri();
 
-                    Loader portalLoader = getLoaderManager().getLoader(PORTAL_LOADER_ID);
-                    if (portalLoader == null || !portalLoader.isStarted()) {
-                        getLoaderManager().initLoader(PORTAL_LOADER_ID, null, this);
-                    }
+                    Bundle args = new Bundle();
+                    args.putParcelable(ARG_QUERY_URI, uri);
+                    args.putString(ARG_QUERY_SELECTION, selection);
+
+                    getLoaderManager().initLoader(PORTAL_LOADER_ID, args, this);
                 }
 
                 if (mLoadDataFromDb) {
