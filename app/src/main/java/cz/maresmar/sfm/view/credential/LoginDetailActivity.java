@@ -19,14 +19,12 @@
 
 package cz.maresmar.sfm.view.credential;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -61,7 +59,7 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
     public static final String CREDENTIAL_URI = "credentialUri";
     public static final String TAB_ID = "tabId";
 
-    private static final String VALIDATED_PORTAL_ID = "validatedPortalId";
+    private static final String SAVE_ALL = "saveAll";
     private static final String VALIDATED_CREDENTIAL_ID = "validatedCredentialId";
     private static final String REFRESHING = "refreshing";
 
@@ -99,8 +97,8 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
     private Uri mPortalUri;
     private Uri mCredentialUri;
     private Uri mUserUri;
+    private boolean mSaveAll;
 
-    long mValidatedPortalId;
     long mValidatedCredentialId = -1;
 
     private Toast mActiveToast;
@@ -175,9 +173,9 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
 
         outState.putParcelable(PORTAL_URI, mPortalUri);
         outState.putParcelable(CREDENTIAL_URI, mCredentialUri);
-        outState.putLong(VALIDATED_PORTAL_ID, mValidatedPortalId);
         outState.putLong(VALIDATED_CREDENTIAL_ID, mValidatedCredentialId);
         outState.putBoolean(REFRESHING, mSwipeRefreshLayout.isRefreshing());
+        outState.putBoolean(SAVE_ALL, mSaveAll);
     }
 
     @Override
@@ -186,9 +184,9 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
 
         mPortalUri = savedInstanceState.getParcelable(PORTAL_URI);
         mCredentialUri = savedInstanceState.getParcelable(CREDENTIAL_URI);
-        mValidatedPortalId = savedInstanceState.getLong(VALIDATED_PORTAL_ID);
         mValidatedCredentialId = savedInstanceState.getLong(VALIDATED_CREDENTIAL_ID);
         mSwipeRefreshLayout.setRefreshing(savedInstanceState.getBoolean(REFRESHING));
+        mSaveAll = savedInstanceState.getBoolean(SAVE_ALL);
     }
 
     // -------------------------------------------------------------------------------------------
@@ -196,6 +194,7 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
     // -------------------------------------------------------------------------------------------
 
     private void confirmData() {
+        mSaveAll = true;
         saveAndValidatePortal();
     }
 
@@ -206,11 +205,13 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
 
         // Check portal details
         if (portalDetailFragment.hasValidData()) {
-            Uri portalUri = portalDetailFragment.saveAndTestData();
-            mValidatedPortalId = ContentUris.parseId(portalUri);
+            // Show work in process UI
             mActiveToast = Toast.makeText(this, R.string.login_detail_checking_data, Toast.LENGTH_LONG);
             mActiveToast.show();
             mSwipeRefreshLayout.setRefreshing(true);
+
+            // Save portal
+            portalDetailFragment.saveAndTestData();
         } else {
             mViewPager.setCurrentItem(PORTAL_TAB);
         }
@@ -225,12 +226,16 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
                 break;
             }
             case BroadcastContract.TEST_RESULT_INVALID_DATA:
+                // Show portal tab
+                mViewPager.setCurrentItem(PORTAL_TAB);
+
+                // Cancel work in process UI
+                mSwipeRefreshLayout.setRefreshing(false);
                 if (mActiveToast != null) {
                     mActiveToast.cancel();
                 }
-                mSwipeRefreshLayout.setRefreshing(false);
 
-                mViewPager.setCurrentItem(PORTAL_TAB);
+                // Show error message
                 Snackbar.make(mSwipeRefreshLayout,
                         R.string.extra_invalid_input_error, Snackbar.LENGTH_LONG)
                         .setAction(android.R.string.ok, view -> {
@@ -251,24 +256,38 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
                 .instantiateItem(mViewPager, PORTAL_TAB);
         mPortalFormDestroyer = portalDetailFragment;
 
-        // If I don't create new portal
-        if (mPortalUri != null) {
-            // Check credentials details
+        // (Save credentials and exit) or (only show them)
+        if (mSaveAll && mPortalUri != null) {
+            // Check credentials
             if (credentialDetailFragment.hasValidData()) {
-                Uri credentialUri = credentialDetailFragment.saveData();
-                mValidatedCredentialId = ContentUris.parseId(credentialUri);
-                // Start plugin
+                // Save credentials
+                mCredentialUri = credentialDetailFragment.saveData();
+                mValidatedCredentialId = ContentUris.parseId(mCredentialUri);
+
+                // Starts "credentials test"
                 SyncHandler.startFullSync(this);
             } else {
+                // Show credential tab
                 mViewPager.setCurrentItem(CREDENTIAL_TAB);
+
+                // Cancel work in process UI
                 mSwipeRefreshLayout.setRefreshing(false);
+                if (mActiveToast != null) {
+                    mActiveToast.cancel();
+                }
             }
         } else {
-            // Show credential tab to fill it with data
             mPortalUri = portalDetailFragment.getDataUri();
+
+            // Show credential tab
             credentialDetailFragment.reset(mUserUri, mPortalUri);
             mViewPager.setCurrentItem(CREDENTIAL_TAB);
+
+            // Cancel work in process UI
             mSwipeRefreshLayout.setRefreshing(false);
+            if (mActiveToast != null) {
+                mActiveToast.cancel();
+            }
         }
     }
 
@@ -278,10 +297,11 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
             return;
         }
 
+        // Cancel work in process UI
+        mSwipeRefreshLayout.setRefreshing(false);
         if (mActiveToast != null) {
             mActiveToast.cancel();
         }
-        mSwipeRefreshLayout.setRefreshing(false);
 
         if(worstResult == BroadcastContract.RESULT_OK) {
             // Return to parent activity
@@ -325,41 +345,11 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
     }
 
-    @SuppressLint("StaticFieldLeak")
     @Override
     public void onPageSelected(int position) {
-        PortalDetailFragment portalDetailFragment = (PortalDetailFragment) mSectionsPagerAdapter
-                .instantiateItem(mViewPager, PORTAL_TAB);
-        mPortalFormDestroyer = portalDetailFragment;
-        CredentialDetailFragment credentialDetailFragment = (CredentialDetailFragment) mSectionsPagerAdapter
-                .instantiateItem(mViewPager, CREDENTIAL_TAB);
-        mCredentialFormDestroyer = credentialDetailFragment;
-
-        switch (position) {
-            case CREDENTIAL_TAB: {
-                if (portalDetailFragment.hasValidData()) {
-                    if (mPortalUri == null) {
-                        new AsyncTask<Void, Void, Uri>() {
-                            @Override
-                            protected Uri doInBackground(Void... voids) {
-                                return portalDetailFragment.saveData();
-                            }
-
-                            @Override
-                            protected void onPostExecute(Uri uri) {
-                                // Sets portal in credential screen
-                                credentialDetailFragment.reset(mUserUri, mPortalUri);
-                            }
-                        }.execute();
-                    } else {
-                        AsyncTask.execute(
-                                portalDetailFragment::saveData
-                        );
-                    }
-                } else {
-                    mViewPager.setCurrentItem(PORTAL_TAB);
-                }
-            }
+        if(position == CREDENTIAL_TAB) {
+            mSaveAll = false;
+            saveAndValidatePortal();
         }
     }
 
