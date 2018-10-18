@@ -42,6 +42,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import cz.maresmar.sfm.Assert;
+import cz.maresmar.sfm.BuildConfig;
 import cz.maresmar.sfm.R;
 import cz.maresmar.sfm.plugin.ActionContract;
 import cz.maresmar.sfm.plugin.ExtraFormat;
@@ -91,8 +93,8 @@ public abstract class WithExtraFragment extends Fragment implements ExtraFormatH
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
 
         //noinspection ConstantConditions
         mExtraLinearLayout = getView().findViewById(mExtraLinearLayoutId);
@@ -102,8 +104,8 @@ public abstract class WithExtraFragment extends Fragment implements ExtraFormatH
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
 
         //noinspection ConstantConditions
         getContext().unregisterReceiver(mExtraReceiver);
@@ -213,6 +215,11 @@ public abstract class WithExtraFragment extends Fragment implements ExtraFormatH
      * @see ExtraFormatHandler
      */
     protected void requestExtraFormat(@Nullable String pluginName) {
+        if(BuildConfig.DEBUG) {
+            Assert.that(mExtraLinearLayout != null, "" +
+                    "You should call this method after onStart() event in fragment's lifecycle");
+        }
+
         // If no plugin is selected
         if (pluginName == null || pluginName.length() == 0) {
             // Clear UI

@@ -180,38 +180,6 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
 
         // Plugin options
         mPluginSpinner = view.findViewById(R.id.pluginSpinner);
-        // Loads plugins
-        getLoaderManager().initLoader(PLUGIN_LOADER_ID, null, new LoaderManager.LoaderCallbacks<List<PluginInfo>>() {
-            @NonNull
-            @Override
-            public Loader<List<PluginInfo>> onCreateLoader(int id, Bundle args) {
-                switch (id) {
-                    case PLUGIN_LOADER_ID:
-                        return new PluginListLoader(getContext());
-                    default:
-                        throw new UnsupportedOperationException("Unknown loader id: " + id);
-                }
-            }
-
-            @Override
-            public void onLoadFinished(@NonNull Loader<List<PluginInfo>> loader, List<PluginInfo> data) {
-                //noinspection ConstantConditions
-                mPluginAdapter = new PluginAdapter(getContext(), data);
-                mPluginSpinner.setAdapter(mPluginAdapter);
-                blockingLoaders.countDown();
-            }
-
-            @Override
-            public void onLoaderReset(@NonNull Loader<List<PluginInfo>> loader) {
-                switch (loader.getId()) {
-                    case PLUGIN_LOADER_ID:
-                        Timber.d("Action loader reset");
-                        return;
-                    default:
-                        throw new UnsupportedOperationException("Unknown loader id: " + loader.getId());
-                }
-            }
-        });
 
         // Security options
         mSecuritySpinner = view.findViewById(R.id.securitySpinner);
@@ -262,8 +230,41 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onStart() {
+        super.onStart();
+
+        // Loads plugins
+        getLoaderManager().initLoader(PLUGIN_LOADER_ID, null, new LoaderManager.LoaderCallbacks<List<PluginInfo>>() {
+            @NonNull
+            @Override
+            public Loader<List<PluginInfo>> onCreateLoader(int id, Bundle args) {
+                switch (id) {
+                    case PLUGIN_LOADER_ID:
+                        return new PluginListLoader(getContext());
+                    default:
+                        throw new UnsupportedOperationException("Unknown loader id: " + id);
+                }
+            }
+
+            @Override
+            public void onLoadFinished(@NonNull Loader<List<PluginInfo>> loader, List<PluginInfo> data) {
+                //noinspection ConstantConditions
+                mPluginAdapter = new PluginAdapter(getContext(), data);
+                mPluginSpinner.setAdapter(mPluginAdapter);
+                blockingLoaders.countDown();
+            }
+
+            @Override
+            public void onLoaderReset(@NonNull Loader<List<PluginInfo>> loader) {
+                switch (loader.getId()) {
+                    case PLUGIN_LOADER_ID:
+                        Timber.d("Action loader reset");
+                        return;
+                    default:
+                        throw new UnsupportedOperationException("Unknown loader id: " + loader.getId());
+                }
+            }
+        });
 
         // Loads portal data from DB
         if (mPortalUri != null && mLoadDataFromDb) {
@@ -275,8 +276,8 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
 
     @Override
     public void onResume() {
-        mMapView.onResume();
         super.onResume();
+        mMapView.onResume();
     }
 
     @Override

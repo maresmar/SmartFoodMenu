@@ -144,10 +144,6 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
             if (getArguments().getBoolean(ARG_START_WITH_EMPTY)) {
                 mUserPrefixUri = getArguments().getParcelable(ARG_USER_PREFIX_URI);
                 mPortalUri = getArguments().getParcelable(ARG_PORTAL_URI);
-
-                if (mPortalUri != null) {
-                    getLoaderManager().initLoader(PORTAL_LOADER_ID, null, this);
-                }
             } else {
                 mCredentialUri = getArguments().getParcelable(ARG_CREDENTIAL_URI);
 
@@ -183,9 +179,18 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
                 mLowCreditText.setEnabled(checked)
         );
 
-        getLoaderManager().initLoader(CREDENTIAL_GROUPS_LOADER_ID, null, this);
-
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (mPortalUri != null) {
+            getLoaderManager().initLoader(PORTAL_LOADER_ID, null, this);
+        }
+
+        getLoaderManager().initLoader(CREDENTIAL_GROUPS_LOADER_ID, null, this);
     }
 
     // -------------------------------------------------------------------------------------------
