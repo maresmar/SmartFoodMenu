@@ -469,14 +469,16 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
         Timber.i("Discarding credential data");
 
         if (mCredentialTempUri != null) {
+            // Disable using of temp data
+            mCredentialUri = null;
+
+            // Delete credential temp data
             int affectedRows = context.getContentResolver().
                     delete(mCredentialTempUri, null, null);
             if (BuildConfig.DEBUG) {
                 Assert.isOne(affectedRows);
             }
-
             mCredentialTempUri = null;
-            mCredentialUri = null;
         }
     }
 

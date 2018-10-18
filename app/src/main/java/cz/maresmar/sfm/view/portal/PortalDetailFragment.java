@@ -435,9 +435,7 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
     @UiThread
     public void reset(@Nullable Uri portalUri) {
         // Delete old temp data
-        if (portalUri != mPortalTempUri) {
-            discardTempData(getContext());
-        }
+        discardTempData(getContext());
 
         // Loads new data
         mPortalUri = portalUri;
@@ -660,20 +658,24 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
         Timber.i("Discarding portal data");
 
         if (mPortalTempUri != null) {
+            // Disable using of temp data
+            mPortalUri = null;
+
+            // Delete portal temp data
             int affectedRows = context.getContentResolver().
                     delete(mPortalTempUri, null, null);
             if (BuildConfig.DEBUG) {
                 Assert.isOne(affectedRows);
             }
+            mPortalTempUri = null;
 
+            // Delete portal group temp data
             affectedRows = context.getContentResolver().
                     delete(mPortalGroupTempUri, null, null);
             if (BuildConfig.DEBUG) {
                 Assert.isOne(affectedRows);
             }
-
-            mPortalTempUri = null;
-            mPortalUri = null;
+            mPortalGroupTempUri = null;
         }
     }
 

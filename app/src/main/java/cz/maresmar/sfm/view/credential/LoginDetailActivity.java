@@ -158,11 +158,11 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
         unregisterReceiver(mSyncReceiver);
 
         // Discard saved data from db if not finished
-        if (mPortalFormDestroyer != null)
-            mPortalFormDestroyer.discardTempData(this);
-
         if (mCredentialFormDestroyer != null)
             mCredentialFormDestroyer.discardTempData(this);
+
+        if (mPortalFormDestroyer != null)
+            mPortalFormDestroyer.discardTempData(this);
     }
 
     // -------------------------------------------------------------------------------------------
@@ -205,7 +205,6 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
         mPortalFormDestroyer = portalDetailFragment;
 
         // Check portal details
-        Uri savePortalUri;
         if (portalDetailFragment.hasValidData()) {
             Uri portalUri = portalDetailFragment.saveAndTestData();
             mValidatedPortalId = ContentUris.parseId(portalUri);
@@ -331,8 +330,10 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
     public void onPageSelected(int position) {
         PortalDetailFragment portalDetailFragment = (PortalDetailFragment) mSectionsPagerAdapter
                 .instantiateItem(mViewPager, PORTAL_TAB);
+        mPortalFormDestroyer = portalDetailFragment;
         CredentialDetailFragment credentialDetailFragment = (CredentialDetailFragment) mSectionsPagerAdapter
                 .instantiateItem(mViewPager, CREDENTIAL_TAB);
+        mCredentialFormDestroyer = credentialDetailFragment;
 
         switch (position) {
             case CREDENTIAL_TAB: {

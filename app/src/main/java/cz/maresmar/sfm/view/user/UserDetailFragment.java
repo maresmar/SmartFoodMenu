@@ -364,9 +364,7 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
      */
     public void reset(@Nullable Uri userUri) {
         // Delete old temp data
-        if (userUri != mUserUri) {
-            discardTempData(getContext());
-        }
+        discardTempData(getContext());
 
         // Loads new data
         mUserUri = userUri;
@@ -424,6 +422,10 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
         Timber.i("Discarding user data");
 
         if (mUserTempUri != null) {
+            // Disable using of temp data
+            mUserUri = null;
+
+            // Delete user temp data
             int affectedRows = context.getContentResolver().
                     delete(mUserTempUri, null, null);
             if (BuildConfig.DEBUG) {
@@ -431,14 +433,13 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
             }
             mUserTempUri = null;
 
+            // Delete user's picture temp data
             File file = new File(mPictureUri.getPath());
             boolean deleteResult = file.delete();
             if (BuildConfig.DEBUG) {
                 Assert.that(deleteResult, "Delete of %s wasn't successful", mPictureUri);
             }
             mPictureUri = null;
-
-            mUserUri = null;
         }
     }
 
