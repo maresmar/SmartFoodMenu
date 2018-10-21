@@ -25,10 +25,12 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
@@ -36,6 +38,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,6 +65,7 @@ import java.util.concurrent.CountDownLatch;
 import cz.maresmar.sfm.Assert;
 import cz.maresmar.sfm.BuildConfig;
 import cz.maresmar.sfm.R;
+import cz.maresmar.sfm.app.SettingsContract;
 import cz.maresmar.sfm.app.SfmApp;
 import cz.maresmar.sfm.plugin.ActionContract;
 import cz.maresmar.sfm.provider.ProviderContract;
@@ -95,6 +99,7 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
 
     private LatLng mLocation = null;
     private PluginAdapter mPluginAdapter;
+    private SharedPreferences mPrefs;
 
     private AdapterView.OnItemSelectedListener mPluginChangeListen = new AdapterView.OnItemSelectedListener() {
         @Override
@@ -158,6 +163,9 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+
         if (getArguments() != null) {
             mPortalUri = getArguments().getParcelable(ARG_PORTAL_URI);
         }
@@ -278,6 +286,54 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
     public void onResume() {
         super.onResume();
         mMapView.onResume();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        // Show warning if portal will be auto-updated
+        if(isVisibleToUser && mPortalUri != null) {
+            Long portalId = ContentUris.parseId(mPortalUri);
+
+            if(portalId < ProviderContract.CUSTOM_DATA_OFFSET && mPrefs.getBoolean(SettingsContract.UPDATE_PORTALS_AUTOMATICALLY,
+                    SettingsContract.UPDATE_PORTALS_AUTOMATICALLY_DEFAULT)) {
+                showUpdateOverrideWarning();
+            }
+        }
+    }
+
+    private void showUpdateOverrideWarning() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.portal_detail_override_warning_title)
+                .setMessage(R.string.portal_detail_override_warning_msg)
+                .setPositiveButton(R.string.portal_detail_override_copy_button, (dialog, id) -> {
+                    Timber.i("Instead of %s used local copy", mPortalUri);
+                    // In this place the data should be already loaded in UI, so I only need to save it to new place
+                    if(BuildConfig.DEBUG) {
+                        Assert.that(mPortalUri != null && mPortalTempUri == null && mPortalGroupTempUri == null,
+                                "Unexpected load/save status reached");
+                    }
+                    mPortalUri = null;
+                    getLoaderManager().destroyLoader(PORTAL_LOADER_ID);
+                })
+                .setNegativeButton(R.string.portal_detail_override_turn_off_button, (dialog, id) -> {
+                    Timber.i("Portal settings sync disabled");
+
+                    mPrefs.edit().putBoolean(SettingsContract.UPDATE_PORTALS_AUTOMATICALLY, false)
+                            .apply();
+
+                    Snackbar.make(getView(), R.string.portal_detail_override_turned_off_msg, Snackbar.LENGTH_LONG)
+                            .setAction(R.string.undo_action, view -> mPrefs.edit().putBoolean(SettingsContract.UPDATE_PORTALS_AUTOMATICALLY, true)
+                                    .apply())
+                            .show();
+
+                })
+                .setNeutralButton(R.string.portal_detail_override_read_only_button, (dialog, id) -> {
+                    Timber.w("Portal %s edits can be overridden", mPortalUri);
+                    // Do nothing
+                });
+        builder.create().show();
     }
 
     @Override
@@ -415,8 +471,6 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
         switch (loader.getId()) {
             case PORTAL_LOADER_ID:
                 Timber.e("Portal data %s is no longer valid", mPortalUri);
-                // Let's tread current user data as new entry
-                reset(null);
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown loader id: " + loader.getId());

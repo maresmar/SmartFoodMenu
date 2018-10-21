@@ -24,10 +24,12 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -51,6 +53,7 @@ import android.widget.Toast;
 import cz.maresmar.sfm.Assert;
 import cz.maresmar.sfm.BuildConfig;
 import cz.maresmar.sfm.R;
+import cz.maresmar.sfm.app.SettingsContract;
 import cz.maresmar.sfm.provider.ProviderContract;
 import cz.maresmar.sfm.service.web.PortalsUpdateService;
 import cz.maresmar.sfm.view.CursorRecyclerViewAdapter;
@@ -75,6 +78,7 @@ public class PortalListFragment extends Fragment implements LoaderManager.Loader
     // Internal state
     private boolean mPortalUpdatingState = false;
     private OnPortalSelectedListener mListener;
+    private SharedPreferences mPrefs;
 
     /**
      * Listen to SyncHandler for results
@@ -148,6 +152,8 @@ public class PortalListFragment extends Fragment implements LoaderManager.Loader
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+
         setHasOptionsMenu(true);
 
         // Init adapter
@@ -193,7 +199,10 @@ public class PortalListFragment extends Fragment implements LoaderManager.Loader
                 .registerReceiver(mUpdateResultReceiver,
                         new IntentFilter(PortalsUpdateService.BROADCAST_PORTALS_UPDATE_FINISHED));
 
-        updatePortalsData();
+        if(mPrefs.getBoolean(SettingsContract.UPDATE_PORTALS_AUTOMATICALLY,
+                SettingsContract.UPDATE_PORTALS_AUTOMATICALLY_DEFAULT)) {
+            updatePortalsData();
+        }
     }
 
     @Override

@@ -215,4 +215,11 @@
     <string name="actions_sync_failed">Některé objednávky nemohly být provedeny :-/</string>
     <string name="actions_food_stock_on_restricted_to_one">Nejde říct, co se stane, pokud si objednáte jídlo z burzy v tomto případě…</string>
     <string name="action_feedback_send">POSLAT</string>
+    <string name="portal_detail_override_warning_title">Změny se přepíšou</string>
+    <string name="portal_detail_override_warning_msg">Automatická synchronizace nastavení jídelen je zapnutá - ta přepíše většinu změn (mimo nastavení notifikací). Chcete pracovat na lokální kopii?</string>
+    <string name="portal_detail_override_copy_button">Použít lokální kopii</string>
+    <string name="portal_detail_override_turn_off_button">Vypnout synchronizaci</string>
+    <string name="portal_detail_override_turned_off_msg">Synchronizace nastavení portálů vypnuta</string>
+    <string name="undo_action">ZPĚT</string>
+    <string name="portal_detail_override_read_only_button">Ignorovat / upravit notifikace</string>
 </resources>

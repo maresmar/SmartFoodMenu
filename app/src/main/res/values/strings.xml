@@ -267,4 +267,12 @@
     <string name="actions_food_stock_on_restricted_to_one">It\'s hard to say what happens if you take food from food stock in this case…</string>
     <string name="action_feedback_send">SEND</string>
 
+    <string name="portal_detail_override_warning_title">Edits can be overridden</string>
+    <string name="portal_detail_override_warning_msg">Portal settings auto sync is enabled. Auto sync will override most of your changes (expect notifications). Do you want to work on local copy instead?</string>
+    <string name="portal_detail_override_copy_button">Work on local copy</string>
+    <string name="portal_detail_override_turn_off_button">Turn off portal auto sync</string>
+    <string name="portal_detail_override_turned_off_msg">Portal settings auto sync was disabled</string>
+    <string name="undo_action">UNDO</string>
+    <string name="portal_detail_override_read_only_button">Ignore / edit notifications</string>
+
 </resources>

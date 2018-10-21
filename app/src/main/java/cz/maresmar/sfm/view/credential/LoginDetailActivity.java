@@ -256,6 +256,13 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
                 .instantiateItem(mViewPager, PORTAL_TAB);
         mPortalFormDestroyer = portalDetailFragment;
 
+        // Propagates portal ID change in portal fragment to credentials fragment
+        Uri newPortalUri = portalDetailFragment.getDataUri();
+        if (mPortalUri != null && !mPortalUri.equals(newPortalUri)) {
+            mPortalUri = newPortalUri;
+            mSaveAll = false;
+        }
+
         // (Save credentials and exit) or (only show them)
         if (mSaveAll && mPortalUri != null) {
             // Check credentials
