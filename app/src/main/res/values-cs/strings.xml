@@ -22,7 +22,11 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
-        <i>Version 3.1.0</i><br />
+        <i>Verze 3.2.0</i><br />
+        - Vylepšená detekce verze portálu<br />
+        - UI/UX vylepšení a opravy<br />
+        - Opravy parsování<br />
+        <i>Verze 3.1.0</i><br />
         - Lepší ladící zprávy<br />
         - Menší velikost aplikace<br />
         - Opravy parsování<br />
