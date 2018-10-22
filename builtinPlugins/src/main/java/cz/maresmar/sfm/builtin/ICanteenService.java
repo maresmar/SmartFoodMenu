@@ -87,7 +87,7 @@ public class ICanteenService extends TasksPluginService {
     int testPortalData(@NonNull LogData logData) {
         logData.portalFeatures = PublicProviderContract.FEATURE_RESTRICT_TO_ONE_ORDER_PER_GROUP;
 
-        String webPage = logData.portalReference;
+        String webPage = logData.portalReference.trim();
         // Test if its valid web address
         if (!webPage.startsWith("http")) {
             webPage = "https://" + webPage;
@@ -100,6 +100,7 @@ public class ICanteenService extends TasksPluginService {
         try {
             URL url = new URL(webPage);
         } catch (MalformedURLException e) {
+            mErrorMessage = getString(R.string.malformed_url_test_msg);
             return BroadcastContract.TEST_RESULT_INVALID_DATA;
         }
         int endingIndex = webPage.indexOf("/faces/login.jsp");
@@ -130,15 +131,16 @@ public class ICanteenService extends TasksPluginService {
             urlConnection.disconnect();
 
             mErrorMessage = getString(R.string.server_not_recognized_test_msg);
+            return BroadcastContract.TEST_RESULT_INVALID_DATA;
         } catch (FileNotFoundException e) {
             mErrorMessage = getString(R.string.illegal_web_page_test_msg);
             e.printStackTrace();
+            return BroadcastContract.TEST_RESULT_INVALID_DATA;
         } catch (IOException e) {
             mErrorMessage = getString(R.string.io_exception_test_msg);
             e.printStackTrace();
+            return BroadcastContract.TEST_RESULT_INVALID_DATA;
         }
-
-        return BroadcastContract.TEST_RESULT_INVALID_DATA;
     }
 
     @NonNull
