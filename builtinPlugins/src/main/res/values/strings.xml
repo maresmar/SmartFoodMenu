@@ -11,7 +11,8 @@
         A number that specifies concrete canteen within one credential. It should be empty in most cases.
     </string>
     <string name="malformed_url_test_msg">Illegal web page address, check it…</string>
-    <string name="server_not_recognized_test_msg">Not recognized as login page, fix url…</string>
+    <string name="ssl_exception_test_msg">Bad connection security, fix http/https or security…</string>
     <string name="illegal_web_page_test_msg">Page not found, try to edit it…</string>
     <string name="io_exception_test_msg">Network error, try it later or update url…</string>
+    <string name="server_not_recognized_test_msg">Not recognized as login page, fix url…</string>
 </resources>

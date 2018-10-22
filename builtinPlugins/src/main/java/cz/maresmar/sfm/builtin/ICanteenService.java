@@ -28,6 +28,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.net.ssl.SSLHandshakeException;
+
 import cz.maresmar.sfm.plugin.model.Action;
 import cz.maresmar.sfm.plugin.model.LogData;
 import cz.maresmar.sfm.plugin.ActionContract;
@@ -131,6 +133,10 @@ public class ICanteenService extends TasksPluginService {
             urlConnection.disconnect();
 
             mErrorMessage = getString(R.string.server_not_recognized_test_msg);
+            return BroadcastContract.TEST_RESULT_INVALID_DATA;
+        } catch (SSLHandshakeException e) {
+            mErrorMessage = getString(R.string.ssl_exception_test_msg);
+            e.printStackTrace();
             return BroadcastContract.TEST_RESULT_INVALID_DATA;
         } catch (FileNotFoundException e) {
             mErrorMessage = getString(R.string.illegal_web_page_test_msg);
