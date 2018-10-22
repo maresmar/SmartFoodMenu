@@ -123,6 +123,7 @@ public class UpdateService extends TasksPluginService {
                     mPortalTestResult = BroadcastContract.TEST_RESULT_OK;
                     break;
                 case EXTRA_TEST_RESULT_INVALID_DATA:
+                    mErrorMessage = "Selected TEST_RESULT_INVALID_DATA";
                     mPortalTestResult = BroadcastContract.TEST_RESULT_INVALID_DATA;
                     break;
                 default:

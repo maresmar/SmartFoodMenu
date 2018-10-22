@@ -140,17 +140,19 @@ public class BroadcastContract {
      * @param destinationPkg package name of application that will receive broadcast
      * @param portalId       ID of tested portal
      * @param testResult     Test result
+     * @param errorMsg       Error message if test fails
      * @see IntentService
      * @see Intent#setPackage(String)
      */
     public static void broadcastTestDone(@NonNull Context context, @Nullable String destinationPkg,
-                                         long portalId, @TestResult int testResult) {
+                                         long portalId, @TestResult int testResult, @Nullable String errorMsg) {
         Intent intent = new Intent();
         // Explicitly select a package to communicate with
         intent.setPackage(destinationPkg);
         intent.setAction(BROADCAST_PORTAL_TEST_RESULT);
         intent.putExtra(EXTRA_PORTAL_ID, portalId);
         intent.putExtra(EXTRA_TEST_RESULT, testResult);
+        intent.putExtra(EXTRA_ERROR_MESSAGE, errorMsg);
         context.sendBroadcast(intent);
     }
 

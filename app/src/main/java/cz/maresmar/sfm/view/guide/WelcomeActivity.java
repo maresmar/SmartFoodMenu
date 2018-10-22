@@ -445,8 +445,8 @@ public class WelcomeActivity extends AppCompatActivity
     }
 
     @Override
-    public void onPortalTestResult(long portalId, @BroadcastContract.TestResult int result) {
-        Timber.i("Received portal %d test result %d", portalId, result);
+    public void onPortalTestResult(long portalId, @BroadcastContract.TestResult int result, @Nullable String errorMsg) {
+        Timber.i("Received portal %d test result %d (msg: %s)", portalId, result, errorMsg);
         // Hide message about sync
         mActiveToast.cancel();
         mSwipeRefreshLayout.setRefreshing(false);
@@ -463,8 +463,12 @@ public class WelcomeActivity extends AppCompatActivity
                 break;
             }
             case BroadcastContract.TEST_RESULT_INVALID_DATA:
+                // Show error message
+                if(errorMsg == null) {
+                    errorMsg = getString(R.string.extra_invalid_input_error);
+                }
                 Snackbar.make(findViewById(android.R.id.content),
-                        R.string.extra_invalid_input_error, Snackbar.LENGTH_LONG)
+                        errorMsg, Snackbar.LENGTH_LONG)
                         .setAction(android.R.string.ok, view -> {
                             // Only dismiss message
                         })

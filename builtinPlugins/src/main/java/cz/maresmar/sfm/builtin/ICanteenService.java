@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -127,7 +128,13 @@ public class ICanteenService extends TasksPluginService {
             }
             sc.close();
             urlConnection.disconnect();
+
+            mErrorMessage = getString(R.string.server_not_recognized_test_msg);
+        } catch (FileNotFoundException e) {
+            mErrorMessage = getString(R.string.illegal_web_page_test_msg);
+            e.printStackTrace();
         } catch (IOException e) {
+            mErrorMessage = getString(R.string.io_exception_test_msg);
             e.printStackTrace();
         }
 

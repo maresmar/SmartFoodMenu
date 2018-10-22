@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -218,8 +219,8 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
     }
 
     @Override
-    public void onPortalTestResult(long portalId, @BroadcastContract.TestResult int result) {
-        Timber.i("Received portal %d test result %d", portalId, result);
+    public void onPortalTestResult(long portalId, @BroadcastContract.TestResult int result, @Nullable String errorMsg) {
+        Timber.i("Received portal %d test result %d (msg: %s)", portalId, result, errorMsg);
         switch (result) {
             case BroadcastContract.TEST_RESULT_OK: {
                 saveAndValidateCredential();
@@ -236,8 +237,11 @@ public class LoginDetailActivity extends AppCompatActivity implements ViewPager.
                 }
 
                 // Show error message
+                if(errorMsg == null) {
+                    errorMsg = getString(R.string.extra_invalid_input_error);
+                }
                 Snackbar.make(mSwipeRefreshLayout,
-                        R.string.extra_invalid_input_error, Snackbar.LENGTH_LONG)
+                        errorMsg, Snackbar.LENGTH_LONG)
                         .setAction(android.R.string.ok, view -> {
                             // Only dismiss message
                         })

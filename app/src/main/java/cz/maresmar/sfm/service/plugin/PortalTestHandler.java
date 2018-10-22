@@ -23,6 +23,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import cz.maresmar.sfm.plugin.ActionContract;
 import cz.maresmar.sfm.plugin.BroadcastContract;
@@ -89,9 +90,10 @@ public class PortalTestHandler {
 
             final @BroadcastContract.TestResult int testResult =
                     intent.getIntExtra(BroadcastContract.EXTRA_TEST_RESULT, BroadcastContract.TEST_RESULT_INVALID_DATA);
+            final String errorMsg = intent.getStringExtra(BroadcastContract.EXTRA_ERROR_MESSAGE);
             Timber.i("Portal %d test result %d received", resultPortalId, testResult);
 
-            mListener.onPortalTestResult(resultPortalId, testResult);
+            mListener.onPortalTestResult(resultPortalId, testResult, errorMsg);
         }
     }
 
@@ -104,7 +106,8 @@ public class PortalTestHandler {
          *
          * @param portalId ID of tested portal
          * @param result   Test result
+         * @param errorMsg Error message if test fails
          */
-        void onPortalTestResult(long portalId, @BroadcastContract.TestResult int result);
+        void onPortalTestResult(long portalId, @BroadcastContract.TestResult int result, @Nullable String errorMsg);
     }
 }

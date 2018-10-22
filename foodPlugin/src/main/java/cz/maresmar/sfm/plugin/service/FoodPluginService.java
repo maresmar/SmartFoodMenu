@@ -65,7 +65,7 @@ public abstract class FoodPluginService extends JobIntentService {
 
     private Uri mLogDataUri;
     private LogData mLogData;
-    private String mErrorMessage;
+    public String mErrorMessage = null;
 
     /**
      * Sets LogData (used only for testing)
@@ -122,7 +122,7 @@ public abstract class FoodPluginService extends JobIntentService {
         long portalId = Long.parseLong(mLogDataUri.getPathSegments().get(mLogDataUri.getPathSegments().size() - 2));
 
         // Return result of task
-        BroadcastContract.broadcastTestDone(this, intent.getPackage(), portalId, result);
+        BroadcastContract.broadcastTestDone(this, intent.getPackage(), portalId, result, mErrorMessage);
     }
 
     /**
