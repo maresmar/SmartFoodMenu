@@ -29,7 +29,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -134,6 +137,25 @@ public class SfmApp extends Application {
      * Opens email app with log file
      */
     public void sendFeedback(Context context) {
+        // Shows subjects dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.feedback_subject_title);
+        builder.setMessage(R.string.feedback_subject_msg);
+
+        // Set up the input
+        final EditText input = new EditText(context);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> sendFeedback(context, input.getText().toString()));
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel());
+
+        builder.show();
+    }
+
+    private void sendFeedback(Context context, String subject) {
         Timber.i("Device %s (%s) on SDK %d", Build.DEVICE, Build.MANUFACTURER,
                 Build.VERSION.SDK_INT);
 
@@ -144,10 +166,9 @@ public class SfmApp extends Application {
                 logFile);
 
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        emailIntent.setType("text/plain");
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"mmrmartin+dev" + '@' + "gmail.com"});
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[sfm] Feedback");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[sfm] " + subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.feedback_mail_text));
         emailIntent.putExtra(Intent.EXTRA_STREAM, logUri);
         emailIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

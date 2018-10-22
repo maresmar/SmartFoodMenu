@@ -206,7 +206,9 @@
 
 
     <!-- Feedback -->
-    <string name="feedback_mail_text">Write what is on your mind…</string>
+    <string name="feedback_subject_title">Subject of feedback</string>
+    <string name="feedback_subject_msg">Write a short summary that will be used as e-mail\'s subject…</string>
+    <string name="feedback_mail_text">Write all remaining details here…</string>
     <string name="feedback_choose_email_app_dialog">Choose e-mail app…</string>
 
 
@@ -278,5 +280,6 @@
     <string name="portal_detail_override_turned_off_msg">Portal settings auto sync was disabled</string>
     <string name="undo_action">UNDO</string>
     <string name="portal_detail_override_read_only_button">Ignore / edit notifications</string>
+
 
 </resources>
