@@ -863,6 +863,47 @@ public class ICanteenTests {
 
             // Test of orderEntry is missing because of lack of test data
         }
+
+        public static class MenuPage04 {
+
+            InputStream mIs;
+            int mPortalVersion = 210;
+            String mAllergenPattern = null;
+            boolean mAutoUpdate = false;
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat mFormatter = new SimpleDateFormat("yyyy-MM-dd");
+
+            List<MenuEntry> menuEntries;
+            List<GroupMenuEntry> groupMenuEntries;
+            List<Action.MenuEntryAction> orderEntries;
+
+            @Before
+            public void init() throws Exception {
+                mFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+                Context testContext = InstrumentationRegistry.getInstrumentation().getContext();
+                mIs = testContext.getAssets().open("210/04/month.html");
+
+                ICanteenMenuParser parser = new ICanteenMenuParser(mPortalVersion, mAllergenPattern, mAutoUpdate);
+
+                parser.parseData(mIs, mLogData);
+
+                Assert.assertEquals(NO_INFO, parser.getCredit());
+
+                menuEntries = parser.getMenuEntries();
+                groupMenuEntries = parser.getGroupMenuEntries();
+                orderEntries = parser.getActionEntries();
+            }
+
+            @Test
+            public void wholeMenu() {
+                Assert.assertEquals(74, menuEntries.size());
+                Assert.assertEquals(74, groupMenuEntries.size());
+                Assert.assertEquals(13, orderEntries.size());
+            }
+
+            // Rest not so important
+        }
     }
 
     @RunWith(Enclosed.class)

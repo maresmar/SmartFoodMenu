@@ -202,7 +202,11 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
                     findElementID("span", "Kredit", null);
                     findNextType(XmlPullParser.START_TAG);
                     final String creditStr = readFirstText();
-                    mCredit = (int) (Double.parseDouble(creditStr) * 100);
+                    try {
+                        mCredit = (int) (Double.parseDouble(creditStr) * 100);
+                    } catch (NumberFormatException e) {
+                        mCredit = PublicProviderContract.NO_INFO;
+                    }
                     findElementID("div", "mainContext", null);
                     break;
                 }
