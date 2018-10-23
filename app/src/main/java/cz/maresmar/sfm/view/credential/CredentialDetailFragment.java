@@ -458,7 +458,6 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
         //noinspection ConstantConditions
         ContentResolver contentResolver = getContext().getContentResolver();
         if (mCredentialUri == null) {
-            // Ads new portal group
             Uri credentialUri = Uri.withAppendedPath(mUserPrefixUri, ProviderContract.CREDENTIALS_PATH);
             mCredentialTempUri = contentResolver.insert(credentialUri, values);
             mCredentialUri = mCredentialTempUri;
