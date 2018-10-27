@@ -823,7 +823,7 @@ public abstract class FoodPluginService extends JobIntentService {
             default:
                 throw new UnsupportedOperationException("Unsupported portal security " + mLogData.portalSecurity);
         }
-        urlConnection.setConnectTimeout(10000);
+        urlConnection.setConnectTimeout(20000);
         return urlConnection;
     }
 
