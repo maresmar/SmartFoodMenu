@@ -473,7 +473,7 @@ public class ICanteenService extends TasksPluginService {
                     since = System.currentTimeMillis();
                 }
 
-                mergeActionEntries(fxp.getActionEntries(), since);
+                mergeActionEntries(fxp.getActionEntries(), since, data.portalId);
                 // Credit
                 data.credit = fxp.getCredit();
                 // Extras

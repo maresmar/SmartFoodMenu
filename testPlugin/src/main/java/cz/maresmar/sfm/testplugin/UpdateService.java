@@ -304,7 +304,7 @@ public class UpdateService extends TasksPluginService {
             if (!history) {
                 long actTime = System.currentTimeMillis();
                 long today = actTime - (actTime % (1000 * 60 * 60 * 24));
-                mergeActionEntries(menuActions, today);
+                mergeActionEntries(menuActions, today, data.portalId);
 
                 if (BuildConfig.DEBUG) {
                     Assert.isZero(paymentActions.size());

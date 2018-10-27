@@ -557,15 +557,18 @@ public abstract class FoodPluginService extends JobIntentService {
      *
      * @param newEntries Entries sorted by {@link cz.maresmar.sfm.plugin.model.Action.MenuEntryAction#relativeMenuEntryId}
      * @param sinceDate  Time in millis where the merge should start
+     * @param portalId   Portal to merge Actions with
      */
-    protected void mergeActionEntries(@NonNull List<Action.MenuEntryAction> newEntries, long sinceDate) {
+    protected void mergeActionEntries(@NonNull List<Action.MenuEntryAction> newEntries, long sinceDate, long portalId) {
         // Load entries from db
         String dbSelection = PublicProviderContract.Action.ME_DATE + " >= ? AND " +
                 PublicProviderContract.Action.SYNC_STATUS + " == ? AND " +
-                PublicProviderContract.Action.ENTRY_TYPE + " == ?";
+                PublicProviderContract.Action.ENTRY_TYPE + " == ? AND " +
+                PublicProviderContract.Action.ME_PORTAL_ID + " == ?";
         String[] dbSelectionArgs = new String[]{"" + sinceDate,
                 "" + PublicProviderContract.ACTION_SYNC_STATUS_SYNCED,
-                "" + PublicProviderContract.ACTION_ENTRY_TYPE_STANDARD
+                "" + PublicProviderContract.ACTION_ENTRY_TYPE_STANDARD,
+                "" + portalId
         };
         String dbSortOrder = PublicProviderContract.Action.ME_RELATIVE_ID + " ASC";
         List<Action.MenuEntryAction> dbEntries =
