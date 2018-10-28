@@ -331,8 +331,8 @@ public class DataProvider extends ContentProvider {
             super.notifyChange(context, uri);
 
             // Notify all /user/#/portal
-            for (int i = 0; i < mUserList.size(); i++) {
-                long userId = mUserList.get(i);
+            for (int i = 0; i < mActiveUsersCount; i++) {
+                long userId = mActiveUsersList.get(i);
                 NCL_SELF.notifyChange(context, new Uri.Builder()
                         .authority(AUTHORITY)
                         .appendPath(USER_PATH)
@@ -370,8 +370,8 @@ public class DataProvider extends ContentProvider {
             super.notifyChange(context, uri);
 
             // Notify all /user/#/credential
-            for (int i = 0; i < mUserList.size(); i++) {
-                long userId = mUserList.get(i);
+            for (int i = 0; i < mActiveUsersCount; i++) {
+                long userId = mActiveUsersList.get(i);
                 NCL_USER_CREDENTIAL.notifyChange(context, new Uri.Builder()
                         .authority(AUTHORITY)
                         .appendPath(USER_PATH)
@@ -396,8 +396,8 @@ public class DataProvider extends ContentProvider {
             super.notifyChange(context, uri);
 
             // Notify all /user/#/menu, /user/#/action and /user/#/day
-            for (int i = 0; i < mUserList.size(); i++) {
-                long userId = mUserList.get(i);
+            for (int i = 0; i < mActiveUsersCount; i++) {
+                long userId = mActiveUsersList.get(i);
 
                 // /user/#/menu
                 NCL_SELF.notifyChange(context, new Uri.Builder()
@@ -451,8 +451,9 @@ public class DataProvider extends ContentProvider {
 
     private DbHelper mDbHelper;
     private ContentRepository mRepository;
-    private Set<Long> mUsersSet = new HashSet<>();
-    private List<Long> mUserList = new ArrayList<>();
+    private Set<Long> mActiveUsersSet = new HashSet<>();
+    private final List<Long> mActiveUsersList = new ArrayList<>();
+    private int mActiveUsersCount = 0;
 
     // -------------------------------------------------------------------------------------------
     // Functions
@@ -490,8 +491,11 @@ public class DataProvider extends ContentProvider {
         long userId = getSecondSegmentId(uri, USER_PATH);
 
         // Protection against ConcurrentModificationException
-        if(mUsersSet.add(userId)) {
-            mUserList.add(userId);
+        if(mActiveUsersSet.add(userId)) {
+            synchronized (mActiveUsersList) {
+                mActiveUsersList.add(userId);
+                mActiveUsersCount++;
+            }
         }
 
         return userId;
