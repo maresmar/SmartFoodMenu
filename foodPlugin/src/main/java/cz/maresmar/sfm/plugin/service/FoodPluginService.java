@@ -264,7 +264,12 @@ public abstract class FoodPluginService extends JobIntentService {
 
             StringWriter stringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(stringWriter);
+
+            printWriter
+                    .append('\n')
+                    .append(mLogData.toString());
             e.printStackTrace(printWriter);
+
             mErrorMessage = stringWriter.toString();
 
             results.put(todo, BroadcastContract.RESULT_UNKNOWN_PORTAL_FORMAT);
@@ -273,7 +278,12 @@ public abstract class FoodPluginService extends JobIntentService {
 
             StringWriter stringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(stringWriter);
+
+            printWriter
+                    .append('\n')
+                    .append(mLogData.toString());
             e.printStackTrace(printWriter);
+
             mErrorMessage = stringWriter.toString();
 
             results.put(todo, BroadcastContract.RESULT_PORTAL_TEMPORALLY_INACCESSIBLE);
@@ -282,7 +292,12 @@ public abstract class FoodPluginService extends JobIntentService {
 
             StringWriter stringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(stringWriter);
+
+            printWriter
+                    .append('\n')
+                    .append(mLogData.toString());
             e.printStackTrace(printWriter);
+
             mErrorMessage = stringWriter.toString();
 
             results.put(todo, BroadcastContract.RESULT_IO_EXCEPTION);

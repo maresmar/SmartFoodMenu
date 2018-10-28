@@ -76,6 +76,13 @@ public class LogData {
         this.credentialGroupId = credentialGroupId;
     }
 
+    @Override
+    public String toString() {
+        return "LogData[reference="+portalReference+"; security="+portalSecurity+"; " +
+                "features="+portalFeatures+"; portalExtra="+portalExtra+"; " +
+                "credentialExtra="+credentialExtra+" ]";
+    }
+
     /**
      * Class that creates new {@link LogData} from {@link Cursor}'s row using {@link LogData}'s constructor
      */
