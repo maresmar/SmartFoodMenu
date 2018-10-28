@@ -273,14 +273,15 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date;
+
+        String dateStr = mParser.getAttributeValue(EnclosedXmlParser.ns, "id");
         try {
-            String dateStr = mParser.getAttributeValue(EnclosedXmlParser.ns, "id");
             if (dateStr.startsWith("day-")) {
                 dateStr = dateStr.substring(4);
             }
             date = formatter.parse(dateStr);
         } catch (ParseException e) {
-            throw new WebPageFormatChangedException("Bad web format (in Date)", null);
+            throw new WebPageFormatChangedException("Bad menu date format " + dateStr, null);
         }
         return date.getTime();
     }
@@ -398,7 +399,8 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
             try {
                 positionInGroup = Integer.parseInt(labelMatcher.group(FOOD_LABEL_PATTERN_POSITION_IN_GROUP));
             } catch (NumberFormatException e) {
-                throw new WebPageFormatChangedException("Cannot parse position of food in menu group");
+                throw new WebPageFormatChangedException("Cannot parse position of food in menu group " +
+                        "from " + labelMatcher.group(FOOD_LABEL_PATTERN_POSITION_IN_GROUP));
             }
         } else {
             groupName = labelMatcher.group(FOOD_LABEL_PATTERN_GROUP_NAME_SIMPLE);
@@ -490,7 +492,8 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
             try {
                 positionInGroup = Integer.parseInt(labelMatcher.group(FOOD_LABEL_PATTERN_POSITION_IN_GROUP));
             } catch (NumberFormatException e) {
-                throw new WebPageFormatChangedException("Cannot parse position of food in menu group");
+                throw new WebPageFormatChangedException("Cannot parse position of food in menu group " +
+                        "from " + labelMatcher.group(FOOD_LABEL_PATTERN_POSITION_IN_GROUP));
             }
         } else {
             groupName = labelMatcher.group(FOOD_LABEL_PATTERN_GROUP_NAME_SIMPLE);
@@ -556,11 +559,12 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
 
     private int readQuantity() throws IOException, XmlPullParserException {
         mParser.require(XmlPullParser.START_TAG, EnclosedXmlParser.ns, "b");
+
+        String quantityText = readText().replaceFirst(" ks", "").trim();
         try {
-            String quantityText = readText().replaceFirst(" ks", "").trim();
             return Integer.valueOf(quantityText);
         } catch (NumberFormatException e) {
-            throw new WebPageFormatChangedException("Cannot reed quantity", e);
+            throw new WebPageFormatChangedException("Cannot reed quantity from " + quantityText, e);
         }
     }
 

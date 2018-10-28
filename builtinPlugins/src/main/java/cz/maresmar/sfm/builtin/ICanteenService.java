@@ -577,8 +577,9 @@ public class ICanteenService extends TasksPluginService {
                 }
 
                 // Check result in every case
-                if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_OK)
-                    throw new WebPageFormatChangedException("Illegal server response");
+                int responseCode = urlConnection.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK)
+                    throw new WebPageFormatChangedException("Illegal server response " + responseCode);
                 urlConnection.disconnect();
             }
 
