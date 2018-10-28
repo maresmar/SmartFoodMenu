@@ -265,9 +265,8 @@ public abstract class FoodPluginService extends JobIntentService {
             StringWriter stringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(stringWriter);
 
-            printWriter
-                    .append('\n')
-                    .append(mLogData.toString());
+            printWriter.append(mLogData.toString())
+                    .append('\n');
             e.printStackTrace(printWriter);
 
             mErrorMessage = stringWriter.toString();
@@ -279,9 +278,8 @@ public abstract class FoodPluginService extends JobIntentService {
             StringWriter stringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(stringWriter);
 
-            printWriter
-                    .append('\n')
-                    .append(mLogData.toString());
+            printWriter.append(mLogData.toString())
+                    .append('\n');
             e.printStackTrace(printWriter);
 
             mErrorMessage = stringWriter.toString();
@@ -293,9 +291,8 @@ public abstract class FoodPluginService extends JobIntentService {
             StringWriter stringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(stringWriter);
 
-            printWriter
-                    .append('\n')
-                    .append(mLogData.toString());
+            printWriter.append(mLogData.toString())
+                    .append('\n');
             e.printStackTrace(printWriter);
 
             mErrorMessage = stringWriter.toString();
