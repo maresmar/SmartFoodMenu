@@ -26,8 +26,8 @@ android {
         applicationId "cz.maresmar.sfm"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 30201
-        versionName "3.2.1"
+        versionCode 30202
+        versionName "3.2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
