@@ -364,7 +364,8 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
 
                 cursor.moveToFirst();
                 if (BuildConfig.DEBUG) {
-                    Assert.isOne(cursor.getCount());
+                    Assert.that(cursor.getCount() > 0, "You should have at least one portal," +
+                            "but has %d", cursor.getCount());
                 }
 
                 String pluginId = cursor.getString(0);
