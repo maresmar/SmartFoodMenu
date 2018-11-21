@@ -34,4 +34,7 @@ být prázdné.
     <string name="illegal_web_page_test_msg">Stránka nenalezena, opravte url…</string>
     <string name="io_exception_test_msg">Chyba sítě, zkuste to později nebo opravte url…</string>
     <string name="server_not_recognized_test_msg">Nebyla rozpoznána přihlašovací stránka, opravte url…</string>
+    <string name="ui_ignore_https_bad_redirection">Ignorovat špatné HTTPS přesměrování</string>
+    <string name="ui_ignore_https_bad_redirection_des">Ignoruje přesměrování z HTTPS na HTTP</string>
+
 </resources>

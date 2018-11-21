@@ -55,6 +55,7 @@ public class ICanteenService extends TasksPluginService {
 
     protected static final String EXTRA_PORTAL_VERSION = "portalVersion";
     protected static final String EXTRA_PORTAL_VERSION_AUTO_UPDATE = "portalAutoUpdate";
+    protected static final String EXTRA_HAS_BAD_HTTPS_REDIRECTION = "hasBadHttpsRedirection";
     protected static final String EXTRA_PORTAL_ID = "portalId";
     protected static final String EXTRA_ALLERGENS_PATTERN = "allergensPattern";
 
@@ -75,6 +76,7 @@ public class ICanteenService extends TasksPluginService {
     boolean mPluginDataAutoUpdate = true;
     String mAllergensPattern = null;
     Integer mPortalId = null;
+    boolean mHasBadHttpsRedirection = true;
 
     @Override
     public void onCreate() {
@@ -170,6 +172,12 @@ public class ICanteenService extends TasksPluginService {
         extra.valuesList = new String[]{YES, NO};
         extraFormats.add(extra);
 
+        name = getString(R.string.ui_ignore_https_bad_redirection);
+        extra = new ExtraFormat(EXTRA_HAS_BAD_HTTPS_REDIRECTION, name);
+        extra.description = getString(R.string.ui_ignore_https_bad_redirection_des);
+        extra.valuesList = new String[]{YES, NO};
+        extraFormats.add(extra);
+
         // Portal ID
         name = getString(R.string.ui_portal_id_name);
         extra = new ExtraFormat(EXTRA_PORTAL_ID, name);
@@ -217,6 +225,9 @@ public class ICanteenService extends TasksPluginService {
 
             // Auto update
             mPluginDataAutoUpdate = YES.equals(extraData.getString(EXTRA_PORTAL_VERSION_AUTO_UPDATE));
+
+            // Bad HTTPS recreations
+            mHasBadHttpsRedirection = YES.equals(extraData.getString(EXTRA_HAS_BAD_HTTPS_REDIRECTION));
 
             // Portal ID
             String portalIdString = extraData.getString(EXTRA_PORTAL_ID);
@@ -269,6 +280,13 @@ public class ICanteenService extends TasksPluginService {
                 extraData.put(EXTRA_PORTAL_VERSION_AUTO_UPDATE, YES);
             } else {
                 extraData.put(EXTRA_PORTAL_VERSION_AUTO_UPDATE, NO);
+            }
+
+            // Bad HTTPS redirection
+            if (mHasBadHttpsRedirection) {
+                extraData.put(EXTRA_HAS_BAD_HTTPS_REDIRECTION, YES);
+            } else {
+                extraData.put(EXTRA_HAS_BAD_HTTPS_REDIRECTION, NO);
             }
 
             // Portal ID
@@ -389,7 +407,7 @@ public class ICanteenService extends TasksPluginService {
             }
 
             int responseCode = urlConnection.getResponseCode();
-            if (responseCode != HttpURLConnection.HTTP_OK)
+            if (!mHasBadHttpsRedirection && responseCode != HttpURLConnection.HTTP_OK)
                 throw new WebPageFormatChangedException("Illegal server response " + responseCode);
         } finally {
             urlConnection.disconnect();
@@ -404,7 +422,7 @@ public class ICanteenService extends TasksPluginService {
         urlConnection.setInstanceFollowRedirects(true);
 
         int responseCode = urlConnection.getResponseCode();
-        if (responseCode != HttpURLConnection.HTTP_OK)
+        if (!mHasBadHttpsRedirection && responseCode != HttpURLConnection.HTTP_OK)
             throw new WebPageFormatChangedException("Illegal server response " + responseCode);
 
         urlConnection.disconnect();
