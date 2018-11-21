@@ -22,11 +22,8 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
-        <i>Verze 3.2.2</i><br />
+        <i>Verze 3.2.3</i><br />
         - Více výdejnová vylepšení<br />
-        - Opravy chyb<br />
-        <i>Verze 3.2.1</i><br />
-        - Vylepšená podpora vlastních jídelen<br />
         - Opravy parsování<br />
         - Vylepšení odesílání zpětné vazby<br />
         <i>Verze 3.2.0</i><br />

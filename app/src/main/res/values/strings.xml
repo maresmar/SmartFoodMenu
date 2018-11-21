@@ -22,11 +22,8 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
-         <i>Version 3.2.2</i><br />
+         <i>Version 3.2.3</i><br />
         - Multi portal improvements<br />
-        - Bug fixes<br />
-         <i>Version 3.2.1</i><br />
-        - Custom portals support improvements<br />
         - Parsing fixes<br />
         - Send feedback improvements<br />
          <i>Version 3.2.0</i><br />
