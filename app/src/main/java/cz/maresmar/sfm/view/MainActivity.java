@@ -1108,7 +1108,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case TODAY_FRAGMENT_ID:
             case ORDER_FRAGMENT_ID:
-                throw new UnsupportedOperationException("Fragment change page to " + pageId);
+                // Result received withing fragment switching
+                Timber.w("onPageChanged event received when there is fragment without paging");
+                break;
             default:
                 onPortalChanged(pageId);
 
