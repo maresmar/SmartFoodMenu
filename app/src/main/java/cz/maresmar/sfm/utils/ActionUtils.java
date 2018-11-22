@@ -45,6 +45,7 @@ import cz.maresmar.sfm.R;
 import cz.maresmar.sfm.app.NotificationContract;
 import cz.maresmar.sfm.db.DbContract;
 import cz.maresmar.sfm.provider.ProviderContract;
+import cz.maresmar.sfm.provider.PublicProviderContract;
 import cz.maresmar.sfm.service.plugin.sync.SyncHandler;
 import cz.maresmar.sfm.view.MainActivity;
 import timber.log.Timber;
@@ -87,12 +88,13 @@ public class ActionUtils {
         // Load the corresponding menu entry
         @ProviderContract.PortalFeatures
         int portalFeatures;
-        long groupId;
+        long menuGroupId;
         int price;
         long date;
         int syncedReserved, syncedOffered, syncedTaken;
         boolean hasLocal;
         int localReserved, localOffered;
+        long portalGroupId;
 
         Uri menuUri = Uri.withAppendedPath(userUri, ProviderContract.MENU_ENTRY_PATH);
         ArrayList<ContentProviderOperation> ops = new ArrayList<>();
@@ -108,7 +110,8 @@ public class ActionUtils {
                         ProviderContract.MenuEntry.SYNCED_OFFERED_AMOUNT,
                         ProviderContract.MenuEntry.SYNCED_TAKEN_AMOUNT,
                         ProviderContract.MenuEntry.LOCAL_RESERVED_AMOUNT,
-                        ProviderContract.MenuEntry.LOCAL_OFFERED_AMOUNT
+                        ProviderContract.MenuEntry.LOCAL_OFFERED_AMOUNT,
+                        ProviderContract.MenuEntry.PORTAL_GROUP_ID
                 },
                 ProviderContract.MenuEntry.ME_RELATIVE_ID + " = " + relativeId + " AND "
                         + ProviderContract.MenuEntry.PORTAL_ID + " = " + portalId,
@@ -123,7 +126,7 @@ public class ActionUtils {
 
             // Info
             portalFeatures = menuCursor.getInt(0);
-            groupId = menuCursor.getLong(1);
+            menuGroupId = menuCursor.getLong(1);
             price = menuCursor.getInt(2);
             date = menuCursor.getLong(3);
 
@@ -136,6 +139,9 @@ public class ActionUtils {
             hasLocal = !menuCursor.isNull(7);
             localReserved = menuCursor.getInt(7);
             localOffered = menuCursor.getInt(8);
+
+            // Portal group
+            portalGroupId = menuCursor.getLong(9);
 
             // Insert changes
             Uri actionUri = Uri.withAppendedPath(userUri, ProviderContract.ACTION_PATH);
@@ -154,13 +160,16 @@ public class ActionUtils {
             } else {
                 // Delete actions for whole menu entry group
                 ops.add(ContentProviderOperation.newDelete(actionUri)
-                        .withSelection(ProviderContract.Action.ME_PORTAL_ID + " = " + portalId + " AND " +
+                        .withSelection(ProviderContract.Action.ME_PORTAL_ID + " IN " +
+                                "(SELECT " + DbContract.Portal._ID +
+                                " FROM " + DbContract.Portal.TABLE_NAME +
+                                " WHERE " + DbContract.Portal.COLUMN_NAME_PGID +" == " + portalGroupId +" ) AND " +
                                 ProviderContract.Action.SYNC_STATUS + " = " + ProviderContract.ACTION_SYNC_STATUS_EDIT + " AND " +
                                 "EXISTS ( SELECT * FROM " + DbContract.MenuEntry.TABLE_NAME + " WHERE " +
                                 DbContract.MenuEntry.COLUMN_NAME_PID + " == " + ProviderContract.Action.ME_PORTAL_ID + " AND " +
                                 DbContract.MenuEntry.COLUMN_NAME_RELATIVE_ID + " == " + ProviderContract.Action.ME_RELATIVE_ID + " AND " +
                                 DbContract.MenuEntry.COLUMN_NAME_DATE + " == " + date + " AND " +
-                                DbContract.MenuEntry.COLUMN_NAME_MGID + " == " + groupId + " )", null)
+                                DbContract.MenuEntry.COLUMN_NAME_MGID + " == " + menuGroupId + " )", null)
                         .build());
             }
 
@@ -176,11 +185,15 @@ public class ActionUtils {
                                     ProviderContract.MenuEntry.PRICE,
                                     ProviderContract.MenuEntry.STATUS,
                                     ProviderContract.MenuEntry.SYNCED_RESERVED_AMOUNT,
-                                    ProviderContract.MenuEntry.SYNCED_TAKEN_AMOUNT
+                                    ProviderContract.MenuEntry.SYNCED_TAKEN_AMOUNT,
+                                    ProviderContract.MenuEntry.PORTAL_ID
                             },
-                            ProviderContract.MenuEntry.PORTAL_ID + " = " + portalId + " AND " +
+                            ProviderContract.MenuEntry.PORTAL_ID + " IN " +
+                                    "(SELECT " + DbContract.Portal._ID +
+                                    " FROM " + DbContract.Portal.TABLE_NAME +
+                                    " WHERE " + DbContract.Portal.COLUMN_NAME_PGID +" == " + portalGroupId +" ) AND " +
                                     ProviderContract.MenuEntry.DATE + " = " + date + " AND " +
-                                    ProviderContract.MenuEntry.GROUP_ID + " = " + groupId + " AND (" +
+                                    ProviderContract.MenuEntry.GROUP_ID + " = " + menuGroupId + " AND (" +
                                     "(IFNULL(" + ProviderContract.MenuEntry.SYNCED_RESERVED_AMOUNT + ", 0)" +
                                     " - IFNULL(" + ProviderContract.MenuEntry.SYNCED_TAKEN_AMOUNT + ", 0)) > 0 OR " +
                                     "(IFNULL(" + ProviderContract.MenuEntry.LOCAL_RESERVED_AMOUNT + ", 0)" +
@@ -201,7 +214,7 @@ public class ActionUtils {
                                 // Insert virtual actions
                                 ContentValues newAction = new ContentValues();
                                 newAction.put(ProviderContract.Action.ME_RELATIVE_ID, groupCursor.getLong(0));
-                                newAction.put(ProviderContract.Action.ME_PORTAL_ID, portalId);
+                                newAction.put(ProviderContract.Action.ME_PORTAL_ID, groupCursor.getLong(5));
                                 newAction.put(ProviderContract.Action.SYNC_STATUS, ProviderContract.ACTION_SYNC_STATUS_EDIT);
                                 newAction.put(ProviderContract.Action.ENTRY_TYPE, ProviderContract.ACTION_ENTRY_TYPE_VIRTUAL);
                                 newAction.put(ProviderContract.Action.PRICE, groupCursor.getInt(1));
