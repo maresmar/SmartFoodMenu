@@ -22,10 +22,12 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
-         <i>Version 3.2.3</i><br />
+         <i>Version 3.2.4</i><br />
         - Multi portal improvements<br />
         - Parsing fixes<br />
         - Send feedback improvements<br />
+        - UI fixes
+        - Improved SSL security
          <i>Version 3.2.0</i><br />
         - Improved portal version detection<br />
         - UI/UX improvements and fixes<br />
