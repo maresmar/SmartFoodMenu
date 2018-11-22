@@ -36,6 +36,7 @@ import android.widget.EditText;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.security.ProviderInstaller;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
@@ -57,7 +58,7 @@ import timber.log.Timber;
  * Application singleton that is used for logging using Timber
  * @see Application
  */
-public class SfmApp extends Application {
+public class SfmApp extends Application implements ProviderInstaller.ProviderInstallListener {
 
     File mTmpFile;
     PrintStream mPrintStream;
@@ -109,6 +110,9 @@ public class SfmApp extends Application {
         Timber.i("Starting sfm %s", getString(R.string.app_version));
 
         NotificationContract.initNotificationChannels(this);
+
+        // Update the security provider
+        ProviderInstaller.installIfNeededAsync(this, this);
     }
 
     @Override
@@ -182,6 +186,33 @@ public class SfmApp extends Application {
         }
 
         context.startActivity(Intent.createChooser(emailIntent, getString(R.string.feedback_choose_email_app_dialog)));
+    }
+
+    /**
+     * This method is only called if the provider is successfully updated
+     * (or is already up-to-date).
+     */
+    @Override
+    public void onProviderInstalled() {
+        Timber.i("Security provider is up-to-date");
+    }
+
+    /**
+     * This method is called if updating fails; the error code indicates
+     * whether the error is recoverable.
+     */
+    @Override
+    public void onProviderInstallFailed(int errorCode, Intent intent) {
+        GoogleApiAvailability availability = GoogleApiAvailability.getInstance();
+        if (availability.isUserResolvableError(errorCode)) {
+            // Recoverable error. Show a dialog prompting the user to
+            // install/update/enable Google Play services.
+            availability.showErrorNotification(getApplicationContext(), errorCode);
+            Timber.w("Google play services needs install/update/enable");
+        } else {
+            // Google Play services is not available.
+            Timber.e("Google play services not available");
+        }
     }
 
     /**
