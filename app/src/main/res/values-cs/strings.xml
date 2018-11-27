@@ -29,7 +29,7 @@
         - UI opravy
         - Vylepšení SSL zabezpečení
         <i>Verze 3.2.0</i><br />
-        - Vylepšená detekce verze portálu<br />
+        - Vylepšená detekce verze jídelny<br />
         - UI/UX vylepšení a opravy<br />
         - Opravy parsování<br />
         <i>Verze 3.1.0</i><br />
@@ -114,9 +114,9 @@
     <string name="portal_remove_location_button">Odebrat</string>
     <string name="portal_notify_about_new_food_checkbox">Upozornit na nové jídlo</string>
     <string name="portal_checking_portal_data">Kontroluji nastavení jídelny… Prosím čekejte…</string>
-    <string name="credential_list_title">Uživatelovi portály</string>
+    <string name="credential_list_title">Správa jídelen</string>
     <string name="credential_list_edit">Upravit přihlašovací údaje</string>
-    <string name="credential_list_edit_portal">Upravit nastavení portálu</string>
+    <string name="credential_list_edit_portal">Upravit nastavení jídelny</string>
     <string name="credential_list_delete">Smazat přihlašovací údaje</string>
     <string name="credential_list_without_credential">Bez přihlašovacích údajů</string>
     <string name="login_detail_title">Přihlašovací údaje</string>
@@ -125,7 +125,7 @@
     <string name="credential_password_hint">Heslo:</string>
     <string name="credential_username_hint">Uživatelské jméno:</string>
     <string name="credential_credential_groups">Skupina uživatelů</string>
-    <string name="credential_group_description">Důležité pouze pokud používáte více uživatelů…</string>
+    <string name="credential_group_description">Důležité pouze pokud budete používat více uživatelů…</string>
     <string name="credential_detail_checking_credential_data">Kontrolování přihlašovacích údajů… Prosím čekejte…</string>
     <string name="credential_notify_credit_bellow_checkbox">Upozornit na kredit pod</string>
     <string name="credential_notify_credit_below_text">100</string>
@@ -183,7 +183,7 @@
     <string name="notification_credit_icrease_title">Zvýšení kreditu</string>
     <string name="notification_credit_icrease_text">%s pro %s</string>
     <string name="feedback_subject_title">Předmět zpětné vazby</string>
-    <string name="feedback_subject_msg">Napiště krátké shrnutí, které bude použito jako předmět e-mailu…</string>
+    <string name="feedback_subject_msg">Napište krátké shrnutí, které bude použito jako předmět e-mailu…</string>
     <string name="feedback_mail_text">Napište všechny zbývající detaily sem…</string>
     <string name="feedback_choose_email_app_dialog">Vyberte e-mailovou aplikaci…</string>
     <string name="pref_activity_title">Nastavení</string>
@@ -227,7 +227,7 @@
     <string name="portal_detail_override_warning_msg">Automatická synchronizace nastavení jídelen je zapnutá - ta přepíše většinu změn (mimo nastavení notifikací). Chcete pracovat na lokální kopii?</string>
     <string name="portal_detail_override_copy_button">Použít lokální kopii</string>
     <string name="portal_detail_override_turn_off_button">Vypnout synchronizaci</string>
-    <string name="portal_detail_override_turned_off_msg">Synchronizace nastavení portálů vypnuta</string>
+    <string name="portal_detail_override_turned_off_msg">Synchronizace nastavení jídelen vypnuta</string>
     <string name="undo_action">ZPĚT</string>
     <string name="portal_detail_override_read_only_button">Ignorovat / upravit notifikace</string>
 </resources>
