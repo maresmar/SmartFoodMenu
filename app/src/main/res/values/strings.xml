@@ -129,7 +129,7 @@
 
 
     <!-- Credential's screen -->
-    <string name="credential_list_title">User\'s portals</string>
+    <string name="credential_list_title">Portals management</string>
     <string name="credential_list_edit">Edit credentials</string>
     <string name="credential_list_edit_portal">Edit portal settings</string>
     <string name="credential_list_delete">Delete credential</string>
