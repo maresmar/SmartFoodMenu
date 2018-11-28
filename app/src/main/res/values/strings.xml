@@ -209,6 +209,7 @@
 
     <!-- Feedback -->
     <string name="feedback_subject_title">Subject of feedback</string>
+    <string name="feedback_subject_empty">Subject cannot be empty</string>
     <string name="feedback_subject_msg">Write a short summary that will be used as e-mail\'s subject…</string>
     <string name="feedback_mail_text">Write all remaining details here…</string>
     <string name="feedback_choose_email_app_dialog">Choose e-mail app…</string>

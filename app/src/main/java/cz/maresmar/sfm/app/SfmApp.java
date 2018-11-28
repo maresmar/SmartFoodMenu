@@ -31,7 +31,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -56,6 +58,7 @@ import timber.log.Timber;
 
 /**
  * Application singleton that is used for logging using Timber
+ *
  * @see Application
  */
 public class SfmApp extends Application implements ProviderInstaller.ProviderInstallListener {
@@ -65,6 +68,7 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
 
     /**
      * Shows about activity
+     *
      * @param context Some valid context
      */
     public static void startAboutActivity(@NonNull Context context) {
@@ -129,6 +133,7 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
 
     /**
      * Returns the file where the logs are written
+     *
      * @return The log file
      */
     @NonNull
@@ -142,9 +147,11 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
      */
     public void sendFeedback(Context context) {
         // Shows subjects dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.feedback_subject_title);
-        builder.setMessage(R.string.feedback_subject_msg);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(R.string.feedback_subject_title)
+                .setMessage(R.string.feedback_subject_msg)
+                .setPositiveButton(android.R.string.ok, null)
+                .setNegativeButton(android.R.string.cancel, null);
 
         // Set up the input
         final EditText input = new EditText(context);
@@ -152,11 +159,21 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         builder.setView(input);
 
-        // Set up the buttons
-        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> sendFeedback(context, input.getText().toString()));
-        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel());
+        final AlertDialog dialog = builder.create();
 
-        builder.show();
+        // Set OK action that doesn't need to dismiss dialog
+        dialog.setOnShowListener(dialogInterface -> {
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            positiveButton.setOnClickListener(view -> {
+                if (TextUtils.isEmpty(input.getText())) {
+                    input.setError(context.getString(R.string.feedback_subject_empty));
+                } else {
+                    dialog.dismiss();
+                    sendFeedback(context, input.getText().toString());
+                }
+            });
+        });
+        dialog.show();
     }
 
     private void sendFeedback(Context context, String subject) {
@@ -225,6 +242,7 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
 
         /**
          * Create Timber log tree that log to {@link PrintStream}
+         *
          * @param log Stream to log to
          */
         ReleaseTree(@NonNull PrintStream log) {
