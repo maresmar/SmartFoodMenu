@@ -185,7 +185,7 @@
     <string name="feedback_subject_title">Předmět zpětné vazby</string>
     <string name="feedback_subject_empty">Předmět nemůže být prázdný</string>
     <string name="feedback_subject_msg">Napište krátké shrnutí, které bude použito jako předmět e-mailu…</string>
-    <string name="feedback_mail_text">Napište všechny zbývající detaily sem…</string>
+    <string name="feedback_mail_text">Nahraďte tento text zbývajícími detaily…</string>
     <string name="feedback_choose_email_app_dialog">Vyberte e-mailovou aplikaci…</string>
     <string name="pref_activity_title">Nastavení</string>
     <string name="pref_auto_sync_category">Automatická synchronizace</string>
