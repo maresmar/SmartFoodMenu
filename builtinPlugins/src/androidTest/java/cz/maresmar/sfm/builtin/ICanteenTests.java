@@ -1414,5 +1414,37 @@ public class ICanteenTests {
 
             }
         }
+
+        public static class MenuPage03 {
+
+            InputStream mIs;
+            int mPortalVersion = 214;
+            String mAllergenPattern = null;
+            boolean mAutoUpdate = false;
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat mFormatter = new SimpleDateFormat("yyyy-MM-dd");
+
+            List<MenuEntry> menuEntries;
+            List<GroupMenuEntry> groupMenuEntries;
+            List<Action.MenuEntryAction> orderEntries;
+
+            @Before
+            public void init() throws Exception {
+                mFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+                Context testContext = InstrumentationRegistry.getInstrumentation().getContext();
+                mIs = testContext.getAssets().open("214/03/iCanteen.html");
+
+                ICanteenMenuParser parser = new ICanteenMenuParser(mPortalVersion, mAllergenPattern, mAutoUpdate);
+
+                parser.parseData(mIs, mLogData);
+
+                Assert.assertEquals(150800, parser.getCredit());
+
+                menuEntries = parser.getMenuEntries();
+                groupMenuEntries = parser.getGroupMenuEntries();
+                orderEntries = parser.getActionEntries();
+            }
+        }
     }
 }

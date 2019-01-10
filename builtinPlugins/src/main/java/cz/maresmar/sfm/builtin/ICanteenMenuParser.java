@@ -218,6 +218,7 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
                         if (creditStr.endsWith(" Kč")) {
                             creditStr = creditStr.substring(0, creditStr.length() - 3);
                             creditStr = creditStr.replace(',', '.');
+                            creditStr = creditStr.replace(" ", "");
                         }
                         try {
                             mCredit = (int) (Double.parseDouble(creditStr) * 100);
