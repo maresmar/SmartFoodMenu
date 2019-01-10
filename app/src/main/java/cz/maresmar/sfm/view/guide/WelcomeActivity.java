@@ -315,8 +315,13 @@ public class WelcomeActivity extends AppCompatActivity
         switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
                 // Done pressed
-                tryToMoveToNextPage();
-                return true;
+                // Fixed because of crashes from GPC
+                if(mPagerAdapter.getFragment(mViewPager.getCurrentItem()) instanceof DataForm) {
+                    tryToMoveToNextPage();
+                    return true;
+                } else {
+                    return false;
+                }
             case KeyEvent.KEYCODE_BACK:
                 if (mViewPager.getCurrentItem() != 0) {
                     //Return to previous fragment
