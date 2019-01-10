@@ -230,7 +230,6 @@ public class PublicProviderContract {
         public static final String EDIT_RESERVED_AMOUNT = DbContract.MenuEntry.EDIT_ACTION_TABLE_ALIAS + DOT + DbContract.FoodAction.COLUMN_NAME_RESERVED_AMOUNT;
         public static final String EDIT_OFFERED_AMOUNT = DbContract.MenuEntry.EDIT_ACTION_TABLE_ALIAS + DOT + DbContract.FoodAction.COLUMN_NAME_OFFERED_AMOUNT;
         // Helping columns
-        public static final String PORTAL_GROUP_ID = DbContract.Portal.TABLE_NAME + DOT + DbContract.Portal.COLUMN_NAME_PGID;
         public static final String PORTAL_FEATURES = DbContract.Portal.TABLE_NAME + DOT + DbContract.Portal.COLUMN_NAME_FEATURES;
         public static final String PORTAL_NAME = DbContract.Portal.TABLE_NAME + DOT + DbContract.Portal.COLUMN_NAME_NAME;
         public static final String GROUP_ID = DbContract.MenuEntry.COLUMN_NAME_MGID;
