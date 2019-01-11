@@ -111,43 +111,46 @@ public class MainActivity extends AppCompatActivity
     private static final String ARG_REFRESHING = "refreshing";
 
     // User part of drawer
-    private static final int ADD_USER_DRAWER_ITEM_ID = 500_000;
+    private static final int ADD_USER_DRAWER_ITEM_ID = 400_000;
     private static final ProfileSettingDrawerItem ADD_USER_DRAWER_ITEM = new ProfileSettingDrawerItem()
             .withName(R.string.drawer_add_user)
             .withDescription(R.string.drawer_add_user_description)
             .withIcon(R.drawable.ic_add_user)
             .withIconTinted(true)
             .withIdentifier(ADD_USER_DRAWER_ITEM_ID);
-    private static final int MANAGE_USERS_DRAWER_ID = 500_001;
+    private static final int MANAGE_USERS_DRAWER_ID = 400_001;
     private static final ProfileSettingDrawerItem MANAGE_USER_DRAWER_ITEM = new ProfileSettingDrawerItem()
             .withName(R.string.drawer_manage_users)
             .withIcon(R.drawable.ic_settings)
             .withIconTinted(true)
             .withIdentifier(MANAGE_USERS_DRAWER_ID);
     // Main part of drawer
-    private static final int TODAY_DRAWER_ID = 500_002;
-    private static final int DAY_DRAWER_ID = 500_003;
-    private static final int ORDERS_DRAWER_ID = 500_004;
-    private static final int FEEDBACK_DRAWER_ID = 500_005;
-    private static final int SETTINGS_DRAWER_ID = 500_006;
-    private static final int HELP_DRAWER_ID = 500_007;
-    private static final int ABOUT_DRAWER_ID = 500_008;
+    private static final int TODAY_DRAWER_ID = 400_002;
+    private static final int DAY_DRAWER_ID = 400_003;
+    private static final int ORDERS_DRAWER_ID = 400_004;
+    private static final int FEEDBACK_DRAWER_ID = 400_005;
+    private static final int SETTINGS_DRAWER_ID = 400_006;
+    private static final int HELP_DRAWER_ID = 400_007;
+    private static final int ABOUT_DRAWER_ID = 400_008;
     // Portal part of drawer
-    private static final int PORTAL_EXPANDABLE_DRAWER_ID = 500_009;
-    private static final int PORTAL_ITEM_DRAWER_TAG = 500_010;
-    private static final int ADD_PORTAL_DRAWER_ID = 500_011;
+    private static final int PORTAL_EXPANDABLE_DRAWER_ID = 400_009;
+    private static final int PORTAL_ITEM_DRAWER_TAG = 400_010;
+    private static final int CONTROL_DRAWER_TAG = 400_011;
+    private static final int ADD_PORTAL_DRAWER_ID = 400_012;
     private static final SecondaryDrawerItem ADD_PORTAL_DRAWER_ITEM = new SecondaryDrawerItem()
             .withName(R.string.drawer_add_portal)
             .withIcon(R.drawable.ic_add)
             .withIconTintingEnabled(true)
             .withIdentifier(ADD_PORTAL_DRAWER_ID)
+            .withTag(CONTROL_DRAWER_TAG)
             .withSelectable(false);
-    private static final int MANAGE_PORTAL_DRAWER_ID = 500_012;
+    private static final int MANAGE_PORTAL_DRAWER_ID = 400_013;
     private static final SecondaryDrawerItem MANAGE_PORTAL_DRAWER_ITEM = new SecondaryDrawerItem()
             .withName(R.string.drawer_manage_portals)
             .withIcon(R.drawable.ic_settings)
             .withIconTintingEnabled(true)
             .withIdentifier(MANAGE_PORTAL_DRAWER_ID)
+            .withTag(CONTROL_DRAWER_TAG)
             .withSelectable(false);
 
     // Fragments id's
@@ -1136,7 +1139,8 @@ public class MainActivity extends AppCompatActivity
             List<IDrawerItem> subItems = mPortalDrawerItem.getSubItems();
 
             for (IDrawerItem subItem : subItems) {
-                if (subItem.getIdentifier() == portalId) {
+                if ((subItem.getIdentifier() == portalId) &&
+                        ((int)subItem.getTag() == PORTAL_ITEM_DRAWER_TAG)) {
                     SecondaryDrawerItem portalItem = (SecondaryDrawerItem) subItem;
 
                     // Show portal name
