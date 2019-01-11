@@ -266,7 +266,7 @@
 
 
     <string name="sync_result_wrong_credentials">Wrong credentials found, check them…</string>
-    <string name="sync_result_unknown_portal_format">Unknown portal format, send me a message…</string>
+    <string name="sync_result_unknown_portal_format">Unknown portal format, try send me a message…</string>
     <string name="sync_result_temporally_inaccessible">Portal temporally inaccessible, try it again later…</string>
     <string name="sync_result_io_exception">Network error, try it again…</string>
     <string name="sync_result_plugin_timeout">Plugin didn\'t response in time, try to restart phone…</string>

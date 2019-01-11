@@ -217,7 +217,7 @@
     <string name="extra_invalid_input_error">Nalezen neplatný vstup</string>
     <string name="extra_value_not_follow_pattern_error">Hodnota nesplňuje vzor %s</string>
     <string name="sync_result_wrong_credentials">Špatné přihlašovací údaje, zkontrolujte je…</string>
-    <string name="sync_result_unknown_portal_format">Neznámý formát jídelny, pošlete mi zpětnou vazbu…</string>
+    <string name="sync_result_unknown_portal_format">Neznámý formát jídelny, zkuste mi poslat zpětnou vazbu…</string>
     <string name="sync_result_temporally_inaccessible">Jídelna je dočasně nedostupná, zkuste to později…</string>
     <string name="sync_result_io_exception">Síťová chyba, zkuste to později…</string>
     <string name="sync_result_plugin_timeout">Plugin neodpověděl včas, zkuste restartovat telefon…</string>
