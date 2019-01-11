@@ -107,7 +107,7 @@ public class ICanteenService extends TasksPluginService {
             mErrorMessage = getString(R.string.malformed_url_test_msg);
             return BroadcastContract.TEST_RESULT_INVALID_DATA;
         }
-        int endingIndex = webPage.indexOf("/faces/login.jsp");
+        int endingIndex = webPage.indexOf("/faces/");
         if (endingIndex != -1) {
             webPage = webPage.substring(0, endingIndex);
         }
