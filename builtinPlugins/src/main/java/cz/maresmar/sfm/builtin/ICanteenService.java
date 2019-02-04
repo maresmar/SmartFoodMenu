@@ -420,12 +420,15 @@ public class ICanteenService extends TasksPluginService {
         HttpURLConnection urlConnection = openUrl(logoutUrl);
 
         urlConnection.setInstanceFollowRedirects(true);
+        urlConnection.setDoInput(false);
 
-        int responseCode = urlConnection.getResponseCode();
-        if (!mHasBadHttpsRedirection && responseCode != HttpURLConnection.HTTP_OK)
-            throw new WebPageFormatChangedException("Illegal server response " + responseCode);
-
-        urlConnection.disconnect();
+        try {
+            int responseCode = urlConnection.getResponseCode();
+            if (!mHasBadHttpsRedirection && responseCode != HttpURLConnection.HTTP_OK)
+                throw new WebPageFormatChangedException("Illegal server response " + responseCode);
+        } finally {
+            urlConnection.disconnect();
+        }
     }
 
     @VisibleForTesting

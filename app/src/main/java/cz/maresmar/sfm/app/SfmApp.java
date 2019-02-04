@@ -26,7 +26,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -42,6 +44,7 @@ import com.google.android.gms.security.ProviderInstaller;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -86,6 +89,20 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
 
     @Override
     public void onCreate() {
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()   // or .detectAll() for all detectable problems
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyLog()
+//                    .penaltyDeath()
+                    .build());
+        }
         super.onCreate();
 
         // Register logging method
@@ -94,24 +111,27 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
             Timber.plant(new Timber.DebugTree());
         }
 
-        try {
-            File logsDir = new File(getCacheDir(), "logs");
-            if (!logsDir.exists()) {
-                boolean result = logsDir.mkdir();
+        AsyncTask.execute(() -> {
+            try {
+                File logsDir = new File(getCacheDir(), "logs");
+                if (!logsDir.exists()) {
+                    boolean result = logsDir.mkdir();
 
-                if (BuildConfig.DEBUG) {
-                    Assert.that(result, "Logs folder wasn't created");
+                    if (BuildConfig.DEBUG) {
+                        Assert.that(result, "Logs folder wasn't created");
+                    }
                 }
+                mTmpFile = File.createTempFile("sfm", ".log", logsDir);
+                mPrintStream = new PrintStream(new BufferedOutputStream(
+                        new FileOutputStream(mTmpFile, true)));
+
+                Timber.plant(new ReleaseTree(mPrintStream));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            mTmpFile = File.createTempFile("sfm", ".log", logsDir);
-            mPrintStream = new PrintStream(new FileOutputStream(mTmpFile, true));
 
-            Timber.plant(new ReleaseTree(mPrintStream));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Timber.i("Starting sfm %s", getString(R.string.app_version));
+            Timber.i("Starting sfm %s", getString(R.string.app_version));
+        });
 
         NotificationContract.initNotificationChannels(this);
 

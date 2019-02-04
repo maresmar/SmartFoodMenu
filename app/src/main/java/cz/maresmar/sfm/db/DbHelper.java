@@ -323,6 +323,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //noinspection deprecation
         enableForeignKeySupport(db);
+        if((oldVersion == 1) && (newVersion == 1)) {
+            return;
+        }
         throw new UnsupportedOperationException("SqLiteDb don't have more versions");
         // you should call onCreate(db); on the end when it changed
     }

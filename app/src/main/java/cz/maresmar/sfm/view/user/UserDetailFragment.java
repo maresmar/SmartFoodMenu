@@ -522,7 +522,10 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
         protected void onPostExecute(Bitmap bitmap) {
             Timber.d("Profile image loaded");
 
-            mFragmentRef.get().setProfilePicture(bitmap);
+            UserDetailFragment userDetailFragment = mFragmentRef.get();
+            if (userDetailFragment != null) {
+                userDetailFragment.setProfilePicture(bitmap);
+            }
         }
     }
 
@@ -551,7 +554,10 @@ public class UserDetailFragment extends Fragment implements LoaderManager.Loader
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            mFragmentRef.get().setProfilePicture(bitmap);
+            UserDetailFragment userDetailFragment = mFragmentRef.get();
+            if (userDetailFragment != null) {
+                userDetailFragment.setProfilePicture(bitmap);
+            }
         }
     }
 }
