@@ -22,7 +22,8 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
-        <i>Verze 3.2.6</i><br />
+        <i>Verze 3.2.7</i><br />
+        - Optimalizace
         - Opravy parsování kreditu<br />
         - Více výdejnová vylepšení<br />
         - Opravy parsování<br />
