@@ -25,7 +25,7 @@ android {
     defaultConfig {
         applicationId "cz.maresmar.sfm"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 30207
         versionName "3.2.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
