@@ -74,7 +74,7 @@ dependencies {
     // GSON (JSON parser)
     implementation 'com.google.code.gson:gson:2.8.4'
     // Google play services
-    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.google.android.gms:play-services-places:16.0.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     // Firebase JobDispatcher = JobScheduler for API < 21
