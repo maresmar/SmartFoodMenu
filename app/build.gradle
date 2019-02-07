@@ -86,13 +86,9 @@ dependencies {
     // Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'
     // Drawer
-    implementation('com.mikepenz:materialdrawer:6.0.8@aar') {
-        transitive = true
-    }
+    implementation('com.mikepenz:materialdrawer:6.1.2')
     // About libraries (it look really nice)
-    implementation('com.mikepenz:aboutlibraries:6.0.9@aar') {
-        transitive = true
-    }
+    implementation('com.mikepenz:aboutlibraries:6.2.2')
     // In browser SQL debugging (aka http://XXX.XXX.X.XXX:8080)
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
     // My libs

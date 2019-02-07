@@ -278,6 +278,7 @@ public class MainActivity extends AppCompatActivity
         mProfiles = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
+                .withTextColorRes(R.color.md_white_1000)
                 .addProfiles(
                         ADD_USER_DRAWER_ITEM,
                         MANAGE_USER_DRAWER_ITEM)
