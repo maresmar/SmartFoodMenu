@@ -18,6 +18,7 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -39,7 +40,6 @@ android {
             resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
         }
         debug {
-            versionNameSuffix ".debug"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
             resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
         }
@@ -78,6 +78,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-places:16.0.0'
     // Firebase JobDispatcher = JobScheduler for API < 21
     implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.7'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
     // Letter to drawable
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     // Circle ImageView
@@ -95,3 +98,5 @@ dependencies {
     implementation project(':apiContract')
     implementation project(':builtinPlugins')
 }
+
+apply plugin: 'com.google.gms.google-services'
