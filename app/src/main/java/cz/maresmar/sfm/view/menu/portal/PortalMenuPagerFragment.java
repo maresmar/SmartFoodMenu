@@ -22,13 +22,14 @@ package cz.maresmar.sfm.view.menu.portal;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -202,7 +203,7 @@ public class PortalMenuPagerFragment extends CursorPagerFragment implements Load
     // -------------------------------------------------------------------------------------------
 
     /**
-     * {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
+     * {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * selected portal
      */
     class PortalMenuPagerAdapter extends CursorPagerAdapter {

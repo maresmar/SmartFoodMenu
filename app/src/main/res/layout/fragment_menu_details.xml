@@ -19,14 +19,14 @@
   ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   -->
 
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.menu.MenuDetailsFragment">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -79,7 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/menu_text_text"
             tools:text="Jihlava, somewhere" />
 
-        <android.support.constraint.Barrier
+        <androidx.constraintlayout.widget.Barrier
             android:id="@+id/tableBarrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
             app:layout_constraintStart_toStartOf="@+id/menu_offer_button"
             tools:text="0" />
 
-        <android.support.constraint.Barrier
+        <androidx.constraintlayout.widget.Barrier
             android:id="@+id/labelsBarrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -337,13 +337,13 @@
             app:layout_constraintStart_toEndOf="@+id/labelsBarrier"
             tools:text="Tue, 19/5/2018 15:00" />
 
-        <android.support.constraint.Group
+        <androidx.constraintlayout.widget.Group
             android:id="@+id/menu_to_take_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="toTakeLabel,menu_to_take_text" />
 
-        <android.support.constraint.Group
+        <androidx.constraintlayout.widget.Group
             android:id="@+id/menu_offered_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -351,6 +351,6 @@
             tools:visibility="visible"
             app:constraint_referenced_ids="offeredLabel, menu_offer_button, menu_to_sync_offered_text, menu_synced_offered_text" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -22,19 +22,20 @@ package cz.maresmar.sfm.view.menu;
 import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.provider.BaseColumns;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import androidx.viewpager.widget.ViewPager;
 import cz.maresmar.sfm.Assert;
 import cz.maresmar.sfm.BuildConfig;
 
 /**
  * {@link FragmentStatePagerAdapter} that is based on {@link Cursor}. The {@link Cursor} must contains
  * column with {@link BaseColumns#_ID} which work as connection between {@link Cursor}'s row and
- * {@link android.support.v4.view.ViewPager} page's ID.
+ * {@link ViewPager} page's ID.
  */
 public abstract class CursorPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -131,7 +132,7 @@ public abstract class CursorPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     /**
-     * Returns first page position (in {@link android.support.v4.view.ViewPager}) that has bigger or
+     * Returns first page position (in {@link ViewPager}) that has bigger or
      * equal ID than selected ID
      *
      * @param pageId ID of page
@@ -162,7 +163,7 @@ public abstract class CursorPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     /**
-     * Returns page position (in {@link android.support.v4.view.ViewPager}) that has same ID as
+     * Returns page position (in {@link ViewPager}) that has same ID as
      * selected ID
      *
      * @param pageId ID of page
@@ -185,7 +186,7 @@ public abstract class CursorPagerAdapter extends FragmentStatePagerAdapter {
 
     /**
      * Returns page ID of selected position
-     * @param position Position in {@link android.support.v4.view.ViewPager}
+     * @param position Position in {@link ViewPager}
      * @return ID corresponding with {@link Cursor}'s row ID
      */
     public long getId(int position) {

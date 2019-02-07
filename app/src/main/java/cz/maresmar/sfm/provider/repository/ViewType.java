@@ -20,7 +20,7 @@
 package cz.maresmar.sfm.provider.repository;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import cz.maresmar.sfm.db.controller.ViewController;
 

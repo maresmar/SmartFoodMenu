@@ -20,8 +20,8 @@
 package cz.maresmar.sfm.view.menu;
 
 import android.database.Cursor;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import cz.maresmar.sfm.view.CursorRecyclerViewAdapter;
 
@@ -29,7 +29,7 @@ import cz.maresmar.sfm.view.CursorRecyclerViewAdapter;
  * {@link CursorRecyclerViewAdapter} that uses only part of cursor
  * <p>
  * This part is defined as rows that has in specific column equal values </p>
- * @param <T> Type of {@link android.support.v7.widget.RecyclerView.ViewHolder} used for showing
+ * @param <T> Type of {@link RecyclerView.ViewHolder} used for showing
  */
 public abstract class SectionCursorRecycleViewAdapter<T extends RecyclerView.ViewHolder> extends CursorRecyclerViewAdapter<T> {
 

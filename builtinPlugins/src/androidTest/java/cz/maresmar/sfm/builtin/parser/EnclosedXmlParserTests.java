@@ -1,7 +1,7 @@
 package cz.maresmar.sfm.builtin.parser;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.InstrumentationRegistry;
 
 import org.junit.Assert;
 import org.junit.Before;

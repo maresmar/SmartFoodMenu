@@ -17,9 +17,12 @@ ext {
     // Compiler information
     compileSdkVersion = 28
     buildToolsVersion = "28.0.3"
-    // Support library versions
-    supportLibVersion = "28.0.0"
-    annotationLibVersion = "28.0.0"
+    // AndroidX
+    androidXanotation = '1.0.1'
+    androidXcore = '1.0.1'
+    // Other libraries
+    gson = '2.8.5'
+
 }
 
 allprojects {

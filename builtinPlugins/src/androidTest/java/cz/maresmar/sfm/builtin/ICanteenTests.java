@@ -2,7 +2,7 @@ package cz.maresmar.sfm.builtin;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.InstrumentationRegistry;
 
 import org.junit.Assert;
 import org.junit.Before;

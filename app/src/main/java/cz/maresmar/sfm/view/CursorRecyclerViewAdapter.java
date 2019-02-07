@@ -22,13 +22,13 @@ package cz.maresmar.sfm.view;
 import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.provider.BaseColumns;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * {@link android.support.v7.widget.RecyclerView.Adapter} that is based on {@link Cursor}. The {@link Cursor} must contains
+ * {@link RecyclerView.Adapter} that is based on {@link Cursor}. The {@link Cursor} must contains
  * column with {@link BaseColumns#_ID} which work as connection between {@link Cursor}'s row and
- * {@link android.support.v7.widget.RecyclerView.ViewHolder} item's ID.
+ * {@link RecyclerView.ViewHolder} item's ID.
  */
 
 public abstract class CursorRecyclerViewAdapter<T extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<T> {

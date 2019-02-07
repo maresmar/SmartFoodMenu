@@ -20,8 +20,8 @@
 package cz.maresmar.sfm.service.web;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,11 +32,6 @@ import java.io.InputStream;
 import java.util.List;
 
 import cz.maresmar.sfm.app.ServerContract;
-import cz.maresmar.sfm.service.web.FirstLineInputStream;
-import cz.maresmar.sfm.service.web.PortalEntry;
-import cz.maresmar.sfm.service.web.PortalsUpdateService;
-import cz.maresmar.sfm.service.web.SfmJsonPortalResponse;
-import cz.maresmar.sfm.service.web.UnsupportedApiException;
 
 /**
  * Tests {@link PortalsUpdateService}

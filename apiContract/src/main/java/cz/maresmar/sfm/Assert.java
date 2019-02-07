@@ -1,6 +1,6 @@
 package cz.maresmar.sfm;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Debug testing class for assert checking

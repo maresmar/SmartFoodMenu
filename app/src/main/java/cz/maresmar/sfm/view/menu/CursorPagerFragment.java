@@ -23,19 +23,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import cz.maresmar.sfm.BuildConfig;
 import cz.maresmar.sfm.R;
-import cz.maresmar.sfm.view.DataForm;
-import timber.log.Timber;
 
 /**
  * Fragment that contains {@link ViewPager} with {@link CursorPagerAdapter}.
@@ -197,7 +194,7 @@ public class CursorPagerFragment extends Fragment implements ViewPager.OnPageCha
         void onPageChanged(long pageId);
 
         /**
-         * Enables and disables activity's {@link android.support.v4.widget.SwipeRefreshLayout} because of
+         * Enables and disables activity's {@link SwipeRefreshLayout} because of
          * bug there (see <a href="https://stackoverflow.com/a/29946734/1392034">
          *     https://stackoverflow.com/a/29946734/1392034</a> for more).
          *

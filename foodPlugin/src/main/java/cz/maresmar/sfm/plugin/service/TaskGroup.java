@@ -1,6 +1,6 @@
 package cz.maresmar.sfm.plugin.service;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 

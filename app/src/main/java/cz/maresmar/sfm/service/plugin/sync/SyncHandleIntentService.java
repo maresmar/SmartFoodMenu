@@ -21,7 +21,7 @@ package cz.maresmar.sfm.service.plugin.sync;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * {@link IntentService} that handles sync when app is started

@@ -19,7 +19,7 @@
 
 package cz.maresmar.sfm.service.web;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -19,7 +19,7 @@
 
 package cz.maresmar.sfm.view.portal;
 
-import android.support.v4.content.AsyncTaskLoader;
+import androidx.loader.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;

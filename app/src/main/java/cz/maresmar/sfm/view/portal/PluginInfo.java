@@ -19,7 +19,7 @@
 
 package cz.maresmar.sfm.view.portal;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Data model for plugin info (used in UI)

@@ -21,7 +21,7 @@ package cz.maresmar.sfm.db.controller;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import cz.maresmar.sfm.db.DbContract.GroupMenuEntry;
 

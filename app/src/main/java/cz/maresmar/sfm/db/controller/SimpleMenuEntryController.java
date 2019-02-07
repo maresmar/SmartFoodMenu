@@ -23,7 +23,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import cz.maresmar.sfm.provider.ProviderContract;
 import timber.log.Timber;

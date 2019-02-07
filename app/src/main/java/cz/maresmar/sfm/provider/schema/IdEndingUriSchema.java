@@ -21,8 +21,8 @@ package cz.maresmar.sfm.provider.schema;
 
 import android.content.ContentUris;
 import android.net.Uri;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

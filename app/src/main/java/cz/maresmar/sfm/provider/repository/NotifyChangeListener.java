@@ -21,8 +21,8 @@ package cz.maresmar.sfm.provider.repository;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 
 /**
  * Listener that notifies {@link android.content.ContentResolver} about changes in data. Some views could use
