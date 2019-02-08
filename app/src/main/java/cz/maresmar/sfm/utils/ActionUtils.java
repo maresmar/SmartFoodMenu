@@ -30,12 +30,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -279,7 +281,7 @@ public class ActionUtils {
                         "EditAct." + DbContract.FoodAction.COLUMN_NAME_SYNC_STATUS + " == " + ProviderContract.ACTION_SYNC_STATUS_EDIT + " )",
                 null
         );
-        Timber.d("Deleted %d rows with conflict local values", conflictRows);
+        Timber.d("Overeaten %d rows with conflict local values", conflictRows);
 
         // Save rows that has different values then the synced ones
         ContentValues newValues = new ContentValues();
@@ -465,7 +467,8 @@ public class ActionUtils {
                         "LocAct." + DbContract.FoodAction.COLUMN_NAME_ME_RELATIVE_ID + " == " + ProviderContract.Action.ME_RELATIVE_ID + " AND " +
                         "LocAct." + DbContract.FoodAction.COLUMN_NAME_SYNC_STATUS + " == " + ProviderContract.ACTION_SYNC_STATUS_LOCAL + ")",
                 null);
-
-        Timber.w("%d conflict failed actions deleted", affectedRows);
+        if (affectedRows > 0) {
+            Timber.w("%d conflict failed actions deleted", affectedRows);
+        }
     }
 }
