@@ -28,6 +28,7 @@ import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.RemoteException;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
@@ -36,6 +37,8 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.widget.Toast;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 
@@ -435,6 +438,13 @@ public class ActionUtils {
                         ")",
                 null
         );
+
+        // Log Firebase event
+        Bundle syncParams = new Bundle();
+        syncParams.putInt("failed_actions", failedActions);
+        syncParams.putInt("synced_actions", doneOrders);
+        // Send to
+        FirebaseAnalytics.getInstance(context).logEvent("actions_sync", syncParams);
 
         Timber.i("%d actions synced", doneOrders);
     }

@@ -38,6 +38,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.security.ProviderInstaller;
@@ -109,29 +110,29 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
         if (BuildConfig.DEBUG) {
             // Let's log to builtin Android logger
             Timber.plant(new Timber.DebugTree());
-        }
+        } else {
+            AsyncTask.execute(() -> {
+                try {
+                    File logsDir = new File(getCacheDir(), "logs");
+                    if (!logsDir.exists()) {
+                        boolean result = logsDir.mkdir();
 
-        AsyncTask.execute(() -> {
-            try {
-                File logsDir = new File(getCacheDir(), "logs");
-                if (!logsDir.exists()) {
-                    boolean result = logsDir.mkdir();
-
-                    if (BuildConfig.DEBUG) {
-                        Assert.that(result, "Logs folder wasn't created");
+                        if (BuildConfig.DEBUG) {
+                            Assert.that(result, "Logs folder wasn't created");
+                        }
                     }
+                    mTmpFile = File.createTempFile("sfm", ".log", logsDir);
+                    mPrintStream = new PrintStream(new BufferedOutputStream(
+                            new FileOutputStream(mTmpFile, true)));
+
+                    Timber.plant(new ReleaseTree(mPrintStream));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                mTmpFile = File.createTempFile("sfm", ".log", logsDir);
-                mPrintStream = new PrintStream(new BufferedOutputStream(
-                        new FileOutputStream(mTmpFile, true)));
 
-                Timber.plant(new ReleaseTree(mPrintStream));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Timber.i("Starting sfm %s", getString(R.string.app_version));
-        });
+                Timber.i("Starting sfm %s", getString(R.string.app_version));
+            });
+        }
 
         NotificationContract.initNotificationChannels(this);
 
@@ -306,17 +307,14 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
                 t.printStackTrace(mLog);
             }
 
-            /* TODO send anonymous error info to some analytics service
-            FakeCrashLibrary.log(priority, tag, message);
+            // Send anonymous error info to analytics service
+            Crashlytics.log(priority, tag, message);
 
             if (t != null) {
-                if (priority == Log.ERROR) {
-                    FakeCrashLibrary.logError(t);
-                } else if (priority == Log.WARN) {
-                    FakeCrashLibrary.logWarning(t);
+                if (priority == Log.ERROR || priority == Log.WARN) {
+                    Crashlytics.logException(t);
                 }
             }
-            */
         }
     }
 
