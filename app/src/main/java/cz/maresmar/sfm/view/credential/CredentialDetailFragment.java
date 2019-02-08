@@ -362,12 +362,19 @@ public class CredentialDetailFragment extends WithExtraFragment implements Loade
             case PORTAL_LOADER_ID:
                 Timber.d("Portal data loaded");
 
-                cursor.moveToFirst();
-                if (BuildConfig.DEBUG) {
-                    Assert.that(cursor.getCount() > 0, "You should have at least one portal," +
-                            "but has %d", cursor.getCount());
+                if(cursor.getCount() == 0) {
+                    // Portal was removed in welcome guide
+                    reset(mUserPrefixUri, null);
+                    break;
                 }
 
+                // Have valid portal
+                if (BuildConfig.DEBUG) {
+                    Assert.that(cursor.getCount() > 0, "You should have at least " +
+                            "one portal now, but has %d", cursor.getCount());
+                }
+
+                cursor.moveToFirst();
                 String pluginId = cursor.getString(0);
                 requestExtraFormat(pluginId);
                 if(mLastPlugin != null && !mLastPlugin.equals(pluginId)) {

@@ -420,6 +420,12 @@ public class PortalDetailFragment extends WithExtraFragment implements LoaderMan
             case PORTAL_LOADER_ID:
                 Timber.d("Portal data loaded");
 
+                if (cursor.getCount() == 0) {
+                    // Portal was removed in welcome guide
+                    reset(null);
+                    break;
+                }
+
                 cursor.moveToFirst();
                 if (BuildConfig.DEBUG) {
                     Assert.isOne(cursor.getCount());

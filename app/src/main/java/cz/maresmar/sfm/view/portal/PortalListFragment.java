@@ -307,6 +307,7 @@ public class PortalListFragment extends Fragment implements LoaderManager.Loader
             if (BuildConfig.DEBUG) {
                 Assert.isOne(deletedRows);
             }
+            // TODO propagate to activity (the view state could be invalid)
         });
     }
 
