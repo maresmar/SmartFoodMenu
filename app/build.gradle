@@ -40,7 +40,7 @@ android {
             resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
         }
         debug {
-            resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
+            resValue "string", "app_version", "${defaultConfig.versionName}-debug"
             resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
         }
     }
