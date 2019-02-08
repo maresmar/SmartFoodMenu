@@ -86,7 +86,7 @@
         Jde o svobodný software a jeho šíření je za určitých podmínek vítáno, nahlédněte do
         licence v sekci O aplikaci v toolbaru.
         \n
-        \nTato aplikace může využívat Google Analytics pro anonymní sledování používání aplikace.
+        \nTato aplikace může využívat Firebase Analytics a Crashlytics pro anonymní sledování fungování aplikace.
         Uživatel také může zaslat zprávu vývojáři obsahující ladící informace. Všechna takto získaná
         data jsou považována za soukromá a nikdy nebudou předána žádné třetí straně.
     </string>

@@ -81,7 +81,7 @@
         This is free software, and you are welcome to redistribute it under certain conditions; check
         License in About screen for details.
         \n
-        \nThis application could use Google Analytics to anonymously track usage data within the
+        \nThis application could use Firebase Analytics and Crashlytics to anonymously track usage data within the
         application. A user could also send debug report to the developer. All debug data are considered
         as private and wouldn\'t be provided to any thirty parties.
     </string>
