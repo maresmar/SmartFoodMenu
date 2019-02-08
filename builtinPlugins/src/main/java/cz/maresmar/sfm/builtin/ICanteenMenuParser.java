@@ -583,6 +583,12 @@ public class ICanteenMenuParser extends EnclosedXmlParser {
         }
         priceText = priceText.replace(',', '.');
         double price = Double.parseDouble(priceText);
+
+        // Use always positive price
+        if (price < 0) {
+            price = price * -1;
+        }
+
         return (int) (price * 100);
     }
 
