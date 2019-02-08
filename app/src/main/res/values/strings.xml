@@ -22,6 +22,11 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
+         <i>Version 3.3.0</i><br />
+        - New adaptive icon
+        - Targeting Android Pie<br />
+        - Builtin libs updates<br />
+        - App size and speed optimization<br />
          <i>Version 3.2.7</i><br />
         - Optimizations
         - Credit parsing fixes<br />
@@ -38,13 +43,6 @@
         - Better feedback messages<br />
         - Smaller app size<br />
         - Parsing bug fixes<br />
-        <i>Version 3.0.0</i><br />
-        - New portals<br />
-        - Material design<br />
-        - Multi user support<br />
-        - Multi portal support<br />
-        - More menu order options<br />
-        - and many more<br />
         <br />
         <i>Replaces old app "Jídelníček"</i>]]>
     </string>
