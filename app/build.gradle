@@ -31,18 +31,18 @@ android {
         versionName "3.3.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+
+        resValue "string", "app_version", "${defaultConfig.versionName}"
+        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
     }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            resValue "string", "app_version", "${defaultConfig.versionName}"
-            resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
         }
         debug {
-            resValue "string", "app_version", "${defaultConfig.versionName}-debug"
-            resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+            versionNameSuffix "-debug"
         }
     }
     compileOptions {

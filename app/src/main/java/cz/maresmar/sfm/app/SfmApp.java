@@ -39,6 +39,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.security.ProviderInstaller;
@@ -58,6 +59,7 @@ import java.util.Locale;
 import cz.maresmar.sfm.Assert;
 import cz.maresmar.sfm.BuildConfig;
 import cz.maresmar.sfm.R;
+import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
 /**
@@ -91,6 +93,7 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
     @Override
     public void onCreate() {
         if (BuildConfig.DEBUG) {
+            // Enable strict mode
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
 //                    .detectDiskReads()
                     .detectDiskWrites()
@@ -103,6 +106,10 @@ public class SfmApp extends Application implements ProviderInstaller.ProviderIns
                     .penaltyLog()
 //                    .penaltyDeath()
                     .build());
+
+            // Disable Crashlytics
+            CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(true).build();
+            Fabric.with(this, new Crashlytics.Builder().core(core).build());
         }
         super.onCreate();
 
