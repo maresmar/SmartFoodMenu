@@ -22,7 +22,7 @@
     <string name="app_name">SmartFoodMenu</string>
     <string name="app_changelog">
         <![CDATA[
-         <i>Version 3.3.1</i><br />
+         <i>Version 3.3.2</i><br />
         - New adaptive icon<br />
         - Targeting Android Pie<br />
         - Builtin libs updates<br />
