@@ -187,14 +187,18 @@ public class PortalMenuPagerFragment extends CursorPagerFragment implements Load
      * @param portalId Selected portal ID
      */
     public void reset(Uri userUri, long portalId) {
-        mPortalId = portalId;
-
         if (!mUserUri.equals(userUri)) {
+            // Update variables
             mUserUri = userUri;
+            mPortalId = portalId;
+            // Restart loader
             getPagerAdapter().swapCursor(null);
             getLoaderManager().restartLoader(PORTAL_LOADER_ID, null, this);
         } else {
-            showPageId(mPortalId);
+            if(portalId != mPortalId) {
+                mPortalId = portalId;
+                showPageId(mPortalId);
+            }
         }
     }
 
