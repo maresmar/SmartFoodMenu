@@ -81,7 +81,7 @@ dependencies {
     implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
     // Firebase
     implementation 'com.google.firebase:firebase-core:16.0.7'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
     // Letter to drawable
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     // Circle ImageView
