@@ -39,7 +39,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,6 +55,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.Hashtable;
 
 import cz.maresmar.sfm.R;
+import cz.maresmar.sfm.app.ServerContract;
 import cz.maresmar.sfm.app.SettingsContract;
 import cz.maresmar.sfm.app.SfmApp;
 import cz.maresmar.sfm.plugin.BroadcastContract;
@@ -296,6 +296,10 @@ public class WelcomeActivity extends AppCompatActivity
             case R.id.action_feedback:
                 SfmApp app = (SfmApp)getApplication();
                 app.sendFeedback(this);
+                return true;
+            case R.id.action_privacy:
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(ServerContract.PRIVACY_POLICY_ADDRESS));
+                startActivity(myIntent);
                 return true;
             case R.id.advanced_check_box:
                 // Android doesn't handle checked <-> unchecked behavior automatically

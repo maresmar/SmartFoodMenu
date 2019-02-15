@@ -74,6 +74,7 @@
     <!-- Welcome activity -->
     <string name="welcome_activity_title">Quick start guide</string>
     <string name="welcome_about_action">About</string>
+    <string name="welcome_privacy_action">Privacy Policy</string>
     <string name="welcome_feedback_action">Send feedback</string>
     <string name="welcome_hi_text">Hi!!!</string>
     <string name="welcome_intro_text">Thank you for downloading this app. We have to ask you for a few things to get app working. First         if you want to use this application, you have to accept the license agreement…</string>
@@ -284,6 +285,7 @@
     <string name="portal_detail_override_turned_off_msg">Portal settings auto sync was disabled</string>
     <string name="undo_action">UNDO</string>
     <string name="portal_detail_override_read_only_button">Ignore / edit notifications</string>
+
 
 
 </resources>

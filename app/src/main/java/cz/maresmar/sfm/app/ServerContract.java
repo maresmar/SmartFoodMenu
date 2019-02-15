@@ -28,6 +28,8 @@ public class ServerContract {
     public static final String PORTALS_SERVER_ADDRESS = SERVER_ADDRESS + "/portals.php?format=json";
     public static final String PORTAL_GROUPS_SERVER_ADDRESS = SERVER_ADDRESS + "/portalGroups.php?format=json";
 
+    public static final String PRIVACY_POLICY_ADDRESS = "http://www.mares.mzf.cz/?p=189";
+
     public static final int PORTAL_JSON_API_VERSION = 1;
     public static final String REPLY_TYPE_PORTALS = "portals";
     public static final String REPLY_TYPE_PORTAL_GROUPS = "portalGroups";
