@@ -1445,6 +1445,13 @@ public class ICanteenTests {
                 groupMenuEntries = parser.getGroupMenuEntries();
                 orderEntries = parser.getActionEntries();
             }
+
+            @Test
+            public void wholeMenu() {
+                // Day page - food parsing not supported
+                Assert.assertEquals(0, menuEntries.size());
+                Assert.assertEquals(0, orderEntries.size());
+            }
         }
     }
 }
